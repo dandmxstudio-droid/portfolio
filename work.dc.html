@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap">
+<style>
+html,body{margin:0;padding:0;background:#f1f2f4;-webkit-font-smoothing:antialiased}
+@keyframes footTick{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes ambDrift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(4vw,-3vh) scale(1.06)}66%{transform:translate(-3vw,4vh) scale(0.95)}}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+</style>
+<link rel="icon" type="image/svg+xml" href="assets/logo/dm-logo-black.svg">
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:Inter, system-ui, sans-serif; color:#111214; background:#f1f2f4;">
+
+<div aria-hidden="true" onClick="{{ navClose }}" style="position:fixed; inset:0; z-index:29; background:rgba(10,10,12,0.2); opacity:{{ navO }}; pointer-events:{{ navPe }}; transition:opacity 450ms ease;"></div>
+<header style="position:fixed; top:0; left:0; right:0; z-index:30;">
+  <div aria-hidden="true" style="position:absolute; left:0; right:0; top:0; height:104px; z-index:-1; pointer-events:none;"><div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,calc(0.3 + var(--nd, 0) * 0.6)) 0%, rgba(255,255,255,calc(0.12 + var(--nd, 0) * 0.5)) 55%, rgba(255,255,255,0) 100%); transition:background 300ms ease;"></div><div style="position:absolute; inset:0; backdrop-filter:blur(1px); -webkit-backdrop-filter:blur(1px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 55%, transparent 100%); mask-image:linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 42%, transparent 82%); mask-image:linear-gradient(180deg, #000 0%, #000 42%, transparent 82%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 30%, transparent 66%); mask-image:linear-gradient(180deg, #000 0%, #000 30%, transparent 66%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 18%, transparent 52%); mask-image:linear-gradient(180deg, #000 0%, #000 18%, transparent 52%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); -webkit-mask-image:linear-gradient(180deg, #000 0%, transparent 38%); mask-image:linear-gradient(180deg, #000 0%, transparent 38%);"></div></div>
+  <div style="max-width:1440px; height:64px; margin:0 auto; padding:0 clamp(16px, 3vw, 40px); box-sizing:border-box; display:grid; grid-template-columns:minmax(0, 1fr) auto minmax(0, 1fr); align-items:center; gap:12px;">
+    <a href="/" aria-label="Back to home" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="justify-self:start; display:inline-flex; align-items:center; gap:10px; height:44px; padding:0 14px 0 4px; margin-left:-4px; border-radius:999px; font-size:14px; font-weight:500; color:#111214;" style-focus="outline:none;"><span aria-hidden="true" style="position:relative; display:grid; place-items:center; width:36px; height:36px; flex:none; border-radius:999px; overflow:hidden; background:rgba(17,18,20,0.06); box-shadow:inset 0 0 0 1px rgba(17,18,20,0.06);"><span style="position:absolute; inset:0; border-radius:999px; background:#111214; transform:scale(var(--h, 0)); transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span><svg viewBox="0 0 24 24" style="position:relative; width:16px; height:16px; fill:none; stroke:color-mix(in srgb, #ffffff calc(var(--h, 0) * 100%), #111214); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; transform:translateX(calc(var(--h, 0) * -2px)); transition:transform 450ms cubic-bezier(.2,.7,.2,1), stroke 300ms ease;"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></span><span style="display:block; height:20px; line-height:20px; overflow:hidden;"><span style="display:flex; flex-direction:column; transform:translateY(calc(var(--h, 0) * -20px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><span>Back</span><span aria-hidden="true">Back</span></span></span></a>
+    <div style="grid-column:3; justify-self:end; display:flex; align-items:center; gap:6px;">
+      <a href="mailto:dmotacontact@gmail.com" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; height:40px; padding:0 18px; border-radius:999px; background:#111214; color:#ffffff; font-size:14px; font-weight:500; box-shadow:inset 0 1px 0 rgba(255,255,255,0.14), 0 6px 14px -8px rgba(17,18,20,0.5);" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="display:block; height:20px; line-height:20px; overflow:hidden;"><span style="display:flex; flex-direction:column; transform:translateY(calc(var(--h, 0) * -20px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><span>Get in touch</span><span aria-hidden="true">Get in touch</span></span></span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section data-screen-label="Hero" style="position:relative; overflow:hidden; isolation:isolate; background:linear-gradient(180deg, oklch(0.955 0.022 285) 0%, oklch(0.96 0.018 285) 55%, #f1f2f4 100%); padding:clamp(124px, 12vw, 176px) clamp(20px, 4vw, 64px) clamp(28px, 3vw, 44px);">
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px 64px;">
+    <div style="display:flex; flex-direction:column; gap:18px;">
+      <span data-a="rv" style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px 0 10px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span aria-hidden="true" style="width:6px; height:6px; flex:none; border-radius:999px; background:oklch(0.55 0.17 285); box-shadow:0 0 0 3px oklch(0.55 0.17 285 / 0.16);"></span>Archive</span>
+      <h1 style="margin:0; overflow:hidden; padding-bottom:0.12em; margin-bottom:-0.12em; font-weight:500; font-size:clamp(36px, 4.2vw, 64px); line-height:0.95; letter-spacing:-0.04em;"><span data-a="rise" style="display:inline-block;">All Work</span></h1>
+    </div>
+    <p data-a="rv" style="margin:0; width:min(100%, 38ch); font-size:clamp(16px, 1.3vw, 19px); line-height:1.5; color:#5c5f63; text-wrap:pretty;">Every case study in one place: AI products, workflow systems and design work.</p>
+  </div>
+</section>
+
+<section data-screen-label="Projects" style="padding:0 clamp(20px, 4vw, 64px) clamp(96px, 10vw, 152px);">
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(20px, 2.2vw, 32px);">
+    <div data-a="rv" style="position:relative;">
+      <div style="max-width:1440px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 24px;">
+        <div role="group" aria-label="Filter projects" style="display:flex; flex-wrap:wrap; align-items:center; gap:4px; padding:4px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+            <button type="button" data-f="{{ f.id }}" onClick="{{ pickFilter }}" aria-pressed="{{ f.pressed }}" style="appearance:none; position:relative; display:inline-flex; align-items:center; height:36px; padding:0 16px; border:0; border-radius:999px; background:{{ f.bg }}; color:{{ f.color }}; font-family:inherit; font-size:13.5px; font-weight:500; cursor:pointer; gap:7px; transition:background 300ms ease, color 300ms ease;" style-focus="outline:none;">{{ f.label }}<span style="font-size:11.5px; font-weight:500; color:{{ f.countColor }}; font-variant-numeric:tabular-nums;">{{ f.count }}</span></button>
+          </sc-for>
+        </div>
+        <div role="group" aria-label="Layout" style="display:flex; align-items:center; gap:2px; padding:4px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <button type="button" data-v="grid" onClick="{{ pickView }}" aria-pressed="{{ gridPressed }}" aria-label="Grid view" style="appearance:none; display:grid; place-items:center; width:40px; height:36px; border:0; border-radius:999px; background:{{ gridBg }}; color:{{ gridColor }}; cursor:pointer; transition:background 300ms ease, color 300ms ease;" style-focus="outline:none;"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linejoin:round;"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"></rect><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"></rect><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"></rect><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"></rect></svg></button>
+          <button type="button" data-v="list" onClick="{{ pickView }}" aria-pressed="{{ listPressed }}" aria-label="List view" style="appearance:none; display:grid; place-items:center; width:40px; height:36px; border:0; border-radius:999px; background:{{ listBg }}; color:{{ listColor }}; cursor:pointer; transition:background 300ms ease, color 300ms ease;" style-focus="outline:none;"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round;"><path d="M4 6.5h16M4 12h16M4 17.5h16"></path></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div ref="{{ gridRef }}">
+      <sc-if value="{{ isGrid }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap:clamp(20px, 2vw, 32px);">
+          <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+            <a href="{{ p.href }}" data-card="1" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="position:relative; display:flex; flex-direction:column; min-width:0; box-sizing:border-box; padding:8px; border-radius:28px; background:#ffffff; border:1px solid #e6e7ea; box-shadow:0 1px 2px rgba(17,18,20,0.04), 0 12px 28px -20px rgba(17,18,20,0.16), 0 calc(var(--h, 0) * 26px) calc(var(--h, 0) * 48px) -26px rgba(17,18,20,0.28); transform:translateY(calc(var(--h, 0) * -4px)); transition:transform 550ms cubic-bezier(.2,.7,.2,1), box-shadow 550ms cubic-bezier(.2,.7,.2,1); color:#111214;" style-focus="outline:none;">
+              <div style="position:relative; border-radius:21px; overflow:hidden; aspect-ratio:16/10; background:#e6e7eb;">
+                <img src="{{ p.img }}" alt="{{ p.alt }}" loading="lazy" style="display:block; width:100%; height:100%; object-fit:cover; transform:scale(calc(1 + var(--h, 0) * 0.035)); transition:transform 900ms cubic-bezier(.2,.7,.2,1);">
+              </div>
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:20px; padding:clamp(20px, 1.8vw, 26px) clamp(12px, 1.2vw, 18px) clamp(14px, 1.2vw, 18px) clamp(14px, 1.4vw, 20px);">
+                <div style="min-width:0; display:flex; flex-direction:column; gap:6px;">
+                  <h2 style="margin:0; font-size:clamp(22px, 1.8vw, 26px); font-weight:500; letter-spacing:-0.035em; line-height:1.1;">{{ p.title }}</h2>
+                  <span style="font-size:14px; line-height:1.4; color:#76797f;">{{ p.tag }}</span>
+                </div>
+                <span aria-hidden="true" style="position:relative; display:grid; place-items:center; width:44px; height:44px; flex:none; border-radius:999px; overflow:hidden; border:1px solid #dcdde1; background:#ffffff;"><span style="position:absolute; inset:0; border-radius:999px; background:#111214; transform:scale(var(--h, 0)); transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span><span style="position:relative; font-size:16px; color:color-mix(in srgb, #ffffff calc(var(--h, 0) * 100%), #111214); transform:rotate(calc(-45deg + var(--h, 0) * 45deg)); transition:transform 500ms cubic-bezier(.34,1.56,.64,1), color 300ms ease;">→</span></span>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+        <div onMouseMove="{{ listMove }}" onMouseLeave="{{ listLeave }}" style="display:flex; flex-direction:column; border-bottom:1px solid #dcdde1;">
+          <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+            <a href="{{ p.href }}" data-card="1" data-img="{{ p.img }}" onMouseEnter="{{ rowOn }}" onMouseLeave="{{ hoverOff }}" style="position:relative; display:grid; grid-template-columns:{{ rowCols }}; align-items:center; gap:12px clamp(20px, 3vw, 48px); padding:clamp(20px, 2.2vw, 30px) clamp(8px, 1vw, 16px); border-top:1px solid #dcdde1; color:#111214;" style-focus="outline:none;">
+              <span aria-hidden="true" style="position:absolute; inset:0; z-index:0; background:#ffffff; opacity:var(--h, 0); transition:opacity 350ms ease; pointer-events:none;"></span>
+              <span style="position:relative; font-size:13px; color:#8a8a90; font-variant-numeric:tabular-nums;">{{ p.num }}</span>
+              <span style="position:relative; min-width:0; display:flex; align-items:center; gap:12px; transform:translateX(calc(var(--h, 0) * 10px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><h2 style="margin:0; font-size:clamp(24px, 2.6vw, 40px); font-weight:500; letter-spacing:-0.04em; line-height:1.05;">{{ p.title }}</h2><sc-if value="{{ p.featured }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" aria-label="Featured" style="flex:none; width:14px; height:14px; fill:#111214;"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"></path></svg></sc-if></span>
+              <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+                <span style="position:relative; font-size:14.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">{{ p.desc }}</span>
+                <span style="position:relative; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#8a8a90;">{{ p.tag }}</span>
+              </sc-if>
+              <span aria-hidden="true" style="position:relative; display:grid; place-items:center; width:40px; height:40px; border-radius:999px; border:1px solid #d6d7db; background:#ffffff; font-size:15px; transform:rotate(calc(-45deg + var(--h, 0) * 45deg)); transition:transform 500ms cubic-bezier(.34,1.56,.64,1);">→</span>
+            </a>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+  <div ref="{{ prevRef }}" aria-hidden="true" style="position:fixed; left:0; top:0; z-index:25; width:clamp(220px, 20vw, 320px); aspect-ratio:16/10; border-radius:14px; overflow:hidden; pointer-events:none; opacity:0; transform:translate(32px, -50%) scale(0.85) rotate(-3deg); transition:opacity 280ms ease, transform 450ms cubic-bezier(.2,.7,.2,1); box-shadow:0 30px 60px -20px rgba(17,18,20,0.45), 0 0 0 1px rgba(17,18,20,0.06); background:#e6e7eb;"><img alt="" style="display:block; width:100%; height:100%; object-fit:cover;"></div>
+</section>
+
+<section data-screen-label="CTA" style="position:relative; overflow:hidden; isolation:isolate; background:#0a0a0a; color:#ffffff; padding:clamp(104px, 12vw, 184px) clamp(20px, 4vw, 64px);">
+  {{ darkAmbient }}
+  <div aria-hidden="true" style="position:absolute; inset:0; z-index:-1; background:radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1.3px) 0 0 / 22px 22px; -webkit-mask-image:radial-gradient(55% 60% at 50% 50%, #000, transparent 78%); mask-image:radial-gradient(55% 60% at 50% 50%, #000, transparent 78%); pointer-events:none;"></div>
+  <div aria-hidden="true" style="position:absolute; left:50%; top:58%; z-index:-1; width:min(900px, 90vw); height:min(520px, 60vw); transform:translate(-50%, -50%); border-radius:50%; background:radial-gradient(closest-side, oklch(0.52 0.22 285 / 0.55), oklch(0.42 0.18 285 / 0.25) 60%, transparent 100%); filter:blur(60px); pointer-events:none;"></div>
+  <div aria-hidden="true" style="position:absolute; left:0; right:0; bottom:0; height:45%; z-index:-1; background:linear-gradient(180deg, rgba(10,10,10,0), #0a0a0a 92%); pointer-events:none;"></div>
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:clamp(28px, 3vw, 40px); text-align:center;">
+    <span data-a="rv" style="display:inline-flex; align-items:center; height:26px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); color:rgba(255,255,255,0.86);">Let’s Build</span>
+    <h2 style="margin:0; max-width:13ch; overflow:hidden; padding:0.04em 0 0.18em; margin-bottom:-0.12em; font-weight:500; font-size:clamp(44px, 6.4vw, 104px); line-height:0.98; letter-spacing:-0.05em; text-wrap:balance;"><span data-a="rise" style="display:inline-block;">Have a problem worth solving?</span></h2>
+    <p data-a="rv" style="margin:0; max-width:52ch; font-size:clamp(16px, 1.35vw, 20px); line-height:1.5; color:rgba(255,255,255,0.74); text-wrap:pretty;">I research, design and build AI products that teams actually use.</p>
+    <a data-a="rv" href="mailto:dmotacontact@gmail.com" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:10px; height:56px; padding:0 28px; border-radius:999px; background:#ffffff; color:#111214; font-size:16px; font-weight:600; transform:translateY(calc(var(--h, 0) * -2px)); box-shadow:0 0 0 1px rgba(255,255,255,0.4), 0 10px 40px -8px oklch(0.6 0.22 285 / 0.7); transition:transform 400ms cubic-bezier(.2,.7,.2,1), background 200ms ease;" style-hover="background:#f1efff; color:#111214;" style-focus="outline:none;">Get in touch <span aria-hidden="true" style="display:inline-block; transform:translateX(calc(var(--h, 0) * 4px)); transition:transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1);">→</span></a>
+  </div>
+</section>
+</main>
+
+<footer data-screen-label="Footer" style="position:relative; z-index:1; margin-top:-2px; overflow:hidden; background:#0a0a0a; color:#ffffff; padding:clamp(24px, 3vw, 40px) clamp(24px, 6vw, 112px) 0;">
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:28px 64px;">
+    <nav aria-label="Site" style="display:flex; flex-wrap:wrap; gap:0 clamp(24px, 3vw, 40px);">
+      <a href="/#work" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">Work<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#how-i-build" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">How I Build<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#what-i-build" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">What I Build<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#about" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">About<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+    </nav>
+  </div>
+  <div aria-hidden="true" style="margin-top:clamp(80px, 11vw, 168px); margin-left:calc(-1 * clamp(24px, 6vw, 112px)); margin-right:calc(-1 * clamp(24px, 6vw, 112px)); height:clamp(70px, 12.5vw, 225px); overflow:hidden; display:flex; justify-content:flex-start; -webkit-mask-image:linear-gradient(180deg, #000 25%, transparent 100%); mask-image:linear-gradient(180deg, #000 25%, transparent 100%); pointer-events:none;">
+    {{ footTicker }}
+  </div>
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 32px; padding:20px 0 clamp(24px, 3vw, 36px); font-size:13px; color:#a3a5ab;">
+    <span>© 2026 Dan Mota</span>
+    <span>Built with AI + human judgment in Florida ☀️</span>
+  </div>
+</footer>
+
+<dc-import name="PasswordGate" eyebrow="Private Work" title="My work is password protected" back-href="/" back-label="Home" hint-size="0px,0px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: 'all', view: (() => { try { return localStorage.getItem('dm-work-view') === 'list' ? 'list' : 'grid'; } catch (e) { return 'grid'; } })(), wide: typeof window === 'undefined' || window.innerWidth > 820 };
+  rootRef = React.createRef();
+  gridRef = React.createRef();
+  prevRef = React.createRef();
+  pickView = (e) => { const v = e.currentTarget.getAttribute('data-v'); if (v === this.state.view) return; try { localStorage.setItem('dm-work-view', v); } catch (err) {} this.listLeave(); this.setState({ view: v }); };
+  onResize = () => { const wide = window.innerWidth > 820; if (wide !== this.state.wide) this.setState({ wide }); };
+  canPreview = () => typeof matchMedia !== 'undefined' && matchMedia('(hover: hover)').matches;
+  rowOn = (e) => {
+    this.hoverOn(e);
+    const p = this.prevRef.current; if (!p || !this.canPreview()) return;
+    const img = p.querySelector('img'), src = e.currentTarget.getAttribute('data-img');
+    if (img.getAttribute('src') !== src) img.setAttribute('src', src);
+    p.style.opacity = '1'; p.style.transform = 'translate(32px, -50%) scale(1) rotate(' + (this._tilt = -this._tilt || 2) + 'deg)';
+  };
+  listMove = (e) => { const p = this.prevRef.current; if (!p) return; p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px'; };
+  listLeave = () => { const p = this.prevRef.current; if (!p) return; p.style.opacity = '0'; p.style.transform = 'translate(32px, -50%) scale(0.85) rotate(-3deg)'; };
+  data = [
+    { href: '/carevine', img: 'assets/carevine/carevine-thumbnail-v2.jpg', alt: 'Carevine Triage Tool support and nurse queues', tag: 'Healthcare · AI Product', cat: 'ai', title: 'Patient Message Triage', desc: 'A working AI tool that sorts a virtual-care support inbox, gets health messages to nurses in seconds, and drafts replies reps approve.', featured: true },
+    { href: '/tidey', img: 'assets/tidewell/tidey-thumbnail.jpg', alt: 'Tidewell project thumbnail', tag: 'Banking · AI Agent', cat: 'ai', title: 'AI Fraud Investigator', desc: 'An AI layer that connects data, docs, and analytics so teams get answers fast.', featured: true },
+    { href: '/equipaworks', img: 'assets/equipaworks/equipaworks-thumbnail.jpg', alt: 'EquipaWorks course system thumbnail', tag: 'Learning · AI Automation', cat: 'ai', title: 'Training Content at Scale', desc: 'One topic in, one complete microlearning video course out, in about 2 hours.', featured: true },
+  ];
+  filterDefs = [['all', 'All'], ['ai', 'AI Products'], ['auto', 'Automation'], ['ds', 'Design Systems']];
+  hoverOn = (e) => e.currentTarget.style.setProperty('--h', '1');
+  hoverOff = (e) => e.currentTarget.style.setProperty('--h', '0');
+  pickFilter = (e) => { const f = e.currentTarget.getAttribute('data-f'); if (f !== this.state.filter) this.setState({ filter: f }); };
+  onScroll = () => { const r = this.rootRef.current; if (r) r.style.setProperty('--navOn', window.scrollY > 8 ? '1' : '0'); };
+  navKey = (e) => { if (e.key === 'Escape') this.navClose(); };
+  navToggle = () => { const o = !this.state.navOpen; document[o ? 'addEventListener' : 'removeEventListener']('keydown', this.navKey); this.setState({ navOpen: o }); };
+  navClose = () => { document.removeEventListener('keydown', this.navKey); if (this.state.navOpen) this.setState({ navOpen: false }); };
+  navTone = () => {
+    if (this._ntRaf) return;
+    this._ntRaf = requestAnimationFrame(() => {
+      this._ntRaf = 0;
+      const hd = document.querySelector('header'); if (!hd) return;
+      const stack = document.elementsFromPoint(window.innerWidth / 2, 40);
+      let lum = 1;
+      for (const el of stack) {
+        if (hd.contains(el)) continue;
+        const cs = getComputedStyle(el);
+        let m = cs.backgroundColor.match(/rgba?\(([^)]+)\)/), v = m && m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);
+        if (!(v && (v[3] === undefined || v[3] > 0.5)) && cs.backgroundImage.indexOf('gradient') > -1) { m = cs.backgroundImage.match(/rgba?\(([^)]+)\)/); v = m && m[1].split(/[ ,\/]+/).filter(Boolean).map(Number); }
+        if (el.tagName === 'VIDEO' || el.tagName === 'IMG') { lum = 0.5; break; }
+        if (v && (v[3] === undefined || v[3] > 0.5)) { lum = (0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]) / 255; break; }
+      }
+      hd.style.setProperty('--nd', lum < 0.45 ? '1' : '0');
+    });
+  };
+  componentDidMount() {
+    window.addEventListener('scroll', this.navTone, { passive: true }); window.addEventListener('resize', this.navTone); this.navTone();
+    this.reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._lastF = this.state.filter + this.state.view;
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    this.onScroll();
+    const E = 'cubic-bezier(.2,.7,.2,1)';
+    if (this.reduce) return;
+    this.io = new IntersectionObserver(es => es.forEach(en => {
+      if (!en.isIntersecting) return; this.io.unobserve(en.target);
+      const el = en.target, rise = el.getAttribute('data-a') === 'rise';
+      el.animate(rise ? [{ transform: 'translateY(105%)' }, { transform: 'none' }] : [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }], { duration: rise ? 1000 : 800, easing: E, fill: 'backwards' });
+    }), { threshold: 0.15 });
+    document.querySelectorAll('[data-a]').forEach(el => this.io.observe(el));
+    this.cardIo = new IntersectionObserver(es => es.forEach(en => {
+      if (!en.isIntersecting) return; this.cardIo.unobserve(en.target);
+      const i = [...en.target.parentElement.children].indexOf(en.target);
+      en.target.animate([{ opacity: 0, transform: 'translateY(28px) scale(0.98)' }, { opacity: 1, transform: 'none' }], { duration: 900, delay: (i % 3) * 100 + 120, easing: E, fill: 'backwards' });
+    }), { threshold: 0.12 });
+    this.observeCards();
+  }
+  observeCards() { const g = this.gridRef.current; if (g && this.cardIo) g.querySelectorAll('[data-card]').forEach(c => this.cardIo.observe(c)); }
+  componentDidUpdate() {
+    const key = this.state.filter + this.state.view;
+    if (this._lastF === key) return;
+    this._lastF = key;
+    if (this.reduce) return;
+    const g = this.gridRef.current; if (!g) return;
+    [...g.querySelectorAll('[data-card]')].forEach((c, i) => c.animate([{ opacity: 0, transform: 'translateY(18px) scale(0.98)' }, { opacity: 1, transform: 'none' }], { duration: 650, delay: Math.min(i, 8) * 60, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' }));
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onResize); [this.io, this.cardIo].forEach(o => o && o.disconnect()); }
+  orb(style) {
+    return React.createElement('div', { style: Object.assign({ position: 'absolute', borderRadius: '50%', filter: 'blur(48px)', pointerEvents: 'none', animation: this.reduce ? 'none' : 'ambDrift 28s ease-in-out infinite', willChange: 'transform' }, style) });
+  }
+  goBack = (e) => { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (err) {} };
+  renderVals() {
+    const h = React.createElement, f = this.state.filter;
+    const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const total = this.data.length, pad = n => String(n).padStart(2, '0');
+    const list = this.data.map((p, i) => Object.assign({}, p, { num: pad(i + 1), featured: !!p.featured })).filter(p => f === 'all' || p.cat === f);
+    return {
+      goBack: this.goBack,
+      navWide: this.state.wide, navMob: !(this.state.wide), navOpen: !!this.state.navOpen, navToggle: this.navToggle, navClose: this.navClose,
+      navO: this.state.navOpen ? 1 : 0, navY: this.state.navOpen ? 'translateY(0)' : 'translateY(-8px)', navPe: this.state.navOpen ? 'auto' : 'none',
+      navL1: this.state.navOpen ? 'rotate(45deg)' : 'translateY(-3.5px)', navL2: this.state.navOpen ? 'rotate(-45deg)' : 'translateY(3.5px)',
+      navW: this.state.navOpen ? '440px' : '300px', navR: this.state.navOpen ? '26px' : '28px', navRows: this.state.navOpen ? '1fr' : '0fr', navLabel: this.state.navOpen ? 'Close' : 'Menu', navLY: this.state.navOpen ? 'translateY(0)' : 'translateY(-10px)',
+      rootRef: this.rootRef,
+      gridRef: this.gridRef,
+      hoverOn: this.hoverOn,
+      hoverOff: this.hoverOff,
+      pickFilter: this.pickFilter,
+      pickView: this.pickView,
+      prevRef: this.prevRef,
+      rowOn: this.rowOn,
+      listMove: this.listMove,
+      listLeave: this.listLeave,
+      wide: this.state.wide,
+      isGrid: this.state.view === 'grid',
+      isList: this.state.view === 'list',
+      rowCols: this.state.wide ? '40px minmax(0, 1.1fr) minmax(0, 1.4fr) minmax(0, 0.9fr) 40px' : '32px minmax(0, 1fr) 40px',
+      gridPressed: this.state.view === 'grid' ? 'true' : 'false',
+      listPressed: this.state.view === 'list' ? 'true' : 'false',
+      gridBg: this.state.view === 'grid' ? '#111214' : 'transparent',
+      gridColor: this.state.view === 'grid' ? '#ffffff' : '#5c5f63',
+      listBg: this.state.view === 'list' ? '#111214' : 'transparent',
+      listColor: this.state.view === 'list' ? '#ffffff' : '#5c5f63',
+      projects: list,
+      filters: this.filterDefs.map(([id, label]) => { const on = id === f; return { id, label, count: id === 'all' ? total : this.data.filter(p => p.cat === id).length, pressed: on ? 'true' : 'false', bg: on ? '#111214' : 'transparent', color: on ? '#ffffff' : '#4a4d53', countColor: on ? 'rgba(255,255,255,0.6)' : '#9a9ca2' }; }).filter(x => x.count > 0),
+      darkAmbient: h('div', { 'aria-hidden': true, style: { position: 'absolute', inset: 0, zIndex: -2, overflow: 'hidden', pointerEvents: 'none' } }, [
+        h('div', { key: 'a' }, this.orb({ width: '56vw', height: '56vw', right: '-18vw', top: '-20vw', background: 'radial-gradient(closest-side, oklch(0.5 0.2 285 / 0.42), transparent)' })),
+        h('div', { key: 'b' }, this.orb({ width: '40vw', height: '40vw', left: '-14vw', bottom: '-18vw', background: 'radial-gradient(closest-side, oklch(0.5 0.14 290 / 0.32), transparent)', animationDuration: '36s', animationDirection: 'reverse' }))
+      ]),
+      footTicker: h('div', { style: { display: 'flex', width: 'max-content', flex: 'none', fontWeight: 600, fontSize: 'clamp(72px, 15.5vw, 280px)', lineHeight: 0.9, letterSpacing: '-0.055em', whiteSpace: 'nowrap', color: '#ffffff', animation: reduce ? 'none' : 'footTick 48s linear infinite', willChange: 'transform' } },
+        [0, 1, 2, 3, 4, 5].map(k => h('span', { key: k, style: { paddingRight: '0.32em' } }, 'Dan Mota.')))
+    };
+  }
+}
+</script>
+</body>
+</html>

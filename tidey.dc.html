@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap">
+<style>
+html,body{margin:0;padding:0;background:#fafaf8;-webkit-font-smoothing:antialiased}
+@keyframes footTick{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes ambDrift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(4vw,-3vh) scale(1.06)}66%{transform:translate(-3vw,4vh) scale(0.95)}}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+</style>
+<link rel="icon" type="image/svg+xml" href="assets/logo/dm-logo-black.svg">
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:Inter, system-ui, sans-serif; color:#111214; background:#fafaf8;">
+
+<div aria-hidden="true" style="position:fixed; top:0; left:0; right:0; height:2px; z-index:40; background:linear-gradient(90deg, oklch(0.68 0.12 225), oklch(0.42 0.11 255)); transform:scaleX(var(--prog, 0)); transform-origin:left; pointer-events:none;"></div>
+
+<div aria-hidden="true" onClick="{{ navClose }}" style="position:fixed; inset:0; z-index:29; background:rgba(10,10,12,0.2); opacity:{{ navO }}; pointer-events:{{ navPe }}; transition:opacity 450ms ease;"></div>
+<header style="position:fixed; top:0; left:0; right:0; z-index:30;">
+  <div aria-hidden="true" style="position:absolute; left:0; right:0; top:0; height:104px; z-index:-1; pointer-events:none;"><div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,calc(0.3 + var(--nd, 0) * 0.6)) 0%, rgba(255,255,255,calc(0.12 + var(--nd, 0) * 0.5)) 55%, rgba(255,255,255,0) 100%); transition:background 300ms ease;"></div><div style="position:absolute; inset:0; backdrop-filter:blur(1px); -webkit-backdrop-filter:blur(1px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 55%, transparent 100%); mask-image:linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 42%, transparent 82%); mask-image:linear-gradient(180deg, #000 0%, #000 42%, transparent 82%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 30%, transparent 66%); mask-image:linear-gradient(180deg, #000 0%, #000 30%, transparent 66%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 18%, transparent 52%); mask-image:linear-gradient(180deg, #000 0%, #000 18%, transparent 52%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); -webkit-mask-image:linear-gradient(180deg, #000 0%, transparent 38%); mask-image:linear-gradient(180deg, #000 0%, transparent 38%);"></div></div>
+  <div style="max-width:1440px; height:64px; margin:0 auto; padding:0 clamp(16px, 3vw, 40px); box-sizing:border-box; display:grid; grid-template-columns:minmax(0, 1fr) auto minmax(0, 1fr); align-items:center; gap:12px;">
+    <a href="/work" onClick="{{ goBack }}" aria-label="Go back" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="justify-self:start; display:inline-flex; align-items:center; gap:10px; height:44px; padding:0 14px 0 4px; margin-left:-4px; border-radius:999px; font-size:14px; font-weight:500; color:#111214;" style-focus="outline:none;"><span aria-hidden="true" style="position:relative; display:grid; place-items:center; width:36px; height:36px; flex:none; border-radius:999px; overflow:hidden; background:rgba(17,18,20,0.06); box-shadow:inset 0 0 0 1px rgba(17,18,20,0.06);"><span style="position:absolute; inset:0; border-radius:999px; background:#111214; transform:scale(var(--h, 0)); transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span><svg viewBox="0 0 24 24" style="position:relative; width:16px; height:16px; fill:none; stroke:color-mix(in srgb, #ffffff calc(var(--h, 0) * 100%), #111214); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; transform:translateX(calc(var(--h, 0) * -2px)); transition:transform 450ms cubic-bezier(.2,.7,.2,1), stroke 300ms ease;"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></span><span style="display:block; height:20px; line-height:20px; overflow:hidden;"><span style="display:flex; flex-direction:column; transform:translateY(calc(var(--h, 0) * -20px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><span>Back</span><span aria-hidden="true">Back</span></span></span></a>
+    <div style="grid-column:3; justify-self:end; display:flex; align-items:center; gap:6px;">
+      <a href="mailto:dmotacontact@gmail.com" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; height:40px; padding:0 18px; border-radius:999px; background:#111214; color:#ffffff; font-size:14px; font-weight:500; box-shadow:inset 0 1px 0 rgba(255,255,255,0.14), 0 6px 14px -8px rgba(17,18,20,0.5);" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="display:block; height:20px; line-height:20px; overflow:hidden;"><span style="display:flex; flex-direction:column; transform:translateY(calc(var(--h, 0) * -20px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><span>Get in touch</span><span aria-hidden="true">Get in touch</span></span></span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section data-screen-label="Hero" style="position:relative; overflow:hidden; isolation:isolate; background:linear-gradient(180deg, oklch(0.965 0.016 240) 0%, oklch(0.965 0.016 240) 64%, #f1f2f4 100%); padding:clamp(124px, 12vw, 176px) clamp(20px, 4vw, 64px) clamp(36px, 4vw, 60px);">
+  <div aria-hidden="true" style="position:absolute; left:50%; top:clamp(420px, 44vw, 640px); z-index:-1; width:min(1100px, 96vw); height:min(640px, 70vw); transform:translateX(-50%); border-radius:50%; background:radial-gradient(closest-side, oklch(0.86 0.07 235 / 0.55), oklch(0.88 0.05 205 / 0.3) 60%, transparent 100%); filter:blur(50px); pointer-events:none;"></div>
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(40px, 4.5vw, 64px);">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:clamp(22px, 2.4vw, 30px); text-align:center;">
+      <div data-a="rv" style="display:flex; flex-direction:column; align-items:center; gap:18px;">
+        <span role="img" aria-label="Tidey" style="display:inline-flex; align-items:center; gap:10px; color:#0f2a4a;"><span aria-hidden="true" style="display:grid; place-items:center; width:34px; height:34px; border-radius:9px; background:#0f2a4a;"><svg viewBox="0 0 24 24" style="display:block; width:22px; height:22px; fill:none; stroke:#5ec3f0; stroke-width:2.6; stroke-linecap:round;"><path d="M4 13c2.5-3.2 5-3.2 8 0s5.5 3.2 8 0"></path></svg></span><span style="font-size:27px; font-weight:700; line-height:1; letter-spacing:-0.03em;">Tidey</span></span>
+        <span style="display:inline-flex; align-items:center; gap:8px; min-height:28px; padding:0 12px 0 10px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span aria-hidden="true" style="width:6px; height:6px; flex:none; border-radius:999px; background:oklch(0.55 0.13 245); box-shadow:0 0 0 3px oklch(0.55 0.13 245 / 0.16);"></span>Case study · Banking · AI agent</span>
+      </div>
+      <h1 style="margin:0 0 -0.12em; max-width:14ch; overflow:hidden; padding-bottom:0.18em; font-weight:500; font-size:clamp(40px, 5.4vw, 84px); line-height:1; letter-spacing:-0.055em; text-wrap:balance;"><span data-a="rise" style="display:inline-block;">AI Fraud Investigator</span></h1>
+      <p data-a="rv" style="margin:0; max-width:46ch; font-size:clamp(18px, 1.6vw, 23px); line-height:1.45; color:#4a4d53; text-wrap:balance;">Tidey investigates bank fraud alerts, closes the clear false alarms and hands everything else to an analyst with a recommendation.</p>
+      <div data-a="rv" role="list" style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px 0;"><span role="listitem" style="display:inline-flex; align-items:baseline; gap:8px; padding:2px clamp(14px, 2vw, 24px);"><strong style="font-size:clamp(18px, 1.5vw, 21px); font-weight:600; letter-spacing:-0.02em; color:#111214; font-variant-numeric:tabular-nums;">45/50</strong><span style="font-size:15px; color:#4a4d53;">right on held-out alerts</span></span><span role="listitem" style="display:inline-flex; align-items:baseline; gap:8px; padding:2px clamp(14px, 2vw, 24px); border-left:1px solid #c9cbd1;"><strong style="font-size:clamp(18px, 1.5vw, 21px); font-weight:600; letter-spacing:-0.02em; color:#111214; font-variant-numeric:tabular-nums;">0</strong><span style="font-size:15px; color:#4a4d53;">fraud closed alone</span></span><span role="listitem" style="display:inline-flex; align-items:baseline; gap:8px; padding:2px clamp(14px, 2vw, 24px); border-left:1px solid #c9cbd1;"><strong style="font-size:clamp(18px, 1.5vw, 21px); font-weight:600; letter-spacing:-0.02em; color:#111214; font-variant-numeric:tabular-nums;">3×</strong><span style="font-size:15px; color:#4a4d53;">cheaper than one AI model</span></span></div>
+      <div data-a="rv" style="display:flex; flex-direction:column; align-items:center; gap:16px; margin-top:4px;">
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+          <a href="{{ demoUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:10px; height:48px; padding:0 22px; border-radius:999px; background:#111214; color:#ffffff; font-size:15px; font-weight:500; transform:translateY(calc(var(--h, 0) * -2px)); box-shadow:0 6px 14px -8px rgba(17,18,20,0.45), 0 calc(var(--h, 0) * 16px) calc(var(--h, 0) * 28px) -14px rgba(17,18,20,0.5); transition:transform 400ms cubic-bezier(.2,.7,.2,1), box-shadow 400ms cubic-bezier(.2,.7,.2,1), background 200ms ease;" style-hover="background:#2a2c30; color:#ffffff;" style-focus="outline:none;">Try the live demo <span aria-hidden="true" style="display:inline-block; transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+          <sc-if value="{{ hasGithub }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ githubUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:10px; height:48px; box-sizing:border-box; padding:0 22px; border-radius:999px; background:#ffffff; border:1px solid rgba(17,18,20,0.12); box-shadow:inset 0 1px 0 rgba(255,255,255,0.95), 0 1px 2px rgba(17,18,20,0.04); font-size:15px; font-weight:500; color:#111214; transform:translateY(calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1), background 200ms ease, color 200ms ease, border-color 200ms ease;" style-hover="background:#111214; border-color:#111214; color:#ffffff;" style-focus="outline:none;">View the code <span aria-hidden="true" style="display:inline-block; transform:translateX(calc(var(--h, 0) * 4px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">→</span></a>
+          </sc-if>
+        </div>
+        <p style="margin:0; font-size:13.5px; line-height:1.5; color:#5c5f63;">Tidewell is a fictional bank. All alerts, customers and transactions are synthetic.</p>
+      </div>
+    </div>
+    <div data-a="rv" style="position:relative;">
+      <div style="position:relative; box-sizing:border-box; padding:clamp(8px, 1vw, 14px); border-radius:24px; background:#ffffff; border:1px solid #e3e4e8; box-shadow:0 30px 60px -36px rgba(15,42,74,0.35), 0 1px 2px rgba(17,18,20,0.04);">
+        <img src="assets/tidey/tidey-queue.png" alt="Tidey’s morning queue: 50 alerts investigated, 23 closed as false alarms, 18 fraud alerts waiting for approval and 9 judgment calls." style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; object-position:50% 0; border-radius:14px;">
+      </div>
+    </div>
+    <dl data-a="rv" style="margin:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:24px clamp(32px, 4vw, 56px); padding-top:28px; border-top:1px solid #dcdde1;">
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <dt style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Role</dt>
+        <dd style="margin:0; max-width:32ch; font-size:16px; line-height:1.45; font-weight:500; text-wrap:pretty;">AI Product Builder: agent design, analyst app, build and testing. Self-initiated, October 2026.</dd>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <dt style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Deliverables</dt>
+        <dd style="margin:-10px 0 0; display:flex; flex-direction:column; align-items:flex-start;">
+          <a href="{{ demoUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:16px; font-weight:500; color:#111214;" style-focus="outline:none;"><span style="position:relative;">Live app<span style="position:absolute; left:0; right:0; bottom:-2px; height:1px; background:currentColor; opacity:calc(0.25 + var(--h, 0) * 0.75); transition:opacity 300ms ease;"></span></span><span aria-hidden="true" style="display:inline-block; color:oklch(0.45 0.11 250); transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+          <a href="{{ caseStudyUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:16px; font-weight:500; color:#111214;" style-focus="outline:none;"><span style="position:relative;">Case study<span style="position:absolute; left:0; right:0; bottom:-2px; height:1px; background:currentColor; opacity:calc(0.25 + var(--h, 0) * 0.75); transition:opacity 300ms ease;"></span></span><span aria-hidden="true" style="display:inline-block; color:oklch(0.45 0.11 250); transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+          <a href="{{ githubHref }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:16px; font-weight:500; color:#111214;" style-focus="outline:none;"><span style="position:relative;">Source code (GitHub)<span style="position:absolute; left:0; right:0; bottom:-2px; height:1px; background:currentColor; opacity:calc(0.25 + var(--h, 0) * 0.75); transition:opacity 300ms ease;"></span></span><span aria-hidden="true" style="display:inline-block; color:oklch(0.45 0.11 250); transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+        </dd>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <dt style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Built with</dt>
+        <dd data-stagger="1" style="margin:0; display:flex; flex-wrap:wrap; gap:8px;">
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/typesafe.png" alt="" style="display:block; width:18px; height:18px; object-fit:contain;">Jev (TypeSafe AI)</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/openai.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">OpenAI API</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/vercel.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">Vercel</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/github.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">GitHub</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/claude.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">Claude Design</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/claude.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">Claude Code</span>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section id="problem" data-sec="1" data-screen-label="The Problem" style="background:#f1f2f4; padding:clamp(24px, 2.5vw, 40px) clamp(20px, 4vw, 64px) clamp(48px, 5vw, 80px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(22px, 2.4vw, 32px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">01</span>The Problem</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance; max-width:16ch;">Every alert starts with groundwork</h2></div>
+      <p style="margin:0; max-width:40ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Before anyone can decide, someone has to piece the story together: who the customer is, what’s normal for them, what changed and when.</p>
+    </div>
+    <div data-a="rv" style="display:flex; flex-direction:column; gap:14px;">
+      <div style="padding:6px; border-radius:28px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 18px 40px -24px rgba(17,18,20,0.2), 0 1px 2px rgba(17,18,20,0.04);">
+        <div data-stagger="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap:1px; overflow:hidden; border-radius:22px; background:#ececef; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+        <div style="display:flex; flex-direction:column; gap:8px; padding:clamp(18px, 2vw, 26px) clamp(20px, 2.4vw, 30px); background:#ffffff;">
+          <span style="display:flex; align-items:baseline; gap:6px; font-weight:500; font-size:clamp(36px, 3.4vw, 52px); line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums;">10–15<span style="font-size:0.38em; letter-spacing:-0.02em; color:#5c5f63;">min</span></span>
+          <span style="max-width:28ch; font-size:15px; line-height:1.4; color:#5c5f63; text-wrap:pretty;">typically allowed for one retail fraud alert</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; padding:clamp(18px, 2vw, 26px) clamp(20px, 2.4vw, 30px); background:#ffffff;">
+          <span style="display:flex; align-items:baseline; gap:6px; font-weight:500; font-size:clamp(36px, 3.4vw, 52px); line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums;">6–8</span>
+          <span style="max-width:28ch; font-size:15px; line-height:1.4; color:#5c5f63; text-wrap:pretty;">systems checked in a single review</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; padding:clamp(18px, 2vw, 26px) clamp(20px, 2.4vw, 30px); background:#ffffff;">
+          <span style="display:flex; align-items:baseline; gap:6px; font-weight:500; font-size:clamp(36px, 3.4vw, 52px); line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums;">30–40%</span>
+          <span style="max-width:28ch; font-size:15px; line-height:1.4; color:#5c5f63; text-wrap:pretty;">of retail alerts need a call to the customer</span>
+        </div>
+        </div>
+      </div>
+      <p style="margin:0 0 0 clamp(8px, 1vw, 14px); font-size:13.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">From interviews with fraud teams in North America and Europe (NICE Actimize, 2026). NICE Actimize sells fraud software, so these are vendor figures.</p>
+    </div>
+    <div data-a="rv" style="padding:6px; border-radius:28px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 18px 40px -24px rgba(17,18,20,0.2), 0 1px 2px rgba(17,18,20,0.04);">
+      <div style="position:relative; isolation:isolate; display:flex; flex-wrap:wrap; overflow:hidden; border-radius:22px; background:#0a0a0a; color:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; justify-content:space-between; gap:32px; padding:clamp(26px, 3.2vw, 44px);">
+          <div aria-hidden="true" style="position:absolute; inset:0; z-index:-1; background:radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1.3px) 0 0 / 22px 22px; -webkit-mask-image:radial-gradient(60% 90% at 50% 100%, #000, transparent 75%); mask-image:radial-gradient(60% 90% at 50% 100%, #000, transparent 75%); pointer-events:none;"></div>
+          <div aria-hidden="true" style="position:absolute; left:20%; bottom:-70%; z-index:-1; width:60%; height:160%; border-radius:50%; background:radial-gradient(closest-side, oklch(0.52 0.16 245 / 0.55), oklch(0.42 0.12 225 / 0.25) 60%, transparent 100%); filter:blur(30px); pointer-events:none;"></div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.84 0.09 230);">The bet</span>
+            <h3 style="margin:0; max-width:15ch; font-weight:500; font-size:clamp(26px, 2.6vw, 38px); line-height:1.05; letter-spacing:-0.035em; text-wrap:balance; color:#ffffff;">An agent that knows when not to decide</h3>
+          </div>
+          <p style="margin:0; display:flex; align-items:center; gap:10px; font-size:16px; font-weight:500; color:rgba(255,255,255,0.92);"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none; width:18px; height:18px; fill:none; stroke:oklch(0.84 0.09 230); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"></path></svg>A person approves every block.</p>
+        </div>
+        <div style="flex:1.6 1 380px; min-width:0; display:flex; align-items:center; padding:clamp(26px, 3.2vw, 44px);">
+          <ol data-stagger="1" style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:clamp(16px, 1.8vw, 24px);">
+            <li style="display:flex; align-items:center; gap:16px;"><span style="flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); box-sizing:border-box; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.84 0.09 230);">01</span><span style="font-size:clamp(18px, 1.6vw, 22px); line-height:1.35; font-weight:500; letter-spacing:-0.015em; color:#ffffff; text-wrap:pretty;">Does the groundwork on every alert</span></li>
+            <li style="display:flex; align-items:center; gap:16px;"><span style="flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); box-sizing:border-box; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.84 0.09 230);">02</span><span style="font-size:clamp(18px, 1.6vw, 22px); line-height:1.35; font-weight:500; letter-spacing:-0.015em; color:#ffffff; text-wrap:pretty;">Closes only the clear false alarms</span></li>
+            <li style="display:flex; align-items:center; gap:16px;"><span style="flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); box-sizing:border-box; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.84 0.09 230);">03</span><span style="font-size:clamp(18px, 1.6vw, 22px); line-height:1.35; font-weight:500; letter-spacing:-0.015em; color:#ffffff; text-wrap:pretty;">Hands the rest to an analyst with a recommendation</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="idea" data-sec="1" data-screen-label="The Idea" style="background:#fafaf8; padding:clamp(64px, 7vw, 104px) clamp(20px, 4vw, 64px) clamp(48px, 5vw, 80px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(32px, 3.6vw, 48px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">02</span>The Idea</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance; max-width:16ch;">Split the decision</h2></div>
+      <p style="margin:0; max-width:40ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Code does the exact work, Jev makes the judgment calls with probabilities, an AI model writes for people, and a person has the final say.</p>
+    </div>
+    <div data-a="rv" style="padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+      <div style="overflow:hidden; border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+        <div style="position:relative;">
+          <sc-for list="{{ lanes }}" as="l" hint-placeholder-count="4">
+            <div style="display:flex; min-height:clamp(96px, 9.5vw, 124px); border-top:{{ l.border }}; background:{{ l.rowBg }}; transition:background 400ms ease;">
+              <div style="flex:none; width:clamp(84px, 19%, 210px); box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; gap:6px; padding:clamp(12px, 1.4vw, 20px) clamp(10px, 1.4vw, 22px); border-right:1px solid #e6e9ee; background:{{ l.labelBg }}; transition:background 400ms ease;">
+                <span style="display:flex; align-items:center; gap:8px; font-size:clamp(14px, 1.3vw, 17px); font-weight:600; letter-spacing:-0.01em; color:#0f2a4a;"><span aria-hidden="true" style="flex:none; width:10px; height:10px; border-radius:3px; background:{{ l.color }};"></span>{{ l.name }}</span>
+                <sc-if value="{{ wideLanes }}" hint-placeholder-val="{{ true }}"><span style="font-size:13.5px; line-height:1.4; color:#5c5f63; text-wrap:pretty;">{{ l.desc }}</span></sc-if>
+              </div>
+            </div>
+          </sc-for>
+          <div style="position:absolute; top:0; bottom:0; right:0; left:clamp(84px, 19%, 210px);">
+            <svg viewBox="0 0 700 400" preserveAspectRatio="none" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; overflow:visible;"><polyline points="42,50 144.67,150 247.33,50 350,150 452.67,50 555.33,250 658,350" style="fill:none; stroke:#c3cad4; stroke-width:2; stroke-dasharray:2 7; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke;"></polyline><polyline points="{{ pathDone }}" style="fill:none; stroke:#0f2a4a; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke;"></polyline></svg>
+            <sc-for list="{{ steps }}" as="st" hint-placeholder-count="7">
+              <button type="button" data-i="{{ st.i }}" onClick="{{ pickStep }}" aria-pressed="{{ st.pressed }}" aria-label="{{ st.aria }}" style="position:absolute; left:{{ st.x }}; top:{{ st.y }}; z-index:1; transform:translate(-50%, -50%); display:block; padding:0; border:0; background:none; font:inherit; cursor:pointer;" style-focus="outline:none;">
+                <span style="display:grid; place-items:center; width:clamp(28px, 3.4vw, 46px); height:clamp(28px, 3.4vw, 46px); box-sizing:border-box; border-radius:999px; border:2px solid {{ st.color }}; background:{{ st.bg }}; color:{{ st.fg }}; font-size:clamp(12px, 1.2vw, 16px); font-weight:600; font-variant-numeric:tabular-nums; box-shadow:{{ st.ring }}; transform:scale({{ st.scale }}); transition:background 350ms ease, color 350ms ease, box-shadow 450ms cubic-bezier(.2,.7,.2,1), transform 450ms cubic-bezier(.2,.7,.2,1);">{{ st.n }}</span>
+                <sc-if value="{{ wideLanes }}" hint-placeholder-val="{{ true }}"><span style="position:absolute; left:{{ st.ll }}; right:{{ st.lr }}; top:100%; margin-top:6px; transform:{{ st.lt }}; width:max-content; max-width:150px; padding:2px 6px; border-radius:6px; background:rgba(255,255,255,0.94); box-shadow:0 0 0 1px rgba(15,42,74,0.04); text-align:{{ st.ta }}; font-size:13.5px; line-height:1.25; font-weight:{{ st.fw }}; color:#0f2a4a; transition:font-weight 200ms ease;">{{ st.label }}</span></sc-if>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        <div ref="{{ stepRef }}" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap:20px clamp(24px, 3vw, 48px); padding:clamp(22px, 2.4vw, 32px); border-top:1px solid #e6e9ee;">
+          <div style="min-width:0; display:flex; flex-direction:column; gap:12px;">
+            <div data-sx="1" style="display:flex; flex-wrap:wrap; align-items:center; gap:10px;"><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Step {{ stepNum }} of 7</span><span style="display:inline-flex; align-items:center; gap:7px; height:26px; padding:0 11px; border-radius:999px; background:{{ stepTint }}; color:{{ stepInk }}; font-size:12.5px; font-weight:600; transition:background 300ms ease, color 300ms ease;"><span aria-hidden="true" style="width:8px; height:8px; border-radius:2px; background:{{ stepColor }};"></span>{{ stepLane }}</span></div>
+            <h3 data-sx="1" style="margin:0; font-weight:500; font-size:clamp(24px, 2.2vw, 32px); line-height:1.08; letter-spacing:-0.035em; color:#111214;">{{ stepTitle }}</h3>
+            <p data-sx="1" style="margin:0; max-width:46ch; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">{{ stepDesc }}</p>
+            <div style="display:flex; align-items:center; gap:8px; margin-top:auto; padding-top:6px;">
+              <button type="button" onClick="{{ prevStep }}" aria-label="Previous step" style="appearance:none; display:inline-grid; place-items:center; height:40px; min-width:40px; padding:0 14px; border-radius:999px; border:1px solid #d9dde3; background:#ffffff; color:#0f2a4a; font:inherit; font-size:14px; font-weight:500; cursor:pointer; transition:background 200ms ease, border-color 200ms ease;" style-hover="background:#f3f5f8;" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M10 3.5L5.5 8l4.5 4.5"></path></svg></button>
+              <button type="button" onClick="{{ togglePlay }}" aria-pressed="{{ playPressed }}" style="appearance:none; display:inline-grid; place-items:center; height:40px; min-width:40px; padding:0 14px; border-radius:999px; border:1px solid #d9dde3; background:#ffffff; color:#0f2a4a; font:inherit; font-size:14px; font-weight:500; cursor:pointer; transition:background 200ms ease, border-color 200ms ease; grid-auto-flow:column; gap:8px; background:#0f2a4a; border-color:#0f2a4a; color:#ffffff;" style-hover="background:#1b3d66;" style-focus="outline:none;"><sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:12px; height:12px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></sc-if><sc-if value="{{ notPlaying }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:12px; height:12px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg></sc-if>{{ playLabel }}</button>
+              <button type="button" onClick="{{ nextStep }}" aria-label="Next step" style="appearance:none; display:inline-grid; place-items:center; height:40px; min-width:40px; padding:0 14px; border-radius:999px; border:1px solid #d9dde3; background:#ffffff; color:#0f2a4a; font:inherit; font-size:14px; font-weight:500; cursor:pointer; transition:background 200ms ease, border-color 200ms ease;" style-hover="background:#f3f5f8;" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M6 3.5L10.5 8 6 12.5"></path></svg></button>
+            </div>
+          </div>
+          <div data-sx="1" style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:clamp(18px, 2vw, 24px); border-radius:16px; background:#f4f7fb; border:1px solid #e3e8ef;">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">In alert A-1007 · official test run</span>
+            <p style="margin:0; font-size:16px; line-height:1.55; color:#1f2a37; text-wrap:pretty;">{{ stepExample }}</p>
+            <span style="margin-top:auto; font-size:13.5px; color:#5c5f63;">Password reset, new payee and a $3,600 transfer at 2:30 AM. Decided in 0.36 s for $0.0021.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul data-a="rv" data-stagger="1" style="margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:28px 0;">
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px 0 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="display:inline-flex; align-items:center; gap:10px; font-size:clamp(30px, 2.8vw, 42px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:#111214;"><span aria-hidden="true" data-glow="oklch(0.55 0.19 25)" style="flex:none; width:10px; height:10px; border-radius:3px; background:oklch(0.55 0.19 25);"></span><span>≥&nbsp;<span data-count="0.85">0.85</span></span></span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Escalate as Fraud</h3>
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Any fraud type at 0.85 or higher goes to the fraud team with a recommendation.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Fraud to Approve</span>
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px 0 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="display:inline-flex; align-items:center; gap:10px; font-size:clamp(30px, 2.8vw, 42px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:#111214;"><span aria-hidden="true" data-glow="oklch(0.7 0.14 70)" style="flex:none; width:10px; height:10px; border-radius:3px; background:oklch(0.7 0.14 70);"></span>The rest</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Send to a Person</h3>
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Anything that misses a rule, with a summary and a suggested next step.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Judgment Calls</span>
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px 0 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="display:inline-flex; align-items:center; gap:10px; font-size:clamp(30px, 2.8vw, 42px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:#111214;"><span aria-hidden="true" data-glow="oklch(0.52 0.12 155)" style="flex:none; width:10px; height:10px; border-radius:3px; background:oklch(0.52 0.12 155);"></span><span>≥&nbsp;<span data-count="0.85">0.85</span></span></span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Close It Alone</h3>
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Legitimate at 0.85 or higher, nothing unexplained above 0.35, scam risk under 0.6 and under $5,000.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Closed by Tidey</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="analyst" data-sec="1" data-screen-label="Analysts Only Use Tidey" style="position:relative; isolation:isolate; overflow:hidden; background:#f1f2f4; padding:80px clamp(20px, 4vw, 64px) clamp(80px, 9vw, 136px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(56px, 6vw, 88px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">03</span>The Analyst’s Side</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance; max-width:16ch;">What the analyst sees</h2></div>
+      <p style="margin:0; max-width:40ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">The queue says what’s waiting and where to start, and every case ends in one decision bar.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:clamp(80px, 9vw, 144px);">
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div onClick="{{ stepClip }}" style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px; cursor:pointer;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">01</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Tidey Sorts the Morning</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Tidey investigates every alert overnight, closes the clear false alarms and splits the rest into three groups.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/tidey/tidey-clip-1-sort.mp4" poster="assets/tidey/tidey-clip-1-sort-poster.jpg" aria-label="Tidey’s morning queue: 50 alerts investigated overnight, 23 closed as false alarms and the rest split into three groups." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: Tidey Sorts the Morning" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row-reverse; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div onClick="{{ stepClip }}" style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px; cursor:pointer;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">02</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Approve a Block</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">An account takeover. Tidey recommends a freeze, and nothing happens until the analyst approves it.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/tidey/tidey-clip-2-approve-block.mp4" poster="assets/tidey/tidey-clip-2-approve-block-poster.jpg" aria-label="An account takeover case where Tidey recommends a freeze and the analyst approves the block." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: Approve a Block" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div onClick="{{ stepClip }}" style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px; cursor:pointer;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">03</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Make a Judgment Call</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Mixed signals on gift card purchases. Tidey suggests contacting the customer, and the analyst sends the text.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/tidey/tidey-clip-3-judgment-call.mp4" poster="assets/tidey/tidey-clip-3-judgment-call-poster.jpg" aria-label="A judgment call on gift card purchases where the analyst texts the customer to confirm." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: Make a Judgment Call" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row-reverse; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div onClick="{{ stepClip }}" style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px; cursor:pointer;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">04</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Spot-Check a Close</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Every alert Tidey closes keeps its evidence. The analyst checks it and confirms the close.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/tidey/tidey-clip-4-spot-check.mp4" poster="assets/tidey/tidey-clip-4-spot-check-poster.jpg" aria-label="A false alarm Tidey closed, with its evidence, spot-checked and confirmed by the analyst." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: Spot-Check a Close" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div onClick="{{ stepClip }}" style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px; cursor:pointer;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">05</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Check the Test</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Every decision from the held-out test, side by side with a single AI model.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/tidey/tidey-clip-5-test-results.mp4" poster="assets/tidey/tidey-clip-5-test-results-poster.jpg" aria-label="The test results page comparing every held-out decision with a single AI model." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: Check the Test" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+    </div>
+  </div>
+</section>
+
+<section id="decisions" data-sec="1" data-screen-label="Design Decisions" style="background:#fafaf8; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(36px, 4vw, 56px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">04</span>Design Decisions</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance; max-width:16ch;">How far Tidey is trusted</h2></div>
+      <p style="margin:0; max-width:40ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Six choices shaped how it decides and where a person steps in.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(max(280px, calc((100% - 48px) / 3)), 1fr)); gap:24px;">
+      <article data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; transform:translateY(calc(var(--h, 0) * -6px)); box-shadow:0 calc(14px + var(--h, 0) * 16px) calc(30px + var(--h, 0) * 20px) -18px rgba(17,18,20,calc(0.16 + var(--h, 0) * 0.1)), 0 1px 2px rgba(17,18,20,0.04); transition:transform 500ms cubic-bezier(.2,.7,.2,1), box-shadow 500ms cubic-bezier(.2,.7,.2,1);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(22px, 2.2vw, 30px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Questions, not one decision</span>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <h3 style="margin:0; font-size:clamp(20px, 1.7vw, 23px); font-weight:600; line-height:1.2; letter-spacing:-0.025em; text-wrap:balance;">Probabilities make every line tunable</h3>
+            <p style="margin:0; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Jev answers narrow questions. Code combines the answers, so each threshold can be read, tested and moved on its own.</p>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; transform:translateY(calc(var(--h, 0) * -6px)); box-shadow:0 calc(14px + var(--h, 0) * 16px) calc(30px + var(--h, 0) * 20px) -18px rgba(17,18,20,calc(0.16 + var(--h, 0) * 0.1)), 0 1px 2px rgba(17,18,20,0.04); transition:transform 500ms cubic-bezier(.2,.7,.2,1), box-shadow 500ms cubic-bezier(.2,.7,.2,1);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(22px, 2.2vw, 30px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Rules in code, not prompts</span>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <h3 style="margin:0; font-size:clamp(20px, 1.7vw, 23px); font-weight:600; line-height:1.2; letter-spacing:-0.025em; text-wrap:balance;">Policy stays policy</h3>
+            <p style="margin:0; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Moving where Tidey closes an alert is a one-line change a fraud lead can review, not a prompt rewrite.</p>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; transform:translateY(calc(var(--h, 0) * -6px)); box-shadow:0 calc(14px + var(--h, 0) * 16px) calc(30px + var(--h, 0) * 20px) -18px rgba(17,18,20,calc(0.16 + var(--h, 0) * 0.1)), 0 1px 2px rgba(17,18,20,0.04); transition:transform 500ms cubic-bezier(.2,.7,.2,1), box-shadow 500ms cubic-bezier(.2,.7,.2,1);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(22px, 2.2vw, 30px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Recommend, don’t act</span>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <h3 style="margin:0; font-size:clamp(20px, 1.7vw, 23px); font-weight:600; line-height:1.2; letter-spacing:-0.025em; text-wrap:balance;">A person approves every block</h3>
+            <p style="margin:0; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Freezing an account hits a real customer and is hard to undo. Tidey recommends and explains; an analyst decides.</p>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; transform:translateY(calc(var(--h, 0) * -6px)); box-shadow:0 calc(14px + var(--h, 0) * 16px) calc(30px + var(--h, 0) * 20px) -18px rgba(17,18,20,calc(0.16 + var(--h, 0) * 0.1)), 0 1px 2px rgba(17,18,20,0.04); transition:transform 500ms cubic-bezier(.2,.7,.2,1), box-shadow 500ms cubic-bezier(.2,.7,.2,1);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(22px, 2.2vw, 30px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">A hard cap</span>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <h3 style="margin:0; font-size:clamp(20px, 1.7vw, 23px); font-weight:600; line-height:1.2; letter-spacing:-0.025em; text-wrap:balance;">Never closed alone at $5,000 or more</h3>
+            <p style="margin:0; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">However confident Tidey is, large amounts always reach a person. The single model gets the same guardrail.</p>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; transform:translateY(calc(var(--h, 0) * -6px)); box-shadow:0 calc(14px + var(--h, 0) * 16px) calc(30px + var(--h, 0) * 20px) -18px rgba(17,18,20,calc(0.16 + var(--h, 0) * 0.1)), 0 1px 2px rgba(17,18,20,0.04); transition:transform 500ms cubic-bezier(.2,.7,.2,1), box-shadow 500ms cubic-bezier(.2,.7,.2,1);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(22px, 2.2vw, 30px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Checks on demand</span>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <h3 style="margin:0; font-size:clamp(20px, 1.7vw, 23px); font-weight:600; line-height:1.2; letter-spacing:-0.025em; text-wrap:balance;">Jev picks the optional checks</h3>
+            <p style="margin:0; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Required checks always run. Jev decides whether the rest are worth running, which keeps each investigation short.</p>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; transform:translateY(calc(var(--h, 0) * -6px)); box-shadow:0 calc(14px + var(--h, 0) * 16px) calc(30px + var(--h, 0) * 20px) -18px rgba(17,18,20,calc(0.16 + var(--h, 0) * 0.1)), 0 1px 2px rgba(17,18,20,0.04); transition:transform 500ms cubic-bezier(.2,.7,.2,1), box-shadow 500ms cubic-bezier(.2,.7,.2,1);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(22px, 2.2vw, 30px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Write for people only</span>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <h3 style="margin:0; font-size:clamp(20px, 1.7vw, 23px); font-weight:600; line-height:1.2; letter-spacing:-0.025em; text-wrap:balance;">A summary only when someone will read it</h3>
+            <p style="margin:0; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Closed false alarms keep their evidence but skip the AI-written summary, which is most of the cost.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="test" data-sec="1" data-screen-label="The Test" style="background:#f1f2f4; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(36px, 4vw, 56px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">05</span>The Test</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance; max-width:18ch;">Tuned on one set, tested on another</h2></div>
+      <p style="margin:0; max-width:40ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Two sets of 50 synthetic alerts, each with an answer key neither version sees. Tidey was tuned on the first, then both versions ran once on the second.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:24px;">
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(18px, 2vw, 26px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <div style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 24px;"><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Getting to 45</span><span style="font-size:14px; color:#5c5f63;">Correct decisions out of 50</span></div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap:12px;">
+          <div style="box-sizing:border-box; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(20px, 2.2vw, 26px); border-radius:18px; background:#ffffff; border:1px solid #ececef;">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Development v1</span>
+            <span style="font-size:clamp(34px, 3.2vw, 48px); font-weight:500; line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums; color:#3f4247;">31/50</span>
+            <span aria-hidden="true" style="display:block; height:6px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:62%; height:100%; border-radius:999px; transform-origin:left; background:#9ea2a9;"></span></span>
+            <p style="margin:0; padding-top:12px; border-top:1px solid #ececef; font-size:14.5px; line-height:1.45; color:#3f4247; text-wrap:pretty;">My first question was the wrong one: ‘is everything explained?’ Almost nothing is fully explained, so 19 legitimate alerts went to a person.</p>
+          </div>
+          <div style="box-sizing:border-box; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(20px, 2.2vw, 26px); border-radius:18px; background:#ffffff; border:1px solid #ececef;">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Development v2</span>
+            <span style="font-size:clamp(34px, 3.2vw, 48px); font-weight:500; line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums; color:#3f4247;">45/50</span>
+            <span aria-hidden="true" style="display:block; height:6px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:90%; height:100%; border-radius:999px; transform-origin:left; background:#9ea2a9;"></span></span>
+            <p style="margin:0; padding-top:12px; border-top:1px solid #ececef; font-size:14.5px; line-height:1.45; color:#3f4247; text-wrap:pretty;">Turned around to “is anything out of character and unexplained?” One question, 14 more right.</p>
+          </div>
+          <div style="box-sizing:border-box; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(20px, 2.2vw, 26px); border-radius:18px; background:#ffffff; border:1px solid #ececef;">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">One rule moved</span>
+            <span style="font-size:clamp(34px, 3.2vw, 48px); font-weight:500; line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums; color:#3f4247;">48/50</span>
+            <span aria-hidden="true" style="display:block; height:6px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:96%; height:100%; border-radius:999px; transform-origin:left; background:#9ea2a9;"></span></span>
+            <p style="margin:0; padding-top:12px; border-top:1px solid #ececef; font-size:14.5px; line-height:1.45; color:#3f4247; text-wrap:pretty;">Three legitimate alerts sat just over the 0.30 limit. Moving it to 0.35 replayed at 48 on the tuning set.</p>
+          </div>
+          <div style="box-sizing:border-box; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(20px, 2.2vw, 26px); border-radius:18px; background:oklch(0.975 0.014 240); border:1px solid #ececef;">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Held-out test</span>
+            <span style="font-size:clamp(34px, 3.2vw, 48px); font-weight:500; line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums; color:#111214;">45/50</span>
+            <span aria-hidden="true" style="display:block; height:6px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:90%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.55 0.13 245);"></span></span>
+            <p style="margin:0; padding-top:12px; border-top:1px solid #ececef; font-size:14.5px; line-height:1.45; color:#3f4247; text-wrap:pretty;">Run once on the second set. Nothing was re-tuned after it.</p>
+          </div>
+          </div>
+        </div>
+      </article>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap:24px;">
+        <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(24px, 2.6vw, 36px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Held-out set</span>
+            <h3 style="margin:0; display:flex; align-items:baseline; gap:12px; font-weight:500;"><span style="font-size:clamp(40px, 4vw, 60px); font-weight:500; letter-spacing:-0.055em; line-height:0.9; font-variant-numeric:tabular-nums;">50</span><span style="font-size:clamp(20px, 1.8vw, 26px); letter-spacing:-0.025em;">fresh alerts</span></h3>
+            <p style="margin:0; max-width:38ch; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Generated after tuning, with a new seed, new places, merchants and amounts, and 8 new unclear cases.</p>
+            <div data-stagger="1" style="display:flex; flex-wrap:wrap; gap:6px; margin-top:auto;"><span style="display:inline-flex; align-items:center; gap:7px; min-height:30px; padding:4px 12px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:oklch(0.52 0.12 155);"></span>24 legitimate</span><span style="display:inline-flex; align-items:center; gap:7px; min-height:30px; padding:4px 12px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:oklch(0.55 0.19 25);"></span>18 fraud</span><span style="display:inline-flex; align-items:center; gap:7px; min-height:30px; padding:4px 12px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:oklch(0.7 0.14 70);"></span>8 unclear</span></div>
+          </div>
+        </article>
+        <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(24px, 2.6vw, 36px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Scoring</span>
+            <h3 style="margin:0; font-size:clamp(20px, 1.8vw, 26px); font-weight:500; letter-spacing:-0.025em; line-height:1.15;">One mistake costs more than the rest</h3>
+            <ul style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px;">
+              <li style="display:flex; align-items:baseline; gap:10px; font-size:14.5px; line-height:1.45; color:#3f4247; text-wrap:pretty;"><span style="flex:none; display:inline-flex; align-items:center; height:22px; padding:0 8px; border-radius:6px; font-size:10.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; background:oklch(0.96 0.03 155); border:1px solid oklch(0.88 0.06 155); color:oklch(0.42 0.1 155);">Right</span><span>Close a legitimate alert, escalate fraud, or send an unclear alert to a person.</span></li>
+              <li style="display:flex; align-items:baseline; gap:10px; font-size:14.5px; line-height:1.45; color:#3f4247; text-wrap:pretty;"><span style="flex:none; display:inline-flex; align-items:center; height:22px; padding:0 8px; border-radius:6px; font-size:10.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; background:oklch(0.96 0.03 25); border:1px solid oklch(0.89 0.07 25); color:oklch(0.47 0.17 25);">Costly</span><span>A fraud or unclear alert closed with nobody looking.</span></li>
+              <li style="display:flex; align-items:baseline; gap:10px; font-size:14.5px; line-height:1.45; color:#3f4247; text-wrap:pretty;"><span style="flex:none; display:inline-flex; align-items:center; height:22px; padding:0 8px; border-radius:6px; font-size:10.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; background:#f1f2f4; border:1px solid #e1e3e7; color:#4a4d53;">Cheap</span><span>A legitimate alert sent to a person for an extra review.</span></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results" data-sec="1" data-screen-label="Results" style="background:#fafaf8; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(36px, 4vw, 56px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">06</span>Results</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance; max-width:18ch;">About as accurate, with different mistakes</h2></div>
+      <p style="margin:0; max-width:40ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Tidey trades 3 extra reviews for half the risky closes, at a third of the cost and 7× the speed.</p>
+    </div>
+    <figure data-a="rv" style="margin:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+      <div style="overflow:hidden; border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);"><img src="assets/tidey/tidey-results-strips-v2.png" alt="Every held-out decision as one bar per alert, comparing the answer key, Tidey and one AI model across 24 legitimate, 18 fraud and 8 unclear alerts." loading="lazy" style="display:block; width:100%; height:auto;"></div>
+      <figcaption style="padding:14px clamp(12px, 1.6vw, 20px) 8px; font-size:13.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Official run, October 14, 2026. 50 of 50 alerts, with Jev (jev-1.13.0) and OpenAI GPT-5.4 mini. One bar per alert. Hatched bars are wrong calls; outlined bars are risky alerts closed with nobody looking.</figcaption>
+    </figure>
+    <div data-a="rv" style="padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+      <div style="overflow-x:auto; border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+        <table style="width:100%; min-width:520px; border-collapse:collapse; font-size:15px; line-height:1.4; color:#111214; text-align:left;">
+          <thead><tr>
+            <th scope="col" style="padding:18px clamp(14px, 1.6vw, 22px) 14px; font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63; vertical-align:bottom;">Measure</th>
+            <th scope="col" style="padding:18px clamp(14px, 1.6vw, 22px) 14px; background:oklch(0.975 0.014 240); vertical-align:bottom;"><span style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:15px; font-weight:600;">Tidey</span><span style="font-size:13px; font-weight:400; color:#5c5f63;">Jev decides, code acts</span></span></th>
+            <th scope="col" style="padding:18px clamp(14px, 1.6vw, 22px) 14px; vertical-align:bottom;"><span style="display:flex; flex-direction:column; gap:2px;"><span style="font-size:15px; font-weight:600;">One AI model</span><span style="font-size:13px; font-weight:400; color:#5c5f63;">GPT-5.4 mini, doing everything</span></span></th>
+          </tr></thead>
+          <tbody>
+            <tr><th scope="row" style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; font-weight:400; color:#3f4247;">Correct decisions</th><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; background:oklch(0.975 0.014 240);"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">45 / 50</span></span></td><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle;"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">46 / 50</span><span style="font-size:11.5px; font-weight:600; color:oklch(0.45 0.11 155);">better</span></span></td></tr>
+            <tr><th scope="row" style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; font-weight:400; color:#3f4247;">Fraud closed with nobody looking</th><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; background:oklch(0.975 0.014 240);"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">0</span></span></td><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle;"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">0</span></span></td></tr>
+            <tr><th scope="row" style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; font-weight:400; color:#3f4247;">Unclear alerts closed with nobody looking</th><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; background:oklch(0.975 0.014 240);"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">2</span><span style="font-size:11.5px; font-weight:600; color:oklch(0.45 0.11 155);">better</span></span></td><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle;"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">4</span></span></td></tr>
+            <tr><th scope="row" style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; font-weight:400; color:#3f4247;">Unclear alerts a person saw</th><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; background:oklch(0.975 0.014 240);"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">6 / 8</span><span style="font-size:11.5px; font-weight:600; color:oklch(0.45 0.11 155);">better</span></span></td><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle;"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">4 / 8</span></span></td></tr>
+            <tr><th scope="row" style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; font-weight:400; color:#3f4247;">Legitimate alerts sent to a person</th><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; background:oklch(0.975 0.014 240);"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">3</span></span></td><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle;"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">0</span><span style="font-size:11.5px; font-weight:600; color:oklch(0.45 0.11 155);">better</span></span></td></tr>
+            <tr><th scope="row" style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; font-weight:400; color:#3f4247;">Right fraud type when escalated</th><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; background:oklch(0.975 0.014 240);"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">18 / 18</span></span></td><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle;"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">18 / 18</span></span></td></tr>
+            <tr><th scope="row" style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; font-weight:400; color:#3f4247;">Cost per alert</th><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; background:oklch(0.975 0.014 240);"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">$0.0012</span><span style="font-size:11.5px; font-weight:600; color:oklch(0.45 0.11 155);">better</span></span></td><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle;"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">$0.0037</span></span></td></tr>
+            <tr><th scope="row" style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; font-weight:400; color:#3f4247;">Time to a decision</th><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; background:oklch(0.975 0.014 240);"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">0.30 s</span><span style="font-size:11.5px; font-weight:600; color:oklch(0.45 0.11 155);">better</span></span></td><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle;"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">2.2 s</span></span></td></tr>
+            <tr><th scope="row" style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; font-weight:400; color:#3f4247;">Broken or invalid outputs</th><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle; background:oklch(0.975 0.014 240);"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">0</span></span></td><td style="padding:14px clamp(14px, 1.6vw, 22px); border-top:1px solid #ececef; vertical-align:middle;"><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;"><span style="font-weight:600; font-variant-numeric:tabular-nums;">0</span></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p data-a="rv" style="margin:-24px 0 0 clamp(8px, 1vw, 14px); max-width:90ch; font-size:13.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Official run, October 14, 2026, with Jev (jev-1.13.0) and OpenAI GPT-5.4 mini. Tidey’s cost includes the summary it writes for alerts a person reads.</p>
+  </div>
+</section>
+
+<section id="oversight" data-sec="1" data-screen-label="Human Oversight" style="background:#f1f2f4; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(36px, 4vw, 56px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">07</span>Human Oversight</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance; max-width:16ch;">Built to hand off</h2></div>
+      <p style="margin:0; max-width:40ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">The points where a person always decides, and the two alerts that got past them.</p>
+    </div>
+    <ul data-a="rv" data-stagger="1" style="margin:0; padding:clamp(8px, 1.4vw, 16px) clamp(24px, 3vw, 40px); list-style:none; border-radius:26px; background:#ffffff; border:1px solid #e3e4e8;">
+        <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2vw, 32px); padding:18px 0; border-bottom:1px solid #ececef;">
+          <span style="flex:1 1 200px; min-width:0; font-size:17px; font-weight:600; letter-spacing:-0.02em;">Every block or freeze</span>
+          <span style="flex:0 0 150px; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Analyst</span>
+          <span style="flex:2 1 300px; min-width:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">It hits a real customer and is hard to undo. Tidey only recommends.</span>
+        </li>
+        <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2vw, 32px); padding:18px 0; border-bottom:1px solid #ececef;">
+          <span style="flex:1 1 200px; min-width:0; font-size:17px; font-weight:600; letter-spacing:-0.02em;">Judgment calls</span>
+          <span style="flex:0 0 150px; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Analyst</span>
+          <span style="flex:2 1 300px; min-width:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Mixed signals or scam risk. Anything that misses a rule goes to a person.</span>
+        </li>
+        <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2vw, 32px); padding:18px 0; border-bottom:1px solid #ececef;">
+          <span style="flex:1 1 200px; min-width:0; font-size:17px; font-weight:600; letter-spacing:-0.02em;">$5,000 and over</span>
+          <span style="flex:0 0 150px; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Analyst</span>
+          <span style="flex:2 1 300px; min-width:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Never closed alone, however confident Tidey is.</span>
+        </li>
+        <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2vw, 32px); padding:18px 0; border-bottom:1px solid #ececef;">
+          <span style="flex:1 1 200px; min-width:0; font-size:17px; font-weight:600; letter-spacing:-0.02em;">Closed alerts</span>
+          <span style="flex:0 0 150px; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Analyst, spot-check</span>
+          <span style="flex:2 1 300px; min-width:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Every close keeps its evidence. Reopen sends it for a second look.</span>
+        </li>
+        <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2vw, 32px); padding:18px 0; ">
+          <span style="flex:1 1 200px; min-width:0; font-size:17px; font-weight:600; letter-spacing:-0.02em;">The lines themselves</span>
+          <span style="flex:0 0 150px; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Fraud lead</span>
+          <span style="flex:2 1 300px; min-width:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Thresholds are policy, set and reviewed in code.</span>
+        </li>
+    </ul>
+    <div style="display:flex; flex-direction:column; gap:24px;">
+      <div data-a="rv" style="display:flex; flex-direction:column; gap:10px;"><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">The two misses</span><p style="margin:0; max-width:44ch; font-size:17px; line-height:1.55; color:#3f4247; text-wrap:pretty;">Both passed every rule. The single model closed them too, plus two more unclear alerts.</p></div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap:24px; align-items:stretch;">
+        <div data-a="rv" data-stagger="1" style="display:flex; flex-direction:column; gap:16px; min-width:0;">
+          <article style="flex:1 1 auto; display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+            <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(20px, 2.2vw, 28px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+              <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.47 0.17 25);">A-1036</span>
+              <div style="display:flex; flex-direction:column; gap:6px;"><h3 style="margin:0; font-size:clamp(19px, 1.6vw, 22px); font-weight:600; line-height:1.2; letter-spacing:-0.025em;">$600 ATM withdrawal in Cancun</h3><p style="margin:0; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">A booked trip, but a non-bank ATM at 2:40 AM is a common skimming pattern.</p></div>
+              <div role="img" aria-label="Legitimate 1.00, unexplained 0.08" style="display:flex; flex-direction:column; gap:8px; padding-top:14px; border-top:1px solid #ececef;"><div style="display:grid; grid-template-columns:96px minmax(0, 1fr) 40px; align-items:center; gap:12px; font-size:14px; color:#3f4247;"><span>Legitimate</span><span aria-hidden="true" style="display:block; height:8px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:100%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.55 0.13 245);"></span></span><span style="font-variant-numeric:tabular-nums; text-align:right;">1.00</span></div><div style="display:grid; grid-template-columns:96px minmax(0, 1fr) 40px; align-items:center; gap:12px; font-size:14px; color:#3f4247;"><span>Unexplained</span><span aria-hidden="true" style="display:block; height:8px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:8%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.7 0.14 70);"></span></span><span style="font-variant-numeric:tabular-nums; text-align:right;">0.08</span></div></div>
+            </div>
+          </article>
+          <article style="flex:1 1 auto; display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+            <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; padding:clamp(20px, 2.2vw, 28px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+              <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.47 0.17 25);">A-1049</span>
+              <div style="display:flex; flex-direction:column; gap:6px;"><h3 style="margin:0; font-size:clamp(19px, 1.6vw, 22px); font-weight:600; line-height:1.2; letter-spacing:-0.025em;">$64 at a usual bookstore</h3><p style="margin:0; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">From a new phone that took three tries at two-factor while the old one was still in use.</p></div>
+              <div role="img" aria-label="Legitimate 0.99, unexplained 0.10" style="display:flex; flex-direction:column; gap:8px; padding-top:14px; border-top:1px solid #ececef;"><div style="display:grid; grid-template-columns:96px minmax(0, 1fr) 40px; align-items:center; gap:12px; font-size:14px; color:#3f4247;"><span>Legitimate</span><span aria-hidden="true" style="display:block; height:8px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:99%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.55 0.13 245);"></span></span><span style="font-variant-numeric:tabular-nums; text-align:right;">0.99</span></div><div style="display:grid; grid-template-columns:96px minmax(0, 1fr) 40px; align-items:center; gap:12px; font-size:14px; color:#3f4247;"><span>Unexplained</span><span aria-hidden="true" style="display:block; height:8px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:10%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.7 0.14 70);"></span></span><span style="font-variant-numeric:tabular-nums; text-align:right;">0.10</span></div></div>
+            </div>
+          </article>
+        </div>
+        <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(20px, 2.2vw, 28px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px;"><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">How the decision was made</span><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.47 0.17 25);">A-1036</span></div>
+          <div role="img" aria-label="Legitimate 1.00, stolen card 0.00, account takeover 0.00, card testing 0.00" style="display:flex; flex-direction:column; gap:8px;"><span style="font-size:15px; font-weight:600; line-height:1.35; letter-spacing:-0.01em; color:#111214; text-wrap:pretty;">Who most likely did this?</span><div style="display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(64px, 1fr) 40px; align-items:center; gap:12px; font-size:14px; color:#3f4247;"><span style="min-width:0;">Legitimate</span><span aria-hidden="true" style="display:block; height:8px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:100%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.55 0.13 245);"></span></span><span style="font-variant-numeric:tabular-nums; text-align:right;">1.00</span></div><div style="display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(64px, 1fr) 40px; align-items:center; gap:12px; font-size:14px; color:#3f4247;"><span style="min-width:0;">Stolen card used online</span><span aria-hidden="true" style="display:block; height:8px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:0%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.55 0.13 245);"></span></span><span style="font-variant-numeric:tabular-nums; text-align:right;">0.00</span></div><div style="display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(64px, 1fr) 40px; align-items:center; gap:12px; font-size:14px; color:#3f4247;"><span style="min-width:0;">Account takeover</span><span aria-hidden="true" style="display:block; height:8px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:0%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.55 0.13 245);"></span></span><span style="font-variant-numeric:tabular-nums; text-align:right;">0.00</span></div><div style="display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(64px, 1fr) 40px; align-items:center; gap:12px; font-size:14px; color:#3f4247;"><span style="min-width:0;">Card testing</span><span aria-hidden="true" style="display:block; height:8px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:0%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.55 0.13 245);"></span></span><span style="font-variant-numeric:tabular-nums; text-align:right;">0.00</span></div></div>
+          <div role="img" aria-label="Yes, 0.08" style="display:flex; flex-direction:column; gap:8px;"><span style="font-size:15px; font-weight:600; line-height:1.35; letter-spacing:-0.01em; color:#111214; text-wrap:pretty;">Anything out of character the evidence doesn’t explain?</span><div style="display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(64px, 1fr) 40px; align-items:center; gap:12px; font-size:14px; color:#3f4247;"><span style="min-width:0;">Yes</span><span aria-hidden="true" style="display:block; height:8px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:8%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.7 0.14 70);"></span></span><span style="font-variant-numeric:tabular-nums; text-align:right;">0.08</span></div></div>
+          <div role="img" aria-label="Yes, 0.04" style="display:flex; flex-direction:column; gap:8px;"><span style="font-size:15px; font-weight:600; line-height:1.35; letter-spacing:-0.01em; color:#111214; text-wrap:pretty;">Could the customer be the victim of a scam?</span><div style="display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(64px, 1fr) 40px; align-items:center; gap:12px; font-size:14px; color:#3f4247;"><span style="min-width:0;">Yes</span><span aria-hidden="true" style="display:block; height:8px; border-radius:999px; background:#eceef1; overflow:hidden;"><span data-bar="1" style="display:block; width:4%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.7 0.14 70);"></span></span><span style="font-variant-numeric:tabular-nums; text-align:right;">0.04</span></div></div>
+          <p style="margin:0; padding:14px 16px; border-radius:14px; background:#f4f7fb; font-size:14.5px; line-height:1.5; color:#1f2a37; text-wrap:pretty;"><strong style="font-weight:600;">Code rule:</strong> Legitimate 1.00 ≥ 0.85 and nothing unexplained (0.08 ≤ 0.35), so Tidey closed it alone.</p>
+          <div style="display:flex; flex-direction:column; gap:6px; padding-top:14px; border-top:1px dashed #d6d7db;"><p style="margin:0; font-size:14.5px; line-height:1.5; color:#3f4247; text-wrap:pretty;"><strong style="font-weight:600; color:#111214;">Answer key:</strong> unclear, a person should look. <strong style="font-weight:600; color:oklch(0.47 0.17 25);">This decision is wrong.</strong></p><span style="font-size:13.5px; color:#5c5f63;">Decided in 0.29 s for $0.0002.</span></div>
+        </div>
+      </article>
+      </div>
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1; min-width:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap:24px clamp(28px, 4vw, 64px); align-items:center; padding:clamp(24px, 3vw, 40px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <div style="display:flex; flex-direction:column; gap:12px; min-width:0;">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">The lesson</span>
+            <h3 style="margin:0; font-weight:500; font-size:clamp(26px, 2.6vw, 38px); line-height:1.04; letter-spacing:-0.04em; color:#111214; text-wrap:balance;">The question I didn’t ask.</h3>
+            <p style="margin:0; max-width:42ch; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Both misses passed every rule. Jev answered the question it was asked, and for both the customer was a fair answer. The fix is a new question, not a stricter number.</p>
+          </div>
+          <div data-stagger="1" style="display:flex; flex-direction:column; gap:10px; min-width:0;">
+            <div style="display:grid; grid-template-columns:auto minmax(0, 1fr); align-items:start; gap:6px 14px; padding:16px 18px; border-radius:16px; background:#f4f7fb; border:1px solid #e3e8ef;"><span style="display:inline-flex; align-items:center; height:24px; padding:0 10px; border-radius:999px; background:#e6e9ee; color:#3f4247; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Asked</span><span style="display:flex; flex-direction:column; gap:4px; min-width:0;"><span style="font-size:16px; font-weight:600; line-height:1.35; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Who most likely did this?</span><span style="font-size:14px; line-height:1.45; color:#5c5f63; text-wrap:pretty;">For both misses, the customer was a fair answer.</span></span></div>
+            <div style="display:grid; grid-template-columns:auto minmax(0, 1fr); align-items:start; gap:6px 14px; padding:16px 18px; border-radius:16px; background:#ffffff; border:1px dashed oklch(0.7 0.08 250);"><span style="display:inline-flex; align-items:center; height:24px; padding:0 10px; border-radius:999px; background:oklch(0.45 0.11 250); color:#ffffff; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Next</span><span style="display:flex; flex-direction:column; gap:4px; min-width:0;"><span style="font-size:16px; font-weight:600; line-height:1.35; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Is this pattern risky even if the customer can explain it?</span><span style="font-size:14px; line-height:1.45; color:#5c5f63; text-wrap:pretty;">A non-bank ATM at 2:40 AM, or a new phone with failed two-factor, still needs a person.</span></span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="next" data-sec="1" data-screen-label="What I'd Do Next" style="background:#fafaf8; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-wrap:wrap; gap:36px clamp(32px, 6vw, 112px);">
+    <div data-a="rv" style="flex:1 1 260px; align-self:flex-start; display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.45 0.11 250);">08</span>Next Steps</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">What I’d do next</h2></div>
+    <ol style="flex:2.4 1 560px; min-width:0; margin:0; padding:clamp(24px, 3vw, 40px); list-style:none; display:flex; flex-direction:column; border-radius:26px; background:#ffffff; border:1px solid #e3e4e8;">
+      <li data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="position:relative; display:grid; grid-template-columns:44px minmax(0, 1fr); gap:0 clamp(18px, 2.4vw, 32px);">
+        <div aria-hidden="true" style="position:relative; display:flex; justify-content:center;">
+          <span data-step="1" style="position:relative; z-index:1; display:grid; place-items:center; width:44px; height:44px; border-radius:999px; transform:scale(calc(1 + var(--h, 0) * 0.08)); box-shadow:0 0 0 calc(var(--h, 0) * 6px) oklch(0.55 0.13 245 / 0.18); transition:transform 450ms cubic-bezier(.2,.7,.2,1), box-shadow 450ms cubic-bezier(.2,.7,.2,1), background-color 450ms ease, color 450ms ease, border-color 450ms ease; background:#111214; color:#ffffff; border:1px solid #111214; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums;">01</span>
+          <span data-grow="200" style="position:absolute; top:52px; bottom:-8px; left:50%; width:2px; margin-left:-1px; transform-origin:top; background:repeating-linear-gradient(180deg, #c9cbd1 0 6px, transparent 6px 12px);"></span><span data-fillv="1" style="position:absolute; top:52px; bottom:-8px; left:50%; width:2px; margin-left:-1px; border-radius:2px; transform-origin:top; transform:scaleY(var(--fv, 0)); background:oklch(0.55 0.13 245);"></span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; padding:6px 0 clamp(32px, 3.6vw, 48px); transform:translateX(calc(var(--h, 0) * 6px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Pattern rules</span>
+          <p style="margin:0; max-width:52ch; font-size:clamp(18px, 1.5vw, 21px); line-height:1.45; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">A third question for Jev: “Is this risky even if the customer can explain it?”, for patterns like overnight cash at a non-bank ATM or a new device that failed two-factor. A high answer goes to a person.</p>
+        </div>
+      </li>
+      <li data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="position:relative; display:grid; grid-template-columns:44px minmax(0, 1fr); gap:0 clamp(18px, 2.4vw, 32px);">
+        <div aria-hidden="true" style="position:relative; display:flex; justify-content:center;">
+          <span data-step="1" style="position:relative; z-index:1; display:grid; place-items:center; width:44px; height:44px; border-radius:999px; transform:scale(calc(1 + var(--h, 0) * 0.08)); box-shadow:0 0 0 calc(var(--h, 0) * 6px) oklch(0.55 0.13 245 / 0.18); transition:transform 450ms cubic-bezier(.2,.7,.2,1), box-shadow 450ms cubic-bezier(.2,.7,.2,1), background-color 450ms ease, color 450ms ease, border-color 450ms ease; background:#111214; color:#ffffff; border:1px solid #111214; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums;">02</span>
+          <span data-grow="400" style="position:absolute; top:52px; bottom:-8px; left:50%; width:2px; margin-left:-1px; transform-origin:top; background:repeating-linear-gradient(180deg, #c9cbd1 0 6px, transparent 6px 12px);"></span><span data-fillv="1" style="position:absolute; top:52px; bottom:-8px; left:50%; width:2px; margin-left:-1px; border-radius:2px; transform-origin:top; transform:scaleY(var(--fv, 0)); background:oklch(0.55 0.13 245);"></span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; padding:6px 0 clamp(32px, 3.6vw, 48px); transform:translateX(calc(var(--h, 0) * 6px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Re-test</span>
+          <p style="margin:0; max-width:52ch; font-size:clamp(18px, 1.5vw, 21px); line-height:1.45; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Run a fresh held-out set, so the new rules are checked on alerts they weren’t written for.</p>
+        </div>
+      </li>
+      <li data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="position:relative; display:grid; grid-template-columns:44px minmax(0, 1fr); gap:0 clamp(18px, 2.4vw, 32px);">
+        <div aria-hidden="true" style="position:relative; display:flex; justify-content:center;">
+          <span data-step="1" style="position:relative; z-index:1; display:grid; place-items:center; width:44px; height:44px; border-radius:999px; transform:scale(calc(1 + var(--h, 0) * 0.08)); box-shadow:0 0 0 calc(var(--h, 0) * 6px) oklch(0.55 0.13 245 / 0.18); transition:transform 450ms cubic-bezier(.2,.7,.2,1), box-shadow 450ms cubic-bezier(.2,.7,.2,1), background-color 450ms ease, color 450ms ease, border-color 450ms ease; background:#111214; color:#ffffff; border:1px solid #111214; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums;">03</span>
+          
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; padding:6px 0 0; transform:translateX(calc(var(--h, 0) * 6px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.45 0.11 250);">Shadow mode</span>
+          <p style="margin:0; max-width:52ch; font-size:clamp(18px, 1.5vw, 21px); line-height:1.45; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Calibrate the lines on real labeled alerts, run next to analysts, and measure the minutes saved per alert.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="cta" data-screen-label="CTA" style="position:relative; overflow:hidden; isolation:isolate; background:#0a0a0a; color:#ffffff; padding:clamp(104px, 12vw, 184px) clamp(20px, 4vw, 64px);">
+  {{ darkAmbient }}
+  <div aria-hidden="true" style="position:absolute; inset:0; z-index:-1; background:radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1.3px) 0 0 / 22px 22px; -webkit-mask-image:radial-gradient(55% 60% at 50% 50%, #000, transparent 78%); mask-image:radial-gradient(55% 60% at 50% 50%, #000, transparent 78%); pointer-events:none;"></div>
+  <div aria-hidden="true" style="position:absolute; left:50%; top:58%; z-index:-1; width:min(900px, 90vw); height:min(520px, 60vw); transform:translate(-50%, -50%); border-radius:50%; background:radial-gradient(closest-side, oklch(0.52 0.22 285 / 0.55), oklch(0.42 0.18 265 / 0.25) 60%, transparent 100%); filter:blur(60px); pointer-events:none;"></div>
+  <div aria-hidden="true" style="position:absolute; left:0; right:0; bottom:0; height:45%; z-index:-1; background:linear-gradient(180deg, rgba(10,10,10,0), #0a0a0a 92%); pointer-events:none;"></div>
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:clamp(28px, 3vw, 40px); text-align:center;">
+    <span data-a="rv" style="display:inline-flex; align-items:center; height:26px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); box-shadow:inset 0 1px 0 rgba(255,255,255,0.1); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); color:rgba(255,255,255,0.86);">Go Deeper</span>
+    <h2 style="margin:0; max-width:13ch; overflow:hidden; padding:0.04em 0 0.18em; margin-bottom:-0.12em; font-weight:500; font-size:clamp(44px, 6.4vw, 104px); line-height:0.98; letter-spacing:-0.05em; text-wrap:balance;"><span data-a="rise" style="display:inline-block;">See it in action</span></h2>
+    <p data-a="rv" style="margin:0; max-width:44ch; font-size:clamp(16px, 1.35vw, 20px); line-height:1.5; color:rgba(255,255,255,0.74); text-wrap:pretty;">A self-initiated project with synthetic data, built end to end: agent design, analyst app and a head-to-head test.</p>
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:4px;">
+      <a href="{{ demoUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:10px; height:56px; padding:0 28px; border-radius:999px; background:#ffffff; color:#111214; font-size:16px; font-weight:600; transform:translateY(calc(var(--h, 0) * -2px)); box-shadow:0 0 0 1px rgba(255,255,255,0.4), 0 10px 40px -8px oklch(0.6 0.22 285 / 0.7), 0 calc(var(--h, 0) * 18px) calc(var(--h, 0) * 50px) -10px oklch(0.62 0.22 285 / 0.85); transition:transform 400ms cubic-bezier(.2,.7,.2,1), box-shadow 400ms cubic-bezier(.2,.7,.2,1), background 200ms ease;" style-hover="background:#f1efff; color:#111214;" style-focus="outline:none;">Try the live demo <span aria-hidden="true" style="display:inline-block; transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+      <sc-if value="{{ hasGithub }}" hint-placeholder-val="{{ false }}">
+        <a href="{{ githubUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:10px; height:56px; box-sizing:border-box; padding:0 28px; border-radius:999px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.4); box-shadow:inset 0 1px 0 rgba(255,255,255,0.18); backdrop-filter:blur(14px) saturate(160%); -webkit-backdrop-filter:blur(14px) saturate(160%); font-size:16px; font-weight:600; color:#ffffff; transform:translateY(calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1), background 200ms ease, color 200ms ease, border-color 200ms ease;" style-hover="background:#ffffff; border-color:#ffffff; color:#111214;" style-focus="outline:none;">View the code <span aria-hidden="true" style="display:inline-block; transform:translateX(calc(var(--h, 0) * 4px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">→</span></a>
+      </sc-if>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:4px 28px; margin-top:-8px;">
+      <a href="{{ caseStudyUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" onFocus="{{ hoverOn }}" onBlur="{{ hoverOff }}" style="position:relative; display:inline-flex; align-items:center; gap:8px; min-height:44px; outline:none; font-size:15px; font-weight:500; color:rgba(255,255,255,0.86);" style-hover="color:#ffffff;" style-focus="outline:none; color:#ffffff;"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none; width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="M14 3.5H7A1.5 1.5 0 0 0 5.5 5v14A1.5 1.5 0 0 0 7 20.5h10a1.5 1.5 0 0 0 1.5-1.5V8Z"></path><path d="M14 3.5V8h4.5"></path></svg><span style="position:relative;">Read the case study<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-screen-label="Footer" style="position:relative; z-index:1; margin-top:-2px; overflow:hidden; background:#0a0a0a; color:#ffffff; padding:clamp(24px, 3vw, 40px) clamp(24px, 6vw, 112px) 0;">
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:28px 64px;">
+    <nav aria-label="Site" style="display:flex; flex-wrap:wrap; gap:0 clamp(24px, 3vw, 40px);">
+      <a href="/#work" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">Work<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#how-i-build" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">How I Build<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#what-i-build" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">What I Build<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#about" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">About<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+    </nav>
+  </div>
+  <div aria-hidden="true" style="margin-top:clamp(80px, 11vw, 168px); margin-left:calc(-1 * clamp(24px, 6vw, 112px)); margin-right:calc(-1 * clamp(24px, 6vw, 112px)); height:clamp(70px, 12.5vw, 225px); overflow:hidden; display:flex; justify-content:flex-start; -webkit-mask-image:linear-gradient(180deg, #000 25%, transparent 100%); mask-image:linear-gradient(180deg, #000 25%, transparent 100%); pointer-events:none;">
+    {{ footTicker }}
+  </div>
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 32px; padding:20px 0 clamp(24px, 3vw, 36px); font-size:13px; color:#a3a5ab;">
+    <span>© 2026 Dan Mota</span>
+    <span>Built with AI + human judgment in Florida ☀️</span>
+  </div>
+</footer>
+
+<dc-import name="PasswordGate" eyebrow="Private Case Study" title="This project is password protected" back-href="/" back-label="Home" hint-size="0px,0px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;demoUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://tidey-fraud-agent.vercel.app&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;githubUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://github.com/dandmxstudio-droid/tidey-fraud-agent&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;caseStudyUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/case-studies/Tidey-Case-Study.pdf&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;autoplayClips&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { active: '', wide: true, narrow: false, lb: null, step: 0, playing: false };
+  stepRef = React.createRef();
+  laneDefs = [
+    { name: 'Code', desc: 'Exact work: facts, records, rules', color: '#0f2a4a', tint: 'oklch(0.95 0.012 250)', ink: '#0f2a4a', row: 'oklch(0.978 0.006 250)', label: 'oklch(0.955 0.012 250)' },
+    { name: 'Jev', desc: 'Judgment calls, with probabilities', color: 'oklch(0.6 0.13 235)', tint: 'oklch(0.95 0.035 235)', ink: 'oklch(0.42 0.11 240)', row: 'oklch(0.982 0.012 235)', label: 'oklch(0.955 0.03 235)' },
+    { name: 'AI Model', desc: 'Writes for people', color: 'oklch(0.55 0.16 300)', tint: 'oklch(0.95 0.035 300)', ink: 'oklch(0.45 0.16 300)', row: 'oklch(0.982 0.012 300)', label: 'oklch(0.955 0.03 300)' },
+    { name: 'Person', desc: 'Has the final say', color: 'oklch(0.64 0.14 65)', tint: 'oklch(0.95 0.045 75)', ink: 'oklch(0.48 0.12 60)', row: 'oklch(0.985 0.015 75)', label: 'oklch(0.96 0.035 75)' },
+  ];
+  stepDefs = [
+    [0, 'Read the Alert', 'Plain code pulls the alert and works out the facts before any model sees it: how far from home, whether the device is new, how the amount compares with normal.', '55× the customer’s usual $65.34, 833 miles from home in San Diego, overnight, from a Windows laptop first seen that day.'],
+    [1, 'Choose the Checks', 'Some checks always run for each alert type. Jev decides whether each optional check is worth running, and runs it at 0.5 or higher.', 'Transfers always get transaction history, payee check and account changes. Jev adds devices and sign-ins (0.91), and skips past alerts (0.49) and the merchant check (0.31).'],
+    [0, 'Run the Checks', 'Read-only lookups into the bank’s records: transaction history, devices and sign-ins, account changes, past alerts, merchant and payee.', 'Password reset at 2:12, email changed at 2:16, payee added at 2:24, money sent at 2:30, 6 minutes after adding the payee. No earlier transfers to them.'],
+    [1, 'Answer the Decision Questions', 'Three questions with fixed options. Jev returns a probability for every option and can’t answer outside them, so there’s nothing to parse or repair.', 'Who most likely did this? Account takeover, 1.00. Anything out of character and unexplained? 0.87. Could it be a scam? 0.85.'],
+    [0, 'Apply the Rules', 'Plain-code rules turn the answers into an outcome. The lines are the same for every alert, so every call traces back to a number.', 'Fraud 1.00 ≥ 0.85, so it goes to the fraud queue with a recommendation.'],
+    [2, 'Write the Summary', 'An AI model writes the analyst a short summary and a next step, only for alerts a person will read.', '“Approve freezing online banking and holding the transfer. Check whether the password reset, email change, new device sign-in, and payee addition were authorized before releasing funds.”'],
+    [3, 'Approve or Decide', 'Tidey only recommends. An analyst approves any block or freeze, or makes the call on a judgment case.', 'The analyst approves the freeze. Until then, nothing happens to the account.'],
+  ];
+  goStep = (i, keepPlay) => { const n = this.stepDefs.length; const st = { step: ((i % n) + n) % n }; if (!keepPlay) { this.stopPlay(); st.playing = false; this.userStop = true; } this.setState(st); };
+  pickStep = (e) => this.goStep(+e.currentTarget.getAttribute('data-i') || 0);
+  prevStep = () => this.goStep(this.state.step - 1);
+  nextStep = () => this.goStep(this.state.step + 1);
+  stopPlay = () => { if (this.playT) { clearInterval(this.playT); this.playT = 0; } };
+  startPlay = () => { this.stopPlay(); this.playT = setInterval(() => this.goStep(this.state.step + 1, true), 3800); this.setState({ playing: true }); };
+  togglePlay = () => { if (this.state.playing) { this.userStop = true; this.stopPlay(); this.setState({ playing: false }); return; } this.userStop = false; this.startPlay(); };
+  lbCloseRef = React.createRef();
+  lbImgRef = React.createRef();
+  gallery = {
+    details: [
+      { src: 'assets/carevine/shot-redaction.png', title: 'Personal details removed', alt: 'A member message where the date of birth is replaced by a “Date of birth hidden” tag before the AI sees it.' },
+      { src: 'assets/carevine/shot-spanish.png', title: 'Spanish replies', alt: 'A member’s Spanish message beside a Spanish AI draft marked for a closer look.' },
+      { src: 'assets/carevine/shot-upset-trim.png', title: 'Upset members first', alt: 'The support queue with a repeat message tagged “Upset member”.' },
+      { src: 'assets/carevine/shot-send-to-nurse.png', title: 'Reps can overrule', alt: 'A dialog asking the rep what they noticed before sending a ticket to the nurse queue.' },
+      { src: 'assets/carevine/shot-decisions-log.png', title: 'Every decision logged', alt: 'An Airtable decisions log listing each approval, claim and crisis reply by person, role and time.' },
+      { src: 'assets/carevine/shot-backup-crisis-check.png', title: 'Backup crisis check', alt: 'A backup crisis check table: two self-harm test messages flagged as crisis and a figure of speech correctly marked not crisis, all passing.' },
+    ],
+  };
+  openLb = (e) => { const t = e.currentTarget; this.lbReturn = t; this.setState({ lb: { g: t.getAttribute('data-lb-group'), i: +t.getAttribute('data-lb-index') || 0 } }); };
+  lbClose = () => { this.setState({ lb: null }); };
+  lbStep = (d) => this.setState(s => { if (!s.lb) return null; const n = this.gallery[s.lb.g].length; return { lb: { g: s.lb.g, i: (s.lb.i + d + n) % n } }; });
+  lbPrev = (e) => { if (e) e.stopPropagation(); this.lbStep(-1); };
+  lbNext = (e) => { if (e) e.stopPropagation(); this.lbStep(1); };
+  lbBackdrop = (e) => { if (e.target === e.currentTarget) this.lbClose(); };
+  onKey = (e) => { if (!this.state.lb) return; if (e.key === 'Escape') { e.preventDefault(); this.lbClose(); } else if (e.key === 'ArrowLeft') { e.preventDefault(); this.lbStep(-1); } else if (e.key === 'ArrowRight') { e.preventDefault(); this.lbStep(1); } };
+  rootRef = React.createRef();
+  secs = [['problem', 'Problem'], ['idea', 'Idea'], ['analyst', 'Analyst'], ['decisions', 'Decisions'], ['test', 'Test'], ['results', 'Results'], ['oversight', 'Oversight'], ['next', 'Next']];
+  hoverOn = (e) => e.currentTarget.style.setProperty('--h', '1');
+  hoverOff = (e) => e.currentTarget.style.setProperty('--h', '0');
+  imgErr = (e) => { e.currentTarget.style.display = 'none'; };
+  logoLoad = (e) => { const img = e.currentTarget, ph = img.previousElementSibling; img.style.display = 'block'; if (ph) ph.style.display = 'none'; };
+  playClip = (e) => { const v = e.currentTarget.parentElement.querySelector('video'); if (!v) return; if (v.paused) v.play().catch(() => {}); else v.pause(); };
+  stepClip = (e) => { const a = e.currentTarget.closest('article'), v = a && a.querySelector('video'); if (!v) return; if (this.clipLoad) this.clipLoad(v); const go = () => v.play().catch(() => {}); if (v.readyState >= 2) go(); else v.addEventListener('loadeddata', go, { once: true }); };
+  goTo = (id) => (e) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 92, behavior: this.reduce ? 'auto' : 'smooth' });
+  };
+  onScroll = () => { if (this.raf) return; this.raf = requestAnimationFrame(() => { this.raf = 0; this.frame(); }); };
+  onResize = () => { const wide = window.innerWidth >= 1200, narrow = window.innerWidth < 760; if (wide !== this.state.wide || narrow !== this.state.narrow) this.setState({ wide, narrow }); this.onScroll(); };
+  frame() {
+    const root = this.rootRef.current; if (!root) return;
+    const vh = window.innerHeight, max = document.documentElement.scrollHeight - vh;
+    root.style.setProperty('--navOn', window.scrollY > 8 ? '1' : '0');
+    root.style.setProperty('--prog', (max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0).toFixed(4));
+    root.querySelectorAll('[data-wipe]').forEach(el => { const r = el.getBoundingClientRect(); el.style.setProperty('--wp', this.reduce ? '1' : Math.max(0, Math.min(1, (vh * 0.9 - r.top) / (vh * 0.55))).toFixed(4)); });
+    if (!this.reduce) root.querySelectorAll('[data-scrub]').forEach(el => { const r = el.getBoundingClientRect(); el.style.setProperty('--s', Math.max(0, Math.min(1, (vh - r.top) / (vh * 0.75))).toFixed(4)); });
+    let active = '';
+    root.querySelectorAll('[data-fillv]').forEach(el => { const r = el.parentElement.parentElement.getBoundingClientRect(); el.style.setProperty('--fv', this.reduce ? '1' : Math.max(0, Math.min(1, (vh * 0.62 - r.top) / Math.max(1, r.height))).toFixed(4)); });
+    root.querySelectorAll('[data-sec]').forEach(el => { if (el.getBoundingClientRect().top < Math.max(120, vh * 0.35)) active = el.id; });
+    if (active !== this.state.active) this.setState({ active });
+    this.checkClips();
+  }
+  initClips() {
+    const auto = (this.props.autoplayClips ?? true) && !this.reduce;
+    const syncBtn = (v, btn) => {
+      const playing = !v.paused, label = btn.getAttribute('data-label') || btn.getAttribute('aria-label').replace(/^(Play|Pause) clip: /, '');
+      btn.setAttribute('data-label', label);
+      btn.setAttribute('aria-label', (playing ? 'Pause' : 'Play') + ' clip: ' + label);
+      btn.children[0].style.display = playing ? 'none' : 'block';
+      btn.children[1].style.display = playing ? 'block' : 'none';
+      Object.assign(btn.style, playing
+        ? { top: '12px', left: 'auto', right: '12px', bottom: 'auto', transform: 'none', width: '44px', height: '44px' }
+        : { top: '50%', left: '50%', right: 'auto', bottom: 'auto', transform: 'translate(-50%, -50%)', width: '64px', height: '64px' });
+    };
+    this.clipAuto = auto;
+    this.clipDone = new WeakSet();
+    this.clipLoad = (v) => {
+      if (this.clipDone.has(v)) return; this.clipDone.add(v);
+      const src = (v.getAttribute('data-clip-src') || '').trim(); if (!src) return;
+      const box = v.parentElement, ph = box.querySelector('[data-clip-ph]'), btn = box.querySelector('[data-clip-play]');
+      v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.controls = false;
+      const shown = () => {
+        v.style.opacity = '1'; if (ph) ph.style.opacity = '0';
+        if (!auto && btn) { btn.style.display = 'grid'; syncBtn(v, btn); }
+        this.checkClips();
+      };
+      if (v.readyState >= 2 && v.currentSrc) shown(); else v.addEventListener('loadeddata', shown, { once: true });
+      if (btn) { v.addEventListener('play', () => syncBtn(v, btn)); v.addEventListener('pause', () => syncBtn(v, btn)); }
+      if (!v.currentSrc) { v.preload = auto ? 'auto' : 'metadata'; v.src = auto ? src : src + '#t=0.1'; }
+    };
+    this.checkClips();
+  }
+  checkClips() {
+    if (!this.clipLoad) return;
+    const vh = window.innerHeight;
+    document.querySelectorAll('video[data-clip-src]').forEach(v => {
+      const r = v.parentElement.getBoundingClientRect();
+      if (r.bottom > -600 && r.top < vh + 600) this.clipLoad(v);
+      if (!this.clipDone.has(v) || v.readyState < 2) return;
+      const vis = r.top < vh - r.height * 0.2 && r.bottom > r.height * 0.2;
+      if (vis && this.clipAuto) { if (v.paused) v.play().catch(() => {}); }
+      else if (!vis && !v.paused) v.pause();
+    });
+  }
+  componentDidUpdate(pp, ps) {
+    if (ps && ps.step !== this.state.step && this.stepRef.current && !this.reduce) this.stepRef.current.querySelectorAll('[data-sx]').forEach((el, i) => el.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 480, delay: i * 50, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' }));
+    this.checkClips();
+    const lbi = this.lbImgRef.current, lbIt = this.state.lb ? this.gallery[this.state.lb.g][this.state.lb.i] : null;
+    if (lbi && lbIt && lbIt.src && lbi.getAttribute('src') !== lbIt.src) lbi.setAttribute('src', lbIt.src);
+    const was = !!this._lbWas, is = !!this.state.lb;
+    this._lbWas = is;
+    if (is && !was) { document.documentElement.style.overflow = 'hidden'; setTimeout(() => { const b = this.lbCloseRef.current; if (b) b.focus(); }, 30); }
+    if (!is && was) { document.documentElement.style.overflow = ''; if (this.lbReturn && this.lbReturn.focus) this.lbReturn.focus(); }
+  }
+  countUp(el) {
+    const node = el.firstChild, raw = el.getAttribute('data-count') || '0', to = parseFloat(raw) || 0, dec = (raw.split('.')[1] || '').length, fmt = (v) => dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US');
+    if (!node || node.nodeType !== 3) return;
+    const t0 = performance.now(), dur = 1400;
+    const step = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); node.nodeValue = fmt(to * e); if (k < 1) requestAnimationFrame(step); };
+    node.nodeValue = fmt(0);
+    requestAnimationFrame(step);
+  }
+  initReveal() {
+    if (this.reduce) return;
+    const ease = 'cubic-bezier(.2,.7,.2,1)';
+    const K = {
+      rv: { from: { opacity: 0, transform: 'translateY(28px)', filter: 'blur(6px)' }, prop: 'opacity', hidden: '0', dur: 1000 },
+      rise: { from: { transform: 'translateY(110%)' }, prop: 'transform', hidden: 'translateY(110%)', dur: 1100 },
+    };
+    const play = (el, delay) => {
+      const k = K[el.getAttribute('data-a')]; if (!k) return;
+      el.style[k.prop] = '';
+      const to = {}; Object.keys(k.from).forEach(p => { to[p] = p === 'opacity' ? 1 : p === 'filter' ? 'blur(0px)' : 'none'; });
+      el.animate([k.from, to], { duration: k.dur, delay, easing: ease, fill: 'backwards' });
+    };
+    const vh = window.innerHeight, owners = new Map();
+    let i = 0;
+    this.io = new IntersectionObserver(es => {
+      let n = 0;
+      es.forEach(en => { if (!en.isIntersecting) return; this.io.unobserve(en.target); (owners.get(en.target) || []).forEach(el => play(el, (n++) * 90)); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    const M = (el) => {
+      const kids = [...el.children];
+      if (el.hasAttribute('data-pop')) kids.forEach((c, j) => { c.style.opacity = ''; c.animate([{ opacity: 0, transform: 'scale(0.3)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 520, delay: 250 + j * 45, easing: 'cubic-bezier(.3,1.5,.5,1)', fill: 'backwards' }); });
+      else if (el.hasAttribute('data-grow')) { el.style.transform = ''; const vert = el.style.transformOrigin === 'top'; el.animate([{ transform: vert ? 'scaleY(0)' : 'scaleX(0)' }, { transform: 'none' }], { duration: 1300, delay: 300 + (+el.getAttribute('data-grow') || 0), easing: ease, fill: 'backwards' }); }
+      else kids.forEach((c, j) => { c.style.opacity = ''; c.animate([{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { duration: 800, delay: 200 + j * 110, easing: ease, fill: 'backwards' }); });
+    };
+    this.mio = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; this.mio.unobserve(en.target); M(en.target); }), { threshold: 0.3 });
+    document.querySelectorAll('[data-pop], [data-grow], [data-stagger]').forEach(el => {
+      if (el.getBoundingClientRect().top < vh * 0.85) { M(el); return; }
+      if (el.hasAttribute('data-grow')) el.style.transform = el.style.transformOrigin === 'top' ? 'scaleY(0)' : 'scaleX(0)'; else [...el.children].forEach(c => { c.style.opacity = '0'; });
+      this.mio.observe(el);
+    });
+    document.querySelectorAll('[data-a]').forEach(el => {
+      const a = el.getAttribute('data-a'), k = K[a]; if (!k) return;
+      if (el.getBoundingClientRect().top < vh * 0.94) { play(el, 60 + (i++) * 100); return; }
+      el.style[k.prop] = k.hidden;
+      const t = a === 'rise' ? el.parentElement : el;
+      if (!owners.has(t)) { owners.set(t, []); this.io.observe(t); }
+      owners.get(t).push(el);
+    });
+  }
+  navKey = (e) => { if (e.key === 'Escape') this.navClose(); };
+  navToggle = () => { const o = !this.state.navOpen; document[o ? 'addEventListener' : 'removeEventListener']('keydown', this.navKey); this.setState({ navOpen: o }); };
+  navClose = () => { document.removeEventListener('keydown', this.navKey); if (this.state.navOpen) this.setState({ navOpen: false }); };
+  navTone = () => {
+    if (this._ntRaf) return;
+    this._ntRaf = requestAnimationFrame(() => {
+      this._ntRaf = 0;
+      const hd = document.querySelector('header'); if (!hd) return;
+      const stack = document.elementsFromPoint(window.innerWidth / 2, 40);
+      let lum = 1;
+      for (const el of stack) {
+        if (hd.contains(el)) continue;
+        const cs = getComputedStyle(el);
+        let m = cs.backgroundColor.match(/rgba?\(([^)]+)\)/), v = m && m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);
+        if (!(v && (v[3] === undefined || v[3] > 0.5)) && cs.backgroundImage.indexOf('gradient') > -1) { m = cs.backgroundImage.match(/rgba?\(([^)]+)\)/); v = m && m[1].split(/[ ,\/]+/).filter(Boolean).map(Number); }
+        if (el.tagName === 'VIDEO' || el.tagName === 'IMG') { lum = 0.5; break; }
+        if (v && (v[3] === undefined || v[3] > 0.5)) { lum = (0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]) / 255; break; }
+      }
+      hd.style.setProperty('--nd', lum < 0.45 ? '1' : '0');
+    });
+  };
+  componentDidMount() {
+    window.addEventListener('scroll', this.navTone, { passive: true }); window.addEventListener('resize', this.navTone); this.navTone();
+    this.reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const sc = this.stepRef.current && this.stepRef.current.parentElement;
+    if (sc && !this.reduce && typeof IntersectionObserver !== 'undefined') { this.sio = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { if (!this.userStop && !this.playT) this.startPlay(); } else if (this.playT) { this.stopPlay(); this.setState({ playing: false }); } }), { threshold: 0.35 }); this.sio.observe(sc); }
+    this.onResize();
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('keydown', this.onKey);
+    this.frame();
+    this.initClips();
+    this.initReveal();
+    if (!this.reduce) { this.bio = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; this.bio.unobserve(en.target); const f = en.target.firstElementChild; f.style.transform = ''; f.animate([{ transform: 'scaleX(0)' }, { transform: 'none' }], { duration: 1100, delay: 200, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' }); }), { threshold: 0.5 }); document.querySelectorAll('[data-bar]').forEach(f => { f.style.transform = 'scaleX(0)'; this.bio.observe(f.parentElement); }); }
+    this.ambient();
+    [300, 1200].forEach(t => setTimeout(() => this.checkClips(), t));
+    this.cio = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; this.cio.unobserve(en.target); if (!this.reduce) setTimeout(() => this.countUp(en.target), 250); }), { threshold: 0.6 });
+    document.querySelectorAll('[data-count]').forEach(el => this.cio.observe(el));
+  }
+  ambient() {
+    if (this.reduce || this.ambOn) return; this.ambOn = true;
+    const inf = { iterations: Infinity, easing: 'ease-in-out' };
+    document.querySelectorAll('[data-pulse]').forEach((el, i) => el.animate([{ boxShadow: '0 0 0 0 oklch(0.55 0.13 245 / 0.45)' }, { boxShadow: '0 0 0 7px oklch(0.55 0.13 245 / 0)' }], { duration: 1800, delay: i * 300, iterations: Infinity, easing: 'ease-out' }));
+    document.querySelectorAll('[data-ring]').forEach(el => el.animate([{ boxShadow: '0 10px 20px -12px rgba(17,18,20,0.6), 0 0 0 0 rgba(17,18,20,0.25)' }, { boxShadow: '0 10px 20px -12px rgba(17,18,20,0.6), 0 0 0 10px rgba(17,18,20,0)' }], { duration: 2200, iterations: Infinity, easing: 'ease-out' }));
+    document.querySelectorAll('[data-nudge]').forEach(el => el.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(4px)' }, { transform: 'translateX(-3px)' }], Object.assign({ duration: 1600 }, inf)));
+    document.querySelectorAll('[data-spin]').forEach(el => el.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], { duration: 6000, iterations: Infinity, easing: 'linear' }));
+    document.querySelectorAll('[data-float]').forEach((el, i) => el.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-3px)' }, { transform: 'translateY(0)' }], Object.assign({ duration: 3200, delay: i * 400 }, inf)));
+    document.querySelectorAll('[data-glow]').forEach((el, i) => { const c = el.getAttribute('data-glow'); el.animate([{ boxShadow: '0 0 0 0 color-mix(in oklab, ' + c + ' 55%, transparent)' }, { boxShadow: '0 0 0 8px color-mix(in oklab, ' + c + ' 0%, transparent)' }], { duration: 1800, delay: i * 450, iterations: Infinity, easing: 'ease-out' }); });
+    document.querySelectorAll('[data-gate]').forEach(el => el.animate([{ boxShadow: '0 0 0 0 oklch(0.55 0.19 25 / 0.55)' }, { boxShadow: '0 0 0 5px oklch(0.55 0.19 25 / 0)' }], { duration: 1600, iterations: Infinity, easing: 'ease-out' }));
+  }
+  componentWillUnmount() {
+    this.stopPlay(); if (this.sio) this.sio.disconnect();
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('keydown', this.onKey);
+    document.documentElement.style.overflow = '';
+    [this.io, this.cio, this.mio, this.bio].forEach(o => o && o.disconnect());
+    document.querySelectorAll('video[data-clip-src]').forEach(v => v.pause());
+    if (this.raf) cancelAnimationFrame(this.raf);
+  }
+  orb(style) {
+    return React.createElement('div', { style: Object.assign({ position: 'absolute', borderRadius: '50%', filter: 'blur(48px)', pointerEvents: 'none', animation: this.reduce ? 'none' : 'ambDrift 28s ease-in-out infinite', willChange: 'transform' }, style) });
+  }
+  goBack = (e) => { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (err) {} };
+  renderVals() {
+    const h = React.createElement;
+    const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const gh = (this.props.githubUrl ?? '').trim() || 'https://github.com/dandmxstudio-droid/tidey-fraud-agent';
+    const box = (kids) => h('div', { 'aria-hidden': true, style: { position: 'absolute', inset: 0, zIndex: -2, overflow: 'hidden', pointerEvents: 'none' } }, kids);
+    return {
+      goBack: this.goBack,
+      ...(() => { const a = this.state.step, cur = this.stepDefs[a], ln = this.laneDefs[cur[0]]; return {
+        lanes: this.laneDefs.map((l, i) => ({ name: l.name, desc: l.desc, color: l.color, border: i ? '1px solid #e6e9ee' : 'none', rowBg: i === cur[0] ? l.row : '#ffffff', labelBg: i === cur[0] ? l.label : '#fbfcfd' })),
+        steps: this.stepDefs.map((d, i) => { const l = this.laneDefs[d[0]], on = i === a; return { i, n: i + 1, label: d[1], aria: 'Step ' + (i + 1) + ': ' + d[1] + ' (' + l.name + ')', pressed: on ? 'true' : 'false', x: (6 + i * 88 / 6).toFixed(3) + '%', ll: i === 0 ? '0' : i === 6 ? 'auto' : '50%', lr: i === 6 ? '0' : 'auto', lt: i === 0 || i === 6 ? 'none' : 'translateX(-50%)', ta: i === 0 ? 'left' : i === 6 ? 'right' : 'center', y: ((d[0] + 0.5) / 4 * 100) + '%', color: l.color, bg: on ? l.color : '#ffffff', fg: on ? '#ffffff' : l.color, ring: on ? '0 0 0 6px ' + l.tint + ', 0 8px 18px -8px rgba(15,42,74,0.45)' : 'none', scale: on ? 1.08 : 1, fw: on ? 600 : 500 }; }),
+        pathDone: this.stepDefs.slice(0, a + 1).map((d, i) => (42 + i * 616 / 6).toFixed(2) + ',' + (d[0] * 100 + 50)).join(' '),
+        stepNum: a + 1, stepTitle: cur[1], stepDesc: cur[2], stepExample: cur[3], stepLane: ln.name, stepColor: ln.color, stepTint: ln.tint, stepInk: ln.ink,
+        pickStep: this.pickStep, prevStep: this.prevStep, nextStep: this.nextStep, togglePlay: this.togglePlay, stepRef: this.stepRef,
+        playing: !!this.state.playing, notPlaying: !this.state.playing, playLabel: this.state.playing ? 'Pause' : 'Play', playPressed: this.state.playing ? 'true' : 'false', wideLanes: !this.state.narrow,
+      }; })(),
+      navWide: !this.state.narrow, navMob: !(!this.state.narrow), navOpen: !!this.state.navOpen, navToggle: this.navToggle, navClose: this.navClose,
+      navO: this.state.navOpen ? 1 : 0, navY: this.state.navOpen ? 'translateY(0)' : 'translateY(-8px)', navPe: this.state.navOpen ? 'auto' : 'none',
+      navL1: this.state.navOpen ? 'rotate(45deg)' : 'translateY(-3.5px)', navL2: this.state.navOpen ? 'rotate(-45deg)' : 'translateY(3.5px)',
+      navW: this.state.navOpen ? '440px' : '300px', navR: this.state.navOpen ? '26px' : '28px', navRows: this.state.navOpen ? '1fr' : '0fr', navLabel: this.state.navOpen ? 'Close' : 'Menu', navLY: this.state.navOpen ? 'translateY(0)' : 'translateY(-10px)',
+      rootRef: this.rootRef,
+      wide: this.state.wide,
+      runsCols: this.state.narrow ? 'minmax(0, 1fr)' : 'minmax(0, 1fr) auto minmax(0, 1fr)',
+      runsArrowRot: this.state.narrow ? '90deg' : '0deg',
+      hoverOn: this.hoverOn,
+      hoverOff: this.hoverOff,
+      imgErr: this.imgErr,
+      logoLoad: this.logoLoad,
+      playClip: this.playClip,
+      stepClip: this.stepClip,
+      navItems: this.secs.map(([id, label], i) => ({
+        href: '#' + id, label, num: '0' + (i + 1), onClick: this.goTo(id),
+        on: this.state.active === id ? 1 : 0,
+        current: this.state.active === id ? 'location' : undefined,
+        color: this.state.active === id ? '#111214' : '#4a4d53',
+        numColor: this.state.active === id ? 'oklch(0.42 0.09 155)' : '#6b6e74',
+      })),
+      ...(() => { const lb = this.state.lb, it = lb ? this.gallery[lb.g][lb.i] : null, n = lb ? this.gallery[lb.g].length : 0; return {
+        lbOpen: !!lb, lbSrc: it ? it.src : '', lbAlt: it ? it.alt : '', lbTitle: it ? it.title : '', lbFile: it ? (it.file || '') : '',
+        lbHasSrc: !!(it && it.src), lbNoSrc: !!(it && !it.src), lbCount: lb ? (lb.i + 1) + ' / ' + n : '',
+        openLb: this.openLb, lbClose: this.lbClose, lbPrev: this.lbPrev, lbNext: this.lbNext, lbBackdrop: this.lbBackdrop, lbCloseRef: this.lbCloseRef, lbImgRef: this.lbImgRef,
+      }; })(),
+      demoUrl: (this.props.demoUrl ?? '').trim() || 'https://tidey-fraud-agent.vercel.app',
+      githubUrl: gh,
+      githubHref: gh || 'https://github.com/',
+      hasGithub: !!gh,
+      prevUrl: (this.props.prevUrl ?? '').trim() || '/#work',
+      researchUrl: (this.props.researchUrl ?? '').trim() || 'Research.dc.html',
+      caseStudyUrl: (this.props.caseStudyUrl ?? '').trim() || 'assets/case-studies/Tidey-Case-Study.pdf',
+      kitUrl: (this.props.kitUrl ?? '').trim() || 'assets/case-studies/Carevine-Triage-Tool-Enablement-Kit.pdf',
+      darkAmbient: box([
+        h('div', { key: 'a' }, this.orb({ width: '56vw', height: '56vw', right: '-18vw', top: '-20vw', background: 'radial-gradient(closest-side, oklch(0.5 0.2 275 / 0.42), transparent)' })),
+        h('div', { key: 'b' }, this.orb({ width: '40vw', height: '40vw', left: '-14vw', bottom: '-18vw', background: 'radial-gradient(closest-side, oklch(0.5 0.14 245 / 0.32), transparent)', animationDuration: '36s', animationDirection: 'reverse' })),
+      ]),
+      footTicker: h('div', { style: { display: 'flex', width: 'max-content', flex: 'none', fontWeight: 600, fontSize: 'clamp(72px, 15.5vw, 280px)', lineHeight: 0.9, letterSpacing: '-0.055em', whiteSpace: 'nowrap', color: '#ffffff', animation: reduce ? 'none' : 'footTick 48s linear infinite', willChange: 'transform' } },
+        [0, 1, 2, 3, 4, 5].map(k => h('span', { key: k, style: { paddingRight: '0.32em' } }, 'Dan Mota.')))
+    };
+  }
+}
+</script>
+</body>
+</html>

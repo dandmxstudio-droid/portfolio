@@ -1,0 +1,52 @@
+[
+  {
+    "question": "You are creating a brief handoff summary from a new-patient intake paragraph. The intake text includes the patient's name, date of birth, phone number, and a list of medications and allergies. What should you do next before using ChatGPT to help summarize it?",
+    "options": [
+      "Paste the full paragraph into ChatGPT so it can catch missing issues, then delete identifiers from the output.",
+      "Define the summary goal and remove direct identifiers, then paste only the minimum clinical facts and ask for a timeline and problem list (not a diagnosis).",
+      "Ask ChatGPT to write a diagnosis-focused assessment and plan to speed up the handoff.",
+      "Paste the whole note but instruct ChatGPT to \"keep everything confidential.\""
+    ],
+    "correct": 1
+  },
+  {
+    "question": "A clinician asks you to summarize outside records before a same-day visit. The packet includes two conflicting medication lists and a recent emergency visit with unclear details. What should you do next?",
+    "options": [
+      "Do not use ChatGPT; route the source notes to the clinician for direct review and summary.",
+      "Use ChatGPT to reconcile the medication lists and decide which one is most accurate.",
+      "Use ChatGPT to recommend which medication list to follow during the visit.",
+      "Use ChatGPT only after you paste the full records to ensure it has complete context."
+    ],
+    "correct": 0
+  },
+  {
+    "question": "While preparing an admission packet, you notice the history note contains a copied social security number, two problem lists that disagree, and several missing sources for key events. You still need a draft summary for review. What is the safest next step?",
+    "options": [
+      "Paste the full note into ChatGPT so it can resolve the disagreements and create one final problem list.",
+      "Skip de-identification because the note is already in the chart, then use ChatGPT to create a polished final summary.",
+      "Flag the risk signals, use ChatGPT only on a minimal de-identified fact set, ask it to label \"unknown\" and \"source needed,\" then route the draft with source links and note what you excluded and why.",
+      "Ask ChatGPT to fill in missing sources based on typical timelines and document it as a best estimate."
+    ],
+    "correct": 2
+  },
+  {
+    "question": "You are asked to summarize a history note that includes \"?sepsis\" and mentions that cultures are missing. The summary will be used in a high-stakes workflow if accepted as fact. What should you do next?",
+    "options": [
+      "Ask ChatGPT to confirm whether sepsis occurred and rewrite it as a confirmed diagnosis for clarity.",
+      "Ask ChatGPT to remove uncertain language so the summary reads cleanly and decisively.",
+      "Use ChatGPT to recommend the next clinical steps to resolve the missing cultures.",
+      "Flag the uncertainty and high-stakes signal, ask for \"unclear/unknown\" wording plus a short question list, and route the draft with source quotes to the responsible clinician for final wording."
+    ],
+    "correct": 3
+  },
+  {
+    "question": "Your clinic team notices intake summaries vary: some include full dates and some miss key uncertainties. You are asked to make the process consistent for a weekly intake-summarization task. What should you do next?",
+    "options": [
+      "Tell everyone to \"be careful\" and keep doing what works individually.",
+      "Identify the recurring variation point, run the same checklist each time (de-identify, prompt for uncertainties, require a source-linked summary), track misses for a week, then update the checklist wording to prevent repeats.",
+      "Standardize by always pasting the full intake note into ChatGPT to reduce missed details.",
+      "Skip clinician review to save time once the team agrees on a template."
+    ],
+    "correct": 1
+  }
+]

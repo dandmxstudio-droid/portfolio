@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap">
+<style>
+html,body{margin:0;padding:0;background:#fafaf8;-webkit-font-smoothing:antialiased}
+@keyframes footTick{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes ambDrift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(4vw,-3vh) scale(1.06)}66%{transform:translate(-3vw,4vh) scale(0.95)}}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+</style>
+<link rel="icon" type="image/svg+xml" href="assets/logo/dm-logo-black.svg">
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:Inter, system-ui, sans-serif; color:#111214; background:#fafaf8;">
+
+<div aria-hidden="true" style="position:fixed; top:0; left:0; right:0; height:2px; z-index:40; background:linear-gradient(90deg, oklch(0.62 0.12 160), oklch(0.45 0.09 155)); transform:scaleX(var(--prog, 0)); transform-origin:left; pointer-events:none;"></div>
+
+<div aria-hidden="true" onClick="{{ navClose }}" style="position:fixed; inset:0; z-index:29; background:rgba(10,10,12,0.2); opacity:{{ navO }}; pointer-events:{{ navPe }}; transition:opacity 450ms ease;"></div>
+<header style="position:fixed; top:0; left:0; right:0; z-index:30;">
+  <div aria-hidden="true" style="position:absolute; left:0; right:0; top:0; height:104px; z-index:-1; pointer-events:none;"><div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,calc(0.3 + var(--nd, 0) * 0.6)) 0%, rgba(255,255,255,calc(0.12 + var(--nd, 0) * 0.5)) 55%, rgba(255,255,255,0) 100%); transition:background 300ms ease;"></div><div style="position:absolute; inset:0; backdrop-filter:blur(1px); -webkit-backdrop-filter:blur(1px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 55%, transparent 100%); mask-image:linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 42%, transparent 82%); mask-image:linear-gradient(180deg, #000 0%, #000 42%, transparent 82%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 30%, transparent 66%); mask-image:linear-gradient(180deg, #000 0%, #000 30%, transparent 66%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 18%, transparent 52%); mask-image:linear-gradient(180deg, #000 0%, #000 18%, transparent 52%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); -webkit-mask-image:linear-gradient(180deg, #000 0%, transparent 38%); mask-image:linear-gradient(180deg, #000 0%, transparent 38%);"></div></div>
+  <div style="max-width:1440px; height:64px; margin:0 auto; padding:0 clamp(16px, 3vw, 40px); box-sizing:border-box; display:grid; grid-template-columns:minmax(0, 1fr) auto minmax(0, 1fr); align-items:center; gap:12px;">
+    <a href="/" onClick="{{ goBack }}" aria-label="Go back" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="justify-self:start; display:inline-flex; align-items:center; gap:10px; height:44px; padding:0 14px 0 4px; margin-left:-4px; border-radius:999px; font-size:14px; font-weight:500; color:#111214;" style-focus="outline:none;"><span aria-hidden="true" style="position:relative; display:grid; place-items:center; width:36px; height:36px; flex:none; border-radius:999px; overflow:hidden; background:rgba(17,18,20,0.06); box-shadow:inset 0 0 0 1px rgba(17,18,20,0.06);"><span style="position:absolute; inset:0; border-radius:999px; background:#111214; transform:scale(var(--h, 0)); transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span><svg viewBox="0 0 24 24" style="position:relative; width:16px; height:16px; fill:none; stroke:color-mix(in srgb, #ffffff calc(var(--h, 0) * 100%), #111214); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; transform:translateX(calc(var(--h, 0) * -2px)); transition:transform 450ms cubic-bezier(.2,.7,.2,1), stroke 300ms ease;"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></span><span style="display:block; height:20px; line-height:20px; overflow:hidden;"><span style="display:flex; flex-direction:column; transform:translateY(calc(var(--h, 0) * -20px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><span>Back</span><span aria-hidden="true">Back</span></span></span></a>
+    <div style="grid-column:3; justify-self:end; display:flex; align-items:center; gap:6px;">
+      <a href="mailto:dmotacontact@gmail.com" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; height:40px; padding:0 18px; border-radius:999px; background:#111214; color:#ffffff; font-size:14px; font-weight:500; box-shadow:inset 0 1px 0 rgba(255,255,255,0.14), 0 6px 14px -8px rgba(17,18,20,0.5);" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="display:block; height:20px; line-height:20px; overflow:hidden;"><span style="display:flex; flex-direction:column; transform:translateY(calc(var(--h, 0) * -20px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><span>Get in touch</span><span aria-hidden="true">Get in touch</span></span></span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section data-screen-label="Hero" style="position:relative; overflow:hidden; isolation:isolate; background:linear-gradient(180deg, oklch(0.965 0.02 155) 0%, oklch(0.965 0.02 155) 64%, #f1f2f4 100%); padding:clamp(124px, 12vw, 176px) clamp(20px, 4vw, 64px) clamp(72px, 8vw, 120px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(40px, 4.5vw, 64px);">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:clamp(22px, 2.4vw, 30px); text-align:center;">
+      <div data-a="rv" style="display:flex; flex-direction:column; align-items:center; gap:18px;"><span role="img" aria-label="Carevine" style="display:inline-flex; align-items:center; gap:8px; color:#1e4e31;"><svg viewBox="0 0 32 24" aria-hidden="true" style="display:block; width:34px; height:26px;"><path d="M16.5 21.5C15.6 13.4 9.6 7.6 1.2 7.6 1.2 15.7 7.4 21.5 16.5 21.5Z" fill="#1d4730"></path><path d="M15 21.5C15.9 12.4 22 5.4 30.8 5.4 30.8 14.6 24.5 21.5 15 21.5Z" fill="#73b87d"></path></svg><span style="font-size:27px; font-weight:700; line-height:1; letter-spacing:-0.03em;">carevine</span></span><span style="display:inline-flex; align-items:center; gap:8px; min-height:28px; padding:0 12px 0 10px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span aria-hidden="true" style="width:6px; height:6px; flex:none; border-radius:999px; background:oklch(0.52 0.12 155); box-shadow:0 0 0 3px oklch(0.52 0.12 155 / 0.16);"></span>Research · Healthcare · Concept project</span></div>
+      <h1 style="margin:0 0 -0.12em; max-width:16ch; overflow:hidden; padding-bottom:0.18em; font-weight:500; font-size:clamp(40px, 5.4vw, 84px); line-height:1; letter-spacing:-0.055em; text-wrap:balance;"><span data-a="rise" style="display:inline-block;">Where members&nbsp;and staff&nbsp;struggle</span></h1>
+      <p data-a="rv" style="margin:0; max-width:46ch; font-size:clamp(18px, 1.6vw, 23px); line-height:1.45; color:#4a4d53; text-wrap:balance;">The research and AI opportunity assessment behind the Carevine Triage Tool.</p>
+      <p data-a="rv" style="margin:0; max-width:60ch; font-size:13.5px; line-height:1.5; color:#5c5f63; text-wrap:balance;">Carevine is a fictional company. Internal data is synthetic; published research and app reviews are real.</p>
+      <div data-a="rv" data-stagger="1" style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px 0; margin-top:clamp(8px, 1.6vw, 20px);"><div style="display:flex; flex-direction:column; align-items:center; gap:6px; padding:0 clamp(20px, 3vw, 44px);"><span style="font-size:clamp(40px, 4.2vw, 64px); font-weight:500; line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums;"><span data-count="500">500</span></span><span style="font-size:14.5px; color:#5c5f63;">public app reviews</span></div><span aria-hidden="true" style="width:1px; background:#d6d7db;"></span><div style="display:flex; flex-direction:column; align-items:center; gap:6px; padding:0 clamp(20px, 3vw, 44px);"><span style="font-size:clamp(40px, 4.2vw, 64px); font-weight:500; line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums;"><span data-count="100">100</span></span><span style="font-size:14.5px; color:#5c5f63;">support tickets</span></div><span aria-hidden="true" style="width:1px; background:#d6d7db;"></span><div style="display:flex; flex-direction:column; align-items:center; gap:6px; padding:0 clamp(20px, 3vw, 44px);"><span style="font-size:clamp(40px, 4.2vw, 64px); font-weight:500; line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums;"><span data-count="7">7</span></span><span style="font-size:14.5px; color:#5c5f63;">AI opportunities scored</span></div></div>
+    </div>
+    <dl data-a="rv" style="margin:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap:20px clamp(32px, 4vw, 56px); padding-top:28px; border-top:1px solid #dcdde1;"><div style="display:flex; flex-direction:column; gap:8px;"><dt style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Role</dt><dd style="margin:0; display:flex; flex-wrap:wrap; gap:8px;"><span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 10px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none; width:16px; height:16px; overflow:visible; fill:none; stroke:#111214; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M7.6 8.6a3.6 3.6 0 0 1 3.1-1.7"></path><path d="M15.3 15.3L20.5 20.5"></path></svg>Research</span><span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 10px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none; width:16px; height:16px; overflow:visible; fill:none; stroke:#111214; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><circle cx="11" cy="13" r="7.5"></circle><circle cx="11" cy="13" r="3.8"></circle><circle cx="11" cy="13" r="1.2"></circle><path d="M12.4 11.6l7.6-7.6"></path><path d="M20 4h-3M20 4v3"></path></svg>Strategy</span></dd></div><div style="display:flex; flex-direction:column; gap:8px;"><dt style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Method</dt><dd style="margin:0; display:flex; flex-wrap:wrap; gap:8px;"><span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 10px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none; width:16px; height:16px; overflow:visible; fill:none; stroke:#111214; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M3.5 20.5h17"></path><path d="M7 17.5v-5"></path><path d="M12 17.5v-9"></path><path d="M17 17.5V4.5"></path></svg>Mixed methods</span><span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 10px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none; width:16px; height:16px; overflow:visible; fill:none; stroke:#111214; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M4 6.5h16M4 12h10M4 17.5h7"></path><path d="M16.5 15.5l4 4M20.5 15.5l-4 4"></path></svg>No interviews</span></dd></div><div style="display:flex; flex-direction:column; gap:8px;"><dt style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Tools</dt><dd style="margin:0; display:flex; flex-wrap:wrap; gap:8px;"><span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/claude.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">Claude</span><span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/python.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">Python</span></dd></div></dl>
+  </div>
+</section>
+
+<section id="approach" data-sec="1" data-screen-label="Approach" style="background:#f1f2f4; padding:clamp(56px, 6vw, 96px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(32px, 3.6vw, 48px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">01</span>Approach</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Three questions, three sources</h2></div>
+      
+    </div>
+    <div style="display:flex; flex-wrap:wrap; align-items:flex-start; gap:32px clamp(32px, 5vw, 80px);">
+      <div style="flex:1.2 1 420px; min-width:0; display:flex; flex-direction:column; gap:clamp(24px, 2.6vw, 36px);">
+  <ol data-a="rv" data-stagger="1" style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:18px; ">
+      <li style="display:flex; align-items:baseline; gap:16px;"><span style="flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:999px; background:#111214; color:#ffffff; font-size:13px; font-weight:600; transform:translateY(-4px);">1</span><span style="font-size:clamp(18px, 1.6vw, 22px); line-height:1.4; font-weight:500; letter-spacing:-0.015em; text-wrap:pretty;">What do members of chronic-care apps complain about most, and how does it compare with Carevine’s tickets?</span></li>
+      <li style="display:flex; align-items:baseline; gap:16px;"><span style="flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:999px; background:#111214; color:#ffffff; font-size:13px; font-weight:600; transform:translateY(-4px);">2</span><span style="font-size:clamp(18px, 1.6vw, 22px); line-height:1.4; font-weight:500; letter-spacing:-0.015em; text-wrap:pretty;">When do people accept AI in their health care, and when do they want a person?</span></li>
+      <li style="display:flex; align-items:baseline; gap:16px;"><span style="flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:999px; background:#111214; color:#ffffff; font-size:13px; font-weight:600; transform:translateY(-4px);">3</span><span style="font-size:clamp(18px, 1.6vw, 22px); line-height:1.4; font-weight:500; letter-spacing:-0.015em; text-wrap:pretty;">What slows Carevine staff down, and how much of it could AI take on safely?</span></li>
+    </ol>
+        <p data-a="rv" style="margin:0; display:flex; align-items:baseline; gap:8px; max-width:80ch; font-size:14px; line-height:1.5; color:#5c5f63;"><svg viewBox="0 0 16 16" aria-hidden="true" style="flex:none; width:14px; height:14px; transform:translateY(2px); fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;"><circle cx="8" cy="8" r="6.2"></circle><path d="M8 7.2v3.8M8 5h.01"></path></svg>Reviews were tagged with keyword rules, then hand-checked on random samples of 30: 63% agreement on the first pass, 77% after refining the rules.</p>
+      </div>
+      <div style="flex:1 1 380px; min-width:0; display:flex; flex-direction:column; gap:14px;">
+      <div data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);"><div style="flex:1; min-width:0; display:flex; flex-direction:row; align-items:flex-start; gap:16px; padding:clamp(16px, 1.8vw, 22px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);"><span aria-hidden="true" style="flex:none; display:grid; place-items:center; width:40px; height:40px; color:#111214;"><svg viewBox="0 0 24 24" style="width:32px; height:32px; overflow:visible; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse><path d="M5 6v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6"></path></svg></span><div style="display:flex; flex-direction:column; gap:6px;"><h3 style="margin:0; font-size:18px; font-weight:600; letter-spacing:-0.02em;">Carevine’s data</h3><p style="margin:0; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">100 de-identified tickets, 50 HR questions, 40 new-hire questions and 6 months of metrics (synthetic).</p></div></div></div>
+      <div data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);"><div style="flex:1; min-width:0; display:flex; flex-direction:row; align-items:flex-start; gap:16px; padding:clamp(16px, 1.8vw, 22px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);"><span aria-hidden="true" style="flex:none; display:grid; place-items:center; width:40px; height:40px; color:#111214;"><svg viewBox="0 0 24 24" style="width:32px; height:32px; overflow:visible; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"></path></svg></span><div style="display:flex; flex-direction:column; gap:6px;"><h3 style="margin:0; font-size:18px; font-weight:600; letter-spacing:-0.02em;">Published research</h3><p style="margin:0; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Peer-reviewed studies and 2026 patient surveys on health apps and AI.</p></div></div></div>
+      <div data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);"><div style="flex:1; min-width:0; display:flex; flex-direction:row; align-items:flex-start; gap:16px; padding:clamp(16px, 1.8vw, 22px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);"><span aria-hidden="true" style="flex:none; display:grid; place-items:center; width:40px; height:40px; color:#111214;"><svg viewBox="0 0 24 24" style="width:32px; height:32px; overflow:visible; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"></path></svg></span><div style="display:flex; flex-direction:column; gap:6px;"><h3 style="margin:0; font-size:18px; font-weight:600; letter-spacing:-0.02em;">Public app reviews</h3><p style="margin:0; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">500 Google Play reviews of Gluroo, Omada, Teladoc Health, Hello Heart and Dario Health.</p></div></div></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="data" data-sec="1" data-screen-label="Carevine's Data" style="background:#fafaf8; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(32px, 3.6vw, 48px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">02</span>Carevine’s data</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">What Carevine’s own data showed</h2></div>
+      <p style="margin:0; max-width:42ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Internal data is synthetic, built to mirror a Series A virtual-care company.</p>
+      
+    </div>
+    <ul data-a="rv" data-stagger="1" style="margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(auto-fill, minmax(clamp(calc(33.33% - 1px), (900px - 100%) * 999, clamp(calc(50% - 1px), (560px - 100%) * 999, 100%)), 1fr)); gap:clamp(32px, 3.6vw, 48px) 0;">
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px clamp(16px, 2vw, 28px) 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(32px, 3vw, 46px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155); white-space:nowrap;">96 → 229</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Growth outran the team</h3>
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Tickets per support rep a month, April to September. Every service metric fell with it.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Carevine data · Synthetic</span>
+        
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px clamp(16px, 2vw, 28px) 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(32px, 3vw, 46px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155); white-space:nowrap;">2 of 9</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Health questions hide in ordinary tickets</h3>
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">9% of tickets mention symptoms, readings or medication, and reps’ tags caught only 2 of 9.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Carevine data · Synthetic</span>
+        
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px clamp(16px, 2vw, 28px) 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(32px, 3vw, 46px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155); white-space:nowrap;">9 in 10</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Most tickets are routine</h3>
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">App, device, billing or scheduling questions a help center can answer.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Carevine data · Synthetic</span>
+        
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px clamp(16px, 2vw, 28px) 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(32px, 3vw, 46px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155); white-space:nowrap;">14 of 100</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">The help center has holes</h3>
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Tickets that hit a missing article, an outdated one, or two that disagree (refunds: 5 days vs. 10).</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Carevine data · Synthetic</span>
+        
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px clamp(16px, 2vw, 28px) 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(32px, 3vw, 46px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155); white-space:nowrap;">74%</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Staff can’t find answers that exist</h3>
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Of HR questions are already answered in the handbook, as are 70% of new-hire questions.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Carevine data · Synthetic</span>
+        
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px clamp(16px, 2vw, 28px) 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(32px, 3vw, 46px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155); white-space:nowrap;">29%</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Sales reads every lead by hand</h3>
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Of employer leads aren’t real opportunities.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Carevine data · Synthetic</span>
+        
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="evidence" data-sec="1" data-screen-label="Outside Evidence" style="background:#f1f2f4; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(32px, 3.6vw, 48px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">03</span>Outside evidence</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">What 500 app reviews and 2026 surveys say</h2></div>
+      
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:24px clamp(32px, 5vw, 72px); align-items:stretch;">
+      <div style="flex:1.3 1 440px; min-width:0; display:flex;"><div data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04); flex:1;"><div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(22px, 2.4vw, 32px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);"><div style="display:flex; flex-direction:column; gap:4px;"><h3 style="margin:0; font-size:18px; font-weight:600; letter-spacing:-0.02em;">What negative reviews mention</h3><p style="margin:0; font-size:14px; color:#5c5f63;">Share of 164 negative reviews; one review can mention several.</p></div><ul role="img" aria-label="App crashes 27%, device sync 27%, slow support 13%, logging data 12%, cost and billing 12%, login 11%" style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:16px;"><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">App crashes, bugs or won’t load</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">27%</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="0" style="width:90.0%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">Device connection or sync</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">27%</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="90" style="width:90.0%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">Slow or no customer support</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">13%</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="180" style="width:43.3%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">Logging data</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">12%</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="270" style="width:40.0%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">Cost, billing or insurance</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">12%</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="360" style="width:40.0%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">Login or account access</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">11%</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="450" style="width:36.7%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li></ul></div></div></div>
+      <ul data-a="rv" data-stagger="1" style="flex:1 1 320px; min-width:0; margin:0; padding:0; list-style:none; display:flex; flex-direction:column; justify-content:center;">
+        <li style="display:flex; flex-direction:column; gap:6px; padding:clamp(16px, 1.8vw, 22px) 0; border-top:1px solid #dcdde1;"><span style="font-size:clamp(32px, 3vw, 44px); font-weight:500; line-height:1; letter-spacing:-0.045em; color:oklch(0.42 0.09 155);">52%</span><span style="max-width:36ch; font-size:16px; line-height:1.5; color:#3f4247; text-wrap:pretty;">of negative reviews blame failing technology: devices, crashes or login.</span></li>
+        <li style="display:flex; flex-direction:column; gap:6px; padding:clamp(16px, 1.8vw, 22px) 0; border-top:1px solid #dcdde1;"><span style="font-size:clamp(32px, 3vw, 44px); font-weight:500; line-height:1; letter-spacing:-0.045em; color:oklch(0.42 0.09 155);">26 of 30</span><span style="max-width:36ch; font-size:16px; line-height:1.5; color:#3f4247; text-wrap:pretty;">reviews that praise a coach, doctor or support person give 4 or 5 stars.</span></li>
+        <li style="display:flex; flex-direction:column; gap:6px; padding:clamp(16px, 1.8vw, 22px) 0; border-top:1px solid #dcdde1;"><span style="font-size:clamp(32px, 3vw, 44px); font-weight:500; line-height:1; letter-spacing:-0.045em; color:oklch(0.42 0.09 155);">5 of 7</span><span style="max-width:36ch; font-size:16px; line-height:1.5; color:#3f4247; text-wrap:pretty;">reviews that mention AI are negative: wrong estimates, no off switch, broken promises.</span></li>
+      </ul>
+    </div>
+    <ul data-a="rv" data-stagger="1" style="margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(auto-fill, minmax(clamp(calc(25% - 1px), (1000px - 100%) * 999, clamp(calc(50% - 1px), (560px - 100%) * 999, 100%)), 1fr)); gap:32px 0;">
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px clamp(16px, 2vw, 28px) 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(32px, 3vw, 46px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155); white-space:nowrap;">89%</span>
+        
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">of U.S. patients say it’s important for a human expert to check AI health answers.</p>
+        <span style="font-size:12.5px; color:#6b6e74;">Wolters Kluwer and Ipsos, 2026 · 254 patients</span>
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px clamp(16px, 2vw, 28px) 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(32px, 3vw, 46px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155); white-space:nowrap;">63%</span>
+        
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">of U.S. adults would leave adjusting medicines to human providers only.</p>
+        <span style="font-size:12.5px; color:#6b6e74;">Verasight, 2026</span>
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px clamp(16px, 2vw, 28px) 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(32px, 3vw, 46px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155); white-space:nowrap;">74%</span>
+        
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">of patients worry about the privacy of their health information.</p>
+        <span style="font-size:12.5px; color:#6b6e74;">Wolters Kluwer and Ipsos, 2026</span>
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px clamp(16px, 2vw, 28px) 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(32px, 3vw, 46px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155); white-space:nowrap;">54%</span>
+        
+        <p style="margin:0; max-width:32ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">of 602 reviews of diabetes apps with devices were negative; devices failing to connect led.</p>
+        <span style="font-size:12.5px; color:#6b6e74;">Turner and Stawarz, 2025</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="rules" data-sec="1" data-screen-label="Design Rules" style="background:#fafaf8; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px) 0;">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(28px, 3.2vw, 44px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">04</span>Design rules</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">From findings to design rules</h2></div>
+      <p style="margin:0; max-width:42ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Six rules for the Triage Tool, each traced to a finding.</p>
+    </div>
+    <ol data-a="rv" data-stagger="1" style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column;">
+      <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2.4vw, 32px); padding:clamp(16px, 1.8vw, 22px) 0; border-top:1px solid #e3e3e8;"><span style="flex:none; width:28px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">01</span><span style="flex:1.2 1 320px; min-width:0; font-size:clamp(17px, 1.5vw, 20px); line-height:1.4; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Health questions go to a person, fast. AI routes them and never answers them.</span><span style="flex:1 1 320px; min-width:0; display:flex; align-items:baseline; gap:12px; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;"><svg viewBox="0 0 24 12" aria-hidden="true" style="flex:none; width:24px; height:12px; fill:none; stroke:#9a9da4; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;"><path d="M23 6H2M6 2L2 6l4 4"></path></svg><span>People reserve medication and health questions for humans; health messages waited 22 hours.</span></span></li>
+      <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2.4vw, 32px); padding:clamp(16px, 1.8vw, 22px) 0; border-top:1px solid #e3e3e8;"><span style="flex:none; width:28px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">02</span><span style="flex:1.2 1 320px; min-width:0; font-size:clamp(17px, 1.5vw, 20px); line-height:1.4; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">A person checks before anything reaches a member.</span><span style="flex:1 1 320px; min-width:0; display:flex; align-items:baseline; gap:12px; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;"><svg viewBox="0 0 24 12" aria-hidden="true" style="flex:none; width:24px; height:12px; fill:none; stroke:#9a9da4; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;"><path d="M23 6H2M6 2L2 6l4 4"></path></svg><span>89% say it’s important for a human to check AI health answers.</span></span></li>
+      <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2.4vw, 32px); padding:clamp(16px, 1.8vw, 22px) 0; border-top:1px solid #e3e3e8;"><span style="flex:none; width:28px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">03</span><span style="flex:1.2 1 320px; min-width:0; font-size:clamp(17px, 1.5vw, 20px); line-height:1.4; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Show where every answer came from.</span><span style="flex:1 1 320px; min-width:0; display:flex; align-items:baseline; gap:12px; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;"><svg viewBox="0 0 24 12" aria-hidden="true" style="flex:none; width:24px; height:12px; fill:none; stroke:#9a9da4; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;"><path d="M23 6H2M6 2L2 6l4 4"></path></svg><span>69% worry about inaccurate AI answers.</span></span></li>
+      <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2.4vw, 32px); padding:clamp(16px, 1.8vw, 22px) 0; border-top:1px solid #e3e3e8;"><span style="flex:none; width:28px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">04</span><span style="flex:1.2 1 320px; min-width:0; font-size:clamp(17px, 1.5vw, 20px); line-height:1.4; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Say ‘I don’t know’ instead of guessing.</span><span style="flex:1 1 320px; min-width:0; display:flex; align-items:baseline; gap:12px; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;"><svg viewBox="0 0 24 12" aria-hidden="true" style="flex:none; width:24px; height:12px; fill:none; stroke:#9a9da4; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;"><path d="M23 6H2M6 2L2 6l4 4"></path></svg><span>14 of 100 tickets hit help center gaps.</span></span></li>
+      <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2.4vw, 32px); padding:clamp(16px, 1.8vw, 22px) 0; border-top:1px solid #e3e3e8;"><span style="flex:none; width:28px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">05</span><span style="flex:1.2 1 320px; min-width:0; font-size:clamp(17px, 1.5vw, 20px); line-height:1.4; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Send AI only what it needs.</span><span style="flex:1 1 320px; min-width:0; display:flex; align-items:baseline; gap:12px; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;"><svg viewBox="0 0 24 12" aria-hidden="true" style="flex:none; width:24px; height:12px; fill:none; stroke:#9a9da4; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;"><path d="M23 6H2M6 2L2 6l4 4"></path></svg><span>74% worry about health data privacy.</span></span></li>
+      <li style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px clamp(16px, 2.4vw, 32px); padding:clamp(16px, 1.8vw, 22px) 0; border-top:1px solid #e3e3e8;"><span style="flex:none; width:28px; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">06</span><span style="flex:1.2 1 320px; min-width:0; font-size:clamp(17px, 1.5vw, 20px); line-height:1.4; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Treat crisis language as an emergency.</span><span style="flex:1 1 320px; min-width:0; display:flex; align-items:baseline; gap:12px; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;"><svg viewBox="0 0 24 12" aria-hidden="true" style="flex:none; width:24px; height:12px; fill:none; stroke:#9a9da4; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;"><path d="M23 6H2M6 2L2 6l4 4"></path></svg><span>Crisis moments show up in ordinary app reviews and messages.</span></span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="build" data-sec="1" data-screen-label="What to Build" style="background:#fafaf8; padding:clamp(56px, 6vw, 88px) clamp(20px, 4vw, 64px) clamp(80px, 9vw, 136px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(32px, 3.6vw, 48px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">05</span>What to build</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Choosing what to build first</h2></div>
+      
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start;">
+      <div style="flex:1 1 400px; min-width:0; display:flex;"><div data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04); flex:1;"><div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(22px, 2.4vw, 32px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);"><div style="display:flex; flex-direction:column; gap:4px;"><h3 style="margin:0; font-size:18px; font-weight:600; letter-spacing:-0.02em;">8 workflows, about 1,170 staff hours a month</h3><p style="margin:0; font-size:14px; color:#5c5f63;">Top five by hours</p></div><ul style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:16px;"><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">Answering support tickets</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">533 h</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="0" style="width:100.0%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">Writing call notes</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">525 h</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="90" style="width:98.5%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">Answering repeat HR questions</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">52 h</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="180" style="width:9.8%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">Sorting employer leads</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">33 h</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="270" style="width:6.2%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li><li style="display:flex; flex-direction:column; gap:7px;"><div style="display:flex; justify-content:space-between; gap:12px; font-size:14.5px;"><span style="color:#111214; font-weight:500;">Answering new-hire questions</span><span style="font-weight:600; font-variant-numeric:tabular-nums;">27 h</span></div><div style="height:10px; border-radius:999px; background:#eef0f1; overflow:hidden;"><div data-grow="360" style="width:5.1%; height:100%; border-radius:999px; transform-origin:left; background:oklch(0.52 0.12 155);"></div></div></li></ul><p style="margin:0; display:flex; align-items:baseline; gap:8px; padding:12px 14px; border-radius:12px; background:oklch(0.97 0.02 25); font-size:14px; line-height:1.45; color:oklch(0.42 0.15 25);"><span aria-hidden="true" data-gate="1" style="flex:none; width:7px; height:7px; border-radius:999px; background:oklch(0.55 0.19 25); transform:translateY(-1px);"></span>Routing health questions isn’t measured in hours. It’s a 22-hour safety risk.</p></div></div></div>
+      <div style="flex:1 1 440px; min-width:0; display:flex;"><div data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04); flex:1;"><div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(22px, 2.4vw, 32px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);"><div style="display:flex; flex-direction:column; gap:4px;"><h3 style="margin:0; font-size:18px; font-weight:600; letter-spacing:-0.02em;">Impact vs. effort</h3><p style="margin:0; font-size:14px; color:#5c5f63;">7 AI opportunities, scored 1–5</p></div>
+          <div role="img" aria-label="Scatter chart. Triage Tool: effort 3, impact 5. Lead routing 1, 4. Help center fixes 1, 3. Onboarding assistant 2, 3. HR assistant 1, 2. Call-note drafting 5, 4. Reading check-ins 2, 2." style="display:grid; grid-template-columns:auto minmax(0, 1fr); grid-template-rows:minmax(0, 1fr) auto; gap:8px 10px;">
+            <span style="grid-row:1; grid-column:1; writing-mode:vertical-rl; transform:rotate(180deg); align-self:center; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Impact →</span>
+            <div style="grid-row:1; grid-column:2; position:relative; aspect-ratio:1.5; margin:14px 16px 14px 10px;"><span style="position:absolute; left:0%; top:0; bottom:0; width:1px; background:#ececef;"></span><span style="position:absolute; top:0%; left:0; right:0; height:1px; background:#ececef;"></span><span style="position:absolute; left:25%; top:0; bottom:0; width:1px; background:#ececef;"></span><span style="position:absolute; top:25%; left:0; right:0; height:1px; background:#ececef;"></span><span style="position:absolute; left:50%; top:0; bottom:0; width:1px; background:#ececef;"></span><span style="position:absolute; top:50%; left:0; right:0; height:1px; background:#ececef;"></span><span style="position:absolute; left:75%; top:0; bottom:0; width:1px; background:#ececef;"></span><span style="position:absolute; top:75%; left:0; right:0; height:1px; background:#ececef;"></span><span style="position:absolute; left:100%; top:0; bottom:0; width:1px; background:#ececef;"></span><span style="position:absolute; top:100%; left:0; right:0; height:1px; background:#ececef;"></span><div style="position:absolute; left:50%; top:0%; display:flex; align-items:center; gap:8px; transform:translate(-7px, -50%); white-space:nowrap;"><span style="flex:none; width:18px; height:18px;  border-radius:999px; background:oklch(0.52 0.12 155); box-shadow:0 0 0 6px oklch(0.52 0.12 155 / 0.2);" data-pulse="1"></span><span style="font-size:14px; font-weight:700; color:oklch(0.42 0.09 155); background:rgba(255,255,255,0.85); padding:1px 4px; border-radius:4px;">Triage Tool</span></div><div style="position:absolute; left:0%; top:25%; display:flex; align-items:center; gap:8px; transform:translate(-7px, -50%); white-space:nowrap;"><span style="flex:none; width:12px; height:12px; margin:0 3px; border-radius:999px; background:#a3a5ab; box-shadow:0 0 0 3px #ffffff;"></span><span style="font-size:12.5px; font-weight:500; color:#4a4d53; background:rgba(255,255,255,0.85); padding:1px 4px; border-radius:4px;">Lead routing</span></div><div style="position:absolute; left:0%; top:50%; display:flex; align-items:center; gap:8px; transform:translate(-7px, -50%); white-space:nowrap;"><span style="flex:none; width:12px; height:12px; margin:0 3px; border-radius:999px; background:#a3a5ab; box-shadow:0 0 0 3px #ffffff;"></span><span style="font-size:12.5px; font-weight:500; color:#4a4d53; background:rgba(255,255,255,0.85); padding:1px 4px; border-radius:4px;">Help center fixes</span></div><div style="position:absolute; left:25%; top:50%; display:flex; align-items:center; gap:8px; transform:translate(-7px, -50%); white-space:nowrap;"><span style="flex:none; width:12px; height:12px; margin:0 3px; border-radius:999px; background:#a3a5ab; box-shadow:0 0 0 3px #ffffff;"></span><span style="font-size:12.5px; font-weight:500; color:#4a4d53; background:rgba(255,255,255,0.85); padding:1px 4px; border-radius:4px;">Onboarding assistant</span></div><div style="position:absolute; left:0%; top:75%; display:flex; align-items:center; gap:8px; transform:translate(-7px, -50%); white-space:nowrap;"><span style="flex:none; width:12px; height:12px; margin:0 3px; border-radius:999px; background:#a3a5ab; box-shadow:0 0 0 3px #ffffff;"></span><span style="font-size:12.5px; font-weight:500; color:#4a4d53; background:rgba(255,255,255,0.85); padding:1px 4px; border-radius:4px;">HR assistant</span></div><div style="position:absolute; left:100%; top:25%; display:flex; align-items:center; gap:8px; flex-direction:row-reverse; transform:translate(calc(-100% + 7px), -50%); white-space:nowrap;"><span style="flex:none; width:12px; height:12px; margin:0 3px; border-radius:999px; background:#a3a5ab; box-shadow:0 0 0 3px #ffffff;"></span><span style="font-size:12.5px; font-weight:500; color:#4a4d53; background:rgba(255,255,255,0.85); padding:1px 4px; border-radius:4px;">Call-note drafting</span></div><div style="position:absolute; left:25%; top:75%; display:flex; align-items:center; gap:8px; transform:translate(-7px, -50%); white-space:nowrap;"><span style="flex:none; width:12px; height:12px; margin:0 3px; border-radius:999px; background:#a3a5ab; box-shadow:0 0 0 3px #ffffff;"></span><span style="font-size:12.5px; font-weight:500; color:#4a4d53; background:rgba(255,255,255,0.85); padding:1px 4px; border-radius:4px;">Reading check-ins</span></div></div>
+            <span style="grid-row:2; grid-column:2; justify-self:center; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Effort →</span>
+          </div>
+          <p style="margin:0; font-size:14.5px; line-height:1.5; color:#3f4247; text-wrap:pretty;">The only high-impact option that fits in one quarter. Call-note drafting saves the most time but carries the most clinical and privacy risk, so it waits.</p></div></div></div>
+    </div>
+    <div data-a="rv" style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:grid; grid-template-columns:{{ roadCols }}; align-items:stretch; gap:10px;">
+        <div style="min-width:0; display:flex; flex-direction:column; gap:6px; padding:16px 18px; border-radius:16px; background:#ffffff; border:1px solid #e3e4e8;"><span style="font-size:11.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.42 0.09 155);">Now</span><span style="font-size:15px; line-height:1.45; font-weight:500; color:#111214; text-wrap:pretty;">Triage Tool, help center fixes, lead routing</span></div>
+        <div style="max-width:190px; justify-self:center; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:4px 6px; text-align:center;"><span style="display:inline-flex; align-items:center; gap:6px; height:22px; padding:0 9px; border-radius:999px; background:oklch(0.96 0.03 25); border:1px solid oklch(0.89 0.07 25); font-size:10.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:oklch(0.47 0.17 25); white-space:nowrap;"><span aria-hidden="true" data-gate="1" style="flex:none; width:6px; height:6px; border-radius:999px; background:oklch(0.55 0.19 25);"></span>Gate</span><span style="font-size:13px; line-height:1.4; color:#4a4d53; text-wrap:balance;">Catches every health message in testing</span></div>
+        <div style="min-width:0; display:flex; flex-direction:column; gap:6px; padding:16px 18px; border-radius:16px; background:#ffffff; border:1px solid #e3e4e8;"><span style="font-size:11.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Next</span><span style="font-size:15px; line-height:1.45; font-weight:500; color:#111214; text-wrap:pretty;">HR and onboarding assistants</span></div>
+        <div style="max-width:190px; justify-self:center; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:4px 6px; text-align:center;"><span style="display:inline-flex; align-items:center; gap:6px; height:22px; padding:0 9px; border-radius:999px; background:oklch(0.96 0.03 25); border:1px solid oklch(0.89 0.07 25); font-size:10.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:oklch(0.47 0.17 25); white-space:nowrap;"><span aria-hidden="true" data-gate="1" style="flex:none; width:6px; height:6px; border-radius:999px; background:oklch(0.55 0.19 25);"></span>Gate</span><span style="font-size:13px; line-height:1.4; color:#4a4d53; text-wrap:balance;">The dashboard shows savings</span></div>
+        <div style="min-width:0; display:flex; flex-direction:column; gap:6px; padding:16px 18px; border-radius:16px; background:#ffffff; border:1px solid #e3e4e8;"><span style="font-size:11.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Later</span><span style="font-size:15px; line-height:1.45; font-weight:500; color:#111214; text-wrap:pretty;">Call-note drafting, reading check-ins</span></div>
+      </div>
+      <p style="margin:0; font-size:13.5px; color:#5c5f63;">This portfolio covers the first build: the Triage Tool.</p>
+    </div>
+  </div>
+</section>
+
+<section id="changed" data-sec="1" data-screen-label="What It Changed" style="background:#f1f2f4; padding:clamp(72px, 8vw, 120px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(28px, 3.2vw, 44px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">06</span>What it changed</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Research shaped the build</h2></div>
+      <p style="margin:0; max-width:42ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">The reviews added two requirements to the Triage Tool.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap:24px;">
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);"><div style="flex:1; min-width:0; display:flex; align-items:flex-start; gap:18px; padding:clamp(22px, 2.4vw, 32px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);"><span aria-hidden="true" data-float="1" style="flex:none; display:grid; place-items:center; width:40px; height:40px; color:#111214;"><svg viewBox="0 0 24 24" style="width:32px; height:32px; overflow:visible; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M12 3l8 3.5v5.5c0 4.6-3.3 8.1-8 9.5-4.7-1.4-8-4.9-8-9.5V6.5z"></path><path d="M12 8v4.5M12 15.5h.01"></path></svg></span><div style="display:flex; flex-direction:column; gap:8px;"><span style="font-size:11.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.42 0.09 155);">New requirement 01</span><h3 style="margin:0; font-size:clamp(19px, 1.7vw, 23px); font-weight:500; line-height:1.3; letter-spacing:-0.02em; text-wrap:pretty;">Crisis language gets its own emergency path.</h3></div></div></article>
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);"><div style="flex:1; min-width:0; display:flex; align-items:flex-start; gap:18px; padding:clamp(22px, 2.4vw, 32px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);"><span aria-hidden="true" data-float="1" style="flex:none; display:grid; place-items:center; width:40px; height:40px; color:#111214;"><svg viewBox="0 0 24 24" style="width:32px; height:32px; overflow:visible; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"></rect><path d="M10.5 18.5h3"></path><path d="M9.5 9.5l2 2 3.5-3.5"></path></svg></span><div style="display:flex; flex-direction:column; gap:8px;"><span style="font-size:11.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.42 0.09 155);">New requirement 02</span><h3 style="margin:0; font-size:clamp(19px, 1.7vw, 23px); font-weight:500; line-height:1.3; letter-spacing:-0.02em; text-wrap:pretty;">Device and app articles get extra attention.</h3></div></div></article>
+    </div>
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; padding-top:20px; border-top:1px solid #dcdde1; font-size:13.5px; line-height:1.4;">
+      <span style="flex:none; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Sources</span>
+      <ul style="flex:1 1 600px; margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:0 22px;"><li><a href="https://diabetes.jmir.org/2025/1/e62926" target="_blank" rel="noopener" style="display:inline-flex; min-height:32px; align-items:center; color:#3f4247; text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(17,18,20,0.25);" style-hover="color:#111214;">Turner and Stawarz, JMIR Diabetes, 2025</a></li><li><a href="https://www.wolterskluwer.com/en/news/wolters-kluwer-medical-ai-patient-trust-survey" target="_blank" rel="noopener" style="display:inline-flex; min-height:32px; align-items:center; color:#3f4247; text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(17,18,20,0.25);" style-hover="color:#111214;">Wolters Kluwer and Ipsos, AI patient trust survey, 2026</a></li><li><a href="https://data.verasight.io/ai/where-people-draw-the-line-on-ai-in-healthcare" target="_blank" rel="noopener" style="display:inline-flex; min-height:32px; align-items:center; color:#3f4247; text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(17,18,20,0.25);" style-hover="color:#111214;">Verasight, “Where People Draw the Line on AI in Healthcare,” 2026</a></li><li><span style="display:inline-flex; min-height:32px; align-items:center; color:#5c5f63;">500 Google Play reviews, downloaded Oct 8, 2026</span></li><li><span style="display:inline-flex; min-height:32px; align-items:center; color:#5c5f63;">Carevine internal data (synthetic)</span></li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="cta" data-screen-label="CTA" style="position:relative; overflow:hidden; isolation:isolate; background:#0a0a0a; color:#ffffff; padding:clamp(104px, 12vw, 184px) clamp(20px, 4vw, 64px);">
+  {{ darkAmbient }}
+  <div aria-hidden="true" style="position:absolute; inset:0; z-index:-1; background:radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1.3px) 0 0 / 22px 22px; -webkit-mask-image:radial-gradient(55% 60% at 50% 50%, #000, transparent 78%); mask-image:radial-gradient(55% 60% at 50% 50%, #000, transparent 78%); pointer-events:none;"></div>
+  <div aria-hidden="true" style="position:absolute; left:50%; top:58%; z-index:-1; width:min(900px, 90vw); height:min(520px, 60vw); transform:translate(-50%, -50%); border-radius:50%; background:radial-gradient(closest-side, oklch(0.52 0.22 285 / 0.55), oklch(0.42 0.18 265 / 0.25) 60%, transparent 100%); filter:blur(60px); pointer-events:none;"></div>
+  <div aria-hidden="true" style="position:absolute; left:0; right:0; bottom:0; height:45%; z-index:-1; background:linear-gradient(180deg, rgba(10,10,10,0), #0a0a0a 92%); pointer-events:none;"></div>
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:clamp(28px, 3vw, 40px); text-align:center;">
+    <span data-a="rv" style="display:inline-flex; align-items:center; height:26px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); color:rgba(255,255,255,0.86);">Go Deeper</span>
+    <h2 style="margin:0; max-width:13ch; overflow:hidden; padding:0.04em 0 0.18em; margin-bottom:-0.12em; font-weight:500; font-size:clamp(44px, 6.4vw, 104px); line-height:0.98; letter-spacing:-0.05em; text-wrap:balance;"><span data-a="rise" style="display:inline-block;">See what it became</span></h2>
+    <p data-a="rv" style="margin:0; max-width:52ch; font-size:clamp(16px, 1.35vw, 20px); line-height:1.5; color:rgba(255,255,255,0.74); text-wrap:pretty;">The Carevine Triage Tool, designed and built from these findings.</p>
+    <a data-a="rv" href="/carevine" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:10px; height:56px; padding:0 28px; border-radius:999px; background:#ffffff; color:#111214; font-size:16px; font-weight:600; transform:translateY(calc(var(--h, 0) * -2px)); box-shadow:0 0 0 1px rgba(255,255,255,0.4), 0 10px 40px -8px oklch(0.6 0.22 285 / 0.7); transition:transform 400ms cubic-bezier(.2,.7,.2,1), background 200ms ease;" style-hover="background:#f1efff; color:#111214;" style-focus="outline:none;">Carevine Triage Tool <span aria-hidden="true" style="display: inline-block; transform: translateX(calc(var(--h, 0) * 4px)); transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1);">→</span></a>
+  </div>
+</section>
+</main>
+
+<footer data-screen-label="Footer" style="position:relative; z-index:1; margin-top:-2px; overflow:hidden; background:#0a0a0a; color:#ffffff; padding:clamp(24px, 3vw, 40px) clamp(24px, 6vw, 112px) 0;">
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:28px 64px;">
+    <nav aria-label="Site" style="display:flex; flex-wrap:wrap; gap:0 clamp(24px, 3vw, 40px);">
+      <a href="/#work" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">Work<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#how-i-build" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">How I Build<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#what-i-build" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">What I Build<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#about" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">About<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+    </nav>
+  </div>
+  <div aria-hidden="true" style="margin-top:clamp(80px, 11vw, 168px); margin-left:calc(-1 * clamp(24px, 6vw, 112px)); margin-right:calc(-1 * clamp(24px, 6vw, 112px)); height:clamp(70px, 12.5vw, 225px); overflow:hidden; display:flex; justify-content:flex-start; -webkit-mask-image:linear-gradient(180deg, #000 25%, transparent 100%); mask-image:linear-gradient(180deg, #000 25%, transparent 100%); pointer-events:none;">
+    {{ footTicker }}
+  </div>
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 32px; padding:20px 0 clamp(24px, 3vw, 36px); font-size:13px; color:#a3a5ab;">
+    <span>© 2026 Dan Mota</span>
+    <span>Built with AI + human judgment in Florida ☀️</span>
+  </div>
+</footer>
+
+<sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" aria-label="{{ lbTitle }}" onClick="{{ lbBackdrop }}" style="position:fixed; inset:0; z-index:80; display:flex; align-items:center; justify-content:center; padding:72px clamp(64px, 8vw, 120px) 32px; box-sizing:border-box; background:rgba(10,10,12,0.9); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);">
+    <button type="button" ref="{{ lbCloseRef }}" aria-label="Close" onClick="{{ lbClose }}" style="position:absolute; top:16px; right:16px; z-index:2; display:grid; place-items:center; width:48px; height:48px; padding:0; border:1px solid rgba(255,255,255,0.18); border-radius:999px; background:rgba(255,255,255,0.1); color:#ffffff; cursor:pointer; transition:background 200ms ease;" style-hover="background:rgba(255,255,255,0.22);" style-focus="outline:none;"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    <button type="button" aria-label="Previous image" onClick="{{ lbPrev }}" style="position:absolute; left:clamp(8px, 2vw, 28px); top:50%; margin-top:-24px; z-index:2; display:grid; place-items:center; width:48px; height:48px; padding:0; border:1px solid rgba(255,255,255,0.18); border-radius:999px; background:rgba(255,255,255,0.1); color:#ffffff; cursor:pointer; transition:background 200ms ease;" style-hover="background:rgba(255,255,255,0.22);" style-focus="outline:none;"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M14.5 5.5L8 12l6.5 6.5"></path></svg></button>
+    <button type="button" aria-label="Next image" onClick="{{ lbNext }}" style="position:absolute; right:clamp(8px, 2vw, 28px); top:50%; margin-top:-24px; z-index:2; display:grid; place-items:center; width:48px; height:48px; padding:0; border:1px solid rgba(255,255,255,0.18); border-radius:999px; background:rgba(255,255,255,0.1); color:#ffffff; cursor:pointer; transition:background 200ms ease;" style-hover="background:rgba(255,255,255,0.22);" style-focus="outline:none;"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M9.5 5.5L16 12l-6.5 6.5"></path></svg></button>
+    <figure style="margin:0; display:flex; flex-direction:column; align-items:center; gap:16px; max-width:100%; max-height:100%;">
+      <sc-if value="{{ lbHasSrc }}" hint-placeholder-val="{{ false }}">
+        <img ref="{{ lbImgRef }}" alt="{{ lbAlt }}" style="display:block; max-width:min(1400px, 100%); max-height:calc(100vh - 170px); width:auto; height:auto; border-radius:12px; background:#ffffff; box-shadow:0 40px 100px -30px rgba(0,0,0,0.7);">
+      </sc-if>
+      <sc-if value="{{ lbNoSrc }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid; place-items:center; height:min(calc(100vh - 190px), 760px); aspect-ratio:8.5/11; max-width:100%; border-radius:12px; background:#2a2c30; border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.78); font-size:14px; font-weight:500;">{{ lbFile }}</div>
+      </sc-if>
+      <figcaption style="display:flex; align-items:center; gap:12px; font-size:15px; font-weight:500; color:#ffffff;">{{ lbTitle }}<span style="font-size:13px; font-variant-numeric:tabular-nums; color:rgba(255,255,255,0.7);">{{ lbCount }}</span></figcaption>
+    </figure>
+  </div>
+</sc-if>
+
+<dc-import name="PasswordGate" eyebrow="Private Case Study" title="This project is password protected" back-href="/" back-label="Home" hint-size="0px,0px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;autoplayClips&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { active: '', wide: true, narrow: false, lb: null };
+  lbCloseRef = React.createRef();
+  lbImgRef = React.createRef();
+  gallery = {
+    details: [
+      { src: 'assets/carevine/shot-redaction.png', title: 'Personal details removed', alt: 'A member message where the date of birth is replaced by a “Date of birth hidden” tag before the AI sees it.' },
+      { src: 'assets/carevine/shot-spanish.png', title: 'Spanish replies', alt: 'A member’s Spanish message beside a Spanish AI draft marked for a closer look.' },
+      { src: 'assets/carevine/shot-upset-trim.png', title: 'Upset members first', alt: 'The support queue with a repeat message tagged “Upset member”.' },
+      { src: 'assets/carevine/shot-send-to-nurse.png', title: 'Reps can overrule', alt: 'A dialog asking the rep what they noticed before sending a ticket to the nurse queue.' },
+      { src: 'assets/carevine/shot-decisions-log.png', title: 'Every decision logged', alt: 'An Airtable decisions log listing each approval, claim and crisis reply by person, role and time.' },
+      { src: 'assets/carevine/shot-backup-crisis-check.png', title: 'Backup crisis check', alt: 'A backup crisis check table: two self-harm test messages flagged as crisis and a figure of speech correctly marked not crisis, all passing.' },
+    ],
+  };
+  openLb = (e) => { const t = e.currentTarget; this.lbReturn = t; this.setState({ lb: { g: t.getAttribute('data-lb-group'), i: +t.getAttribute('data-lb-index') || 0 } }); };
+  lbClose = () => { this.setState({ lb: null }); };
+  lbStep = (d) => this.setState(s => { if (!s.lb) return null; const n = this.gallery[s.lb.g].length; return { lb: { g: s.lb.g, i: (s.lb.i + d + n) % n } }; });
+  lbPrev = (e) => { if (e) e.stopPropagation(); this.lbStep(-1); };
+  lbNext = (e) => { if (e) e.stopPropagation(); this.lbStep(1); };
+  lbBackdrop = (e) => { if (e.target === e.currentTarget) this.lbClose(); };
+  onKey = (e) => { if (!this.state.lb) return; if (e.key === 'Escape') { e.preventDefault(); this.lbClose(); } else if (e.key === 'ArrowLeft') { e.preventDefault(); this.lbStep(-1); } else if (e.key === 'ArrowRight') { e.preventDefault(); this.lbStep(1); } };
+  rootRef = React.createRef();
+  secs = [['approach', 'Approach'], ['data', 'Carevine’s data'], ['evidence', 'Outside evidence'], ['rules', 'Design rules'], ['build', 'What to build'], ['changed', 'What it changed']];
+  hoverOn = (e) => e.currentTarget.style.setProperty('--h', '1');
+  hoverOff = (e) => e.currentTarget.style.setProperty('--h', '0');
+  imgErr = (e) => { e.currentTarget.style.display = 'none'; };
+  logoLoad = (e) => { const img = e.currentTarget, ph = img.previousElementSibling; img.style.display = 'block'; if (ph) ph.style.display = 'none'; };
+  playClip = (e) => { const v = e.currentTarget.parentElement.querySelector('video'); if (!v) return; if (v.paused) v.play().catch(() => {}); else v.pause(); };
+  goTo = (id) => (e) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 92, behavior: this.reduce ? 'auto' : 'smooth' });
+  };
+  onScroll = () => { if (this.raf) return; this.raf = requestAnimationFrame(() => { this.raf = 0; this.frame(); }); };
+  onResize = () => { const wide = window.innerWidth >= 1200, narrow = window.innerWidth < 760, roadStack = window.innerWidth < 1040; if (wide !== this.state.wide || narrow !== this.state.narrow || roadStack !== this.state.roadStack) this.setState({ wide, narrow, roadStack }); this.onScroll(); };
+  frame() {
+    const root = this.rootRef.current; if (!root) return;
+    const vh = window.innerHeight, max = document.documentElement.scrollHeight - vh;
+    root.style.setProperty('--navOn', window.scrollY > 8 ? '1' : '0');
+    root.style.setProperty('--prog', (max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0).toFixed(4));
+    if (!this.reduce) root.querySelectorAll('[data-scrub]').forEach(el => { const r = el.getBoundingClientRect(); el.style.setProperty('--s', Math.max(0, Math.min(1, (vh - r.top) / (vh * 0.75))).toFixed(4)); });
+    let active = '';
+    root.querySelectorAll('[data-fillv]').forEach(el => { const r = el.parentElement.parentElement.getBoundingClientRect(); el.style.setProperty('--fv', this.reduce ? '1' : Math.max(0, Math.min(1, (vh * 0.62 - r.top) / Math.max(1, r.height))).toFixed(4)); });
+    root.querySelectorAll('#next [data-step]').forEach(el => { const on = this.reduce || el.getBoundingClientRect().top < vh * 0.62; if (el._on === on) return; el._on = on; Object.assign(el.style, on ? { background: '#111214', color: '#ffffff', borderColor: '#111214' } : { background: '#ffffff', color: '#111214', borderColor: '#d6d7db' }); });
+    root.querySelectorAll('[data-sec]').forEach(el => { if (el.getBoundingClientRect().top < Math.max(120, vh * 0.35)) active = el.id; });
+    if (active !== this.state.active) this.setState({ active });
+    this.checkClips();
+  }
+  initClips() {
+    const auto = (this.props.autoplayClips ?? true) && !this.reduce;
+    const syncBtn = (v, btn) => {
+      const playing = !v.paused, label = btn.getAttribute('data-label') || btn.getAttribute('aria-label').replace(/^(Play|Pause) clip: /, '');
+      btn.setAttribute('data-label', label);
+      btn.setAttribute('aria-label', (playing ? 'Pause' : 'Play') + ' clip: ' + label);
+      btn.children[0].style.display = playing ? 'none' : 'block';
+      btn.children[1].style.display = playing ? 'block' : 'none';
+      Object.assign(btn.style, playing
+        ? { top: '12px', left: 'auto', right: '12px', bottom: 'auto', transform: 'none', width: '44px', height: '44px' }
+        : { top: '50%', left: '50%', right: 'auto', bottom: 'auto', transform: 'translate(-50%, -50%)', width: '64px', height: '64px' });
+    };
+    this.clipAuto = auto;
+    this.clipDone = new WeakSet();
+    this.clipLoad = (v) => {
+      if (this.clipDone.has(v)) return; this.clipDone.add(v);
+      const src = (v.getAttribute('data-clip-src') || '').trim(); if (!src) return;
+      const box = v.parentElement, ph = box.querySelector('[data-clip-ph]'), btn = box.querySelector('[data-clip-play]');
+      v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.controls = false;
+      const shown = () => {
+        v.style.opacity = '1'; if (ph) ph.style.opacity = '0';
+        if (!auto && btn) { btn.style.display = 'grid'; syncBtn(v, btn); }
+        this.checkClips();
+      };
+      if (v.readyState >= 2 && v.currentSrc) shown(); else v.addEventListener('loadeddata', shown, { once: true });
+      if (btn) { v.addEventListener('play', () => syncBtn(v, btn)); v.addEventListener('pause', () => syncBtn(v, btn)); }
+      if (!v.currentSrc) { v.preload = auto ? 'auto' : 'metadata'; v.src = auto ? src : src + '#t=0.1'; }
+    };
+    this.checkClips();
+  }
+  checkClips() {
+    if (!this.clipLoad) return;
+    const vh = window.innerHeight;
+    document.querySelectorAll('video[data-clip-src]').forEach(v => {
+      const r = v.parentElement.getBoundingClientRect();
+      if (r.bottom > -600 && r.top < vh + 600) this.clipLoad(v);
+      if (!this.clipDone.has(v) || v.readyState < 2) return;
+      const vis = r.top < vh - r.height * 0.2 && r.bottom > r.height * 0.2;
+      if (vis && this.clipAuto) { if (v.paused) v.play().catch(() => {}); }
+      else if (!vis && !v.paused) v.pause();
+    });
+  }
+  componentDidUpdate(pp, ps) {
+    this.checkClips();
+    const lbi = this.lbImgRef.current, lbIt = this.state.lb ? this.gallery[this.state.lb.g][this.state.lb.i] : null;
+    if (lbi && lbIt && lbIt.src && lbi.getAttribute('src') !== lbIt.src) lbi.setAttribute('src', lbIt.src);
+    const was = !!this._lbWas, is = !!this.state.lb;
+    this._lbWas = is;
+    if (is && !was) { document.documentElement.style.overflow = 'hidden'; setTimeout(() => { const b = this.lbCloseRef.current; if (b) b.focus(); }, 30); }
+    if (!is && was) { document.documentElement.style.overflow = ''; if (this.lbReturn && this.lbReturn.focus) this.lbReturn.focus(); }
+  }
+  countUp(el) {
+    const node = el.firstChild, raw = el.getAttribute('data-count') || '0', to = parseFloat(raw) || 0, dec = (raw.split('.')[1] || '').length, fmt = (v) => dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US');
+    if (!node || node.nodeType !== 3) return;
+    const t0 = performance.now(), dur = 1400;
+    const step = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); node.nodeValue = fmt(to * e); if (k < 1) requestAnimationFrame(step); };
+    node.nodeValue = fmt(0);
+    requestAnimationFrame(step);
+  }
+  initReveal() {
+    if (this.reduce) return;
+    const ease = 'cubic-bezier(.2,.7,.2,1)';
+    const K = {
+      rv: { from: { opacity: 0, transform: 'translateY(28px)', filter: 'blur(6px)' }, prop: 'opacity', hidden: '0', dur: 1000 },
+      rise: { from: { transform: 'translateY(110%)' }, prop: 'transform', hidden: 'translateY(110%)', dur: 1100 },
+    };
+    const play = (el, delay) => {
+      const k = K[el.getAttribute('data-a')]; if (!k) return;
+      el.style[k.prop] = '';
+      const to = {}; Object.keys(k.from).forEach(p => { to[p] = p === 'opacity' ? 1 : p === 'filter' ? 'blur(0px)' : 'none'; });
+      el.animate([k.from, to], { duration: k.dur, delay, easing: ease, fill: 'backwards' });
+    };
+    const vh = window.innerHeight, owners = new Map();
+    let i = 0;
+    this.io = new IntersectionObserver(es => {
+      let n = 0;
+      es.forEach(en => { if (!en.isIntersecting) return; this.io.unobserve(en.target); (owners.get(en.target) || []).forEach(el => play(el, (n++) * 90)); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    const M = (el) => {
+      const kids = [...el.children];
+      if (el.hasAttribute('data-pop')) kids.forEach((c, j) => { c.style.opacity = ''; c.animate([{ opacity: 0, transform: 'scale(0.3)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 520, delay: 250 + j * 45, easing: 'cubic-bezier(.3,1.5,.5,1)', fill: 'backwards' }); });
+      else if (el.hasAttribute('data-grow')) { el.style.transform = ''; const vert = el.style.transformOrigin === 'top'; el.animate([{ transform: vert ? 'scaleY(0)' : 'scaleX(0)' }, { transform: 'none' }], { duration: 1300, delay: 300 + (+el.getAttribute('data-grow') || 0), easing: ease, fill: 'backwards' }); }
+      else kids.forEach((c, j) => { c.style.opacity = ''; c.animate([{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { duration: 800, delay: 200 + j * 110, easing: ease, fill: 'backwards' }); });
+    };
+    this.mio = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; this.mio.unobserve(en.target); M(en.target); }), { threshold: 0.3 });
+    document.querySelectorAll('[data-pop], [data-grow], [data-stagger]').forEach(el => {
+      if (el.getBoundingClientRect().top < vh * 0.85) { M(el); return; }
+      if (el.hasAttribute('data-grow')) el.style.transform = el.style.transformOrigin === 'top' ? 'scaleY(0)' : 'scaleX(0)'; else [...el.children].forEach(c => { c.style.opacity = '0'; });
+      this.mio.observe(el);
+    });
+    document.querySelectorAll('[data-a]').forEach(el => {
+      const a = el.getAttribute('data-a'), k = K[a]; if (!k) return;
+      if (el.getBoundingClientRect().top < vh * 0.94) { play(el, 60 + (i++) * 100); return; }
+      el.style[k.prop] = k.hidden;
+      const t = a === 'rise' ? el.parentElement : el;
+      if (!owners.has(t)) { owners.set(t, []); this.io.observe(t); }
+      owners.get(t).push(el);
+    });
+  }
+  navKey = (e) => { if (e.key === 'Escape') this.navClose(); };
+  navToggle = () => { const o = !this.state.navOpen; document[o ? 'addEventListener' : 'removeEventListener']('keydown', this.navKey); this.setState({ navOpen: o }); };
+  navClose = () => { document.removeEventListener('keydown', this.navKey); if (this.state.navOpen) this.setState({ navOpen: false }); };
+  navTone = () => {
+    if (this._ntRaf) return;
+    this._ntRaf = requestAnimationFrame(() => {
+      this._ntRaf = 0;
+      const hd = document.querySelector('header'); if (!hd) return;
+      const stack = document.elementsFromPoint(window.innerWidth / 2, 40);
+      let lum = 1;
+      for (const el of stack) {
+        if (hd.contains(el)) continue;
+        const cs = getComputedStyle(el);
+        let m = cs.backgroundColor.match(/rgba?\(([^)]+)\)/), v = m && m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);
+        if (!(v && (v[3] === undefined || v[3] > 0.5)) && cs.backgroundImage.indexOf('gradient') > -1) { m = cs.backgroundImage.match(/rgba?\(([^)]+)\)/); v = m && m[1].split(/[ ,\/]+/).filter(Boolean).map(Number); }
+        if (el.tagName === 'VIDEO' || el.tagName === 'IMG') { lum = 0.5; break; }
+        if (v && (v[3] === undefined || v[3] > 0.5)) { lum = (0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]) / 255; break; }
+      }
+      hd.style.setProperty('--nd', lum < 0.45 ? '1' : '0');
+    });
+  };
+  componentDidMount() {
+    window.addEventListener('scroll', this.navTone, { passive: true }); window.addEventListener('resize', this.navTone); this.navTone();
+    this.reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onResize();
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('keydown', this.onKey);
+    this.frame();
+    this.initClips();
+    this.initReveal();
+    this.ambient();
+    [300, 1200].forEach(t => setTimeout(() => this.checkClips(), t));
+    this.cio = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; this.cio.unobserve(en.target); if (!this.reduce) setTimeout(() => this.countUp(en.target), 250); }), { threshold: 0.6 });
+    document.querySelectorAll('[data-count]').forEach(el => this.cio.observe(el));
+  }
+  ambient() {
+    if (this.reduce || this.ambOn) return; this.ambOn = true;
+    const inf = { iterations: Infinity, easing: 'ease-in-out' };
+    document.querySelectorAll('[data-pulse]').forEach((el, i) => el.animate([{ boxShadow: '0 0 0 0 oklch(0.52 0.12 155 / 0.45)' }, { boxShadow: '0 0 0 7px oklch(0.52 0.12 155 / 0)' }], { duration: 1800, delay: i * 300, iterations: Infinity, easing: 'ease-out' }));
+    document.querySelectorAll('[data-ring]').forEach(el => el.animate([{ boxShadow: '0 10px 20px -12px rgba(17,18,20,0.6), 0 0 0 0 rgba(17,18,20,0.25)' }, { boxShadow: '0 10px 20px -12px rgba(17,18,20,0.6), 0 0 0 10px rgba(17,18,20,0)' }], { duration: 2200, iterations: Infinity, easing: 'ease-out' }));
+    document.querySelectorAll('[data-nudge]').forEach(el => el.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(4px)' }, { transform: 'translateX(-3px)' }], Object.assign({ duration: 1600 }, inf)));
+    document.querySelectorAll('[data-spin]').forEach(el => el.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], { duration: 6000, iterations: Infinity, easing: 'linear' }));
+    document.querySelectorAll('[data-float]').forEach((el, i) => el.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-3px)' }, { transform: 'translateY(0)' }], Object.assign({ duration: 3200, delay: i * 400 }, inf)));
+    document.querySelectorAll('[data-gate]').forEach(el => el.animate([{ boxShadow: '0 0 0 0 oklch(0.55 0.19 25 / 0.55)' }, { boxShadow: '0 0 0 5px oklch(0.55 0.19 25 / 0)' }], { duration: 1600, iterations: Infinity, easing: 'ease-out' }));
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('keydown', this.onKey);
+    document.documentElement.style.overflow = '';
+    [this.io, this.cio, this.mio].forEach(o => o && o.disconnect());
+    document.querySelectorAll('video[data-clip-src]').forEach(v => v.pause());
+    if (this.raf) cancelAnimationFrame(this.raf);
+  }
+  orb(style) {
+    return React.createElement('div', { style: Object.assign({ position: 'absolute', borderRadius: '50%', filter: 'blur(48px)', pointerEvents: 'none', animation: this.reduce ? 'none' : 'ambDrift 28s ease-in-out infinite', willChange: 'transform' }, style) });
+  }
+  goBack = (e) => { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (err) {} };
+  renderVals() {
+    const h = React.createElement;
+    const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const gh = (this.props.githubUrl ?? '').trim() || 'https://github.com/dandmxstudio-droid/carevine-triage';
+    const box = (kids) => h('div', { 'aria-hidden': true, style: { position: 'absolute', inset: 0, zIndex: -2, overflow: 'hidden', pointerEvents: 'none' } }, kids);
+    return {
+      goBack: this.goBack,
+      navWide: !this.state.narrow, navMob: !(!this.state.narrow), navOpen: !!this.state.navOpen, navToggle: this.navToggle, navClose: this.navClose,
+      navO: this.state.navOpen ? 1 : 0, navY: this.state.navOpen ? 'translateY(0)' : 'translateY(-8px)', navPe: this.state.navOpen ? 'auto' : 'none',
+      navL1: this.state.navOpen ? 'rotate(45deg)' : 'translateY(-3.5px)', navL2: this.state.navOpen ? 'rotate(-45deg)' : 'translateY(3.5px)',
+      navW: this.state.navOpen ? '440px' : '300px', navR: this.state.navOpen ? '26px' : '28px', navRows: this.state.navOpen ? '1fr' : '0fr', navLabel: this.state.navOpen ? 'Close' : 'Menu', navLY: this.state.navOpen ? 'translateY(0)' : 'translateY(-10px)',
+      rootRef: this.rootRef,
+      wide: this.state.wide,
+      roadCols: this.state.roadStack ? 'minmax(0, 1fr)' : 'minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr)',
+      runsCols: this.state.narrow ? 'minmax(0, 1fr)' : 'minmax(0, 1fr) auto minmax(0, 1fr)',
+      runsArrowRot: this.state.narrow ? '90deg' : '0deg',
+      hoverOn: this.hoverOn,
+      hoverOff: this.hoverOff,
+      imgErr: this.imgErr,
+      logoLoad: this.logoLoad,
+      playClip: this.playClip,
+      navItems: this.secs.map(([id, label], i) => ({
+        href: '#' + id, label, num: '0' + (i + 1), onClick: this.goTo(id),
+        on: this.state.active === id ? 1 : 0,
+        current: this.state.active === id ? 'location' : undefined,
+        color: this.state.active === id ? '#111214' : '#4a4d53',
+        numColor: this.state.active === id ? 'oklch(0.42 0.09 155)' : '#6b6e74',
+      })),
+      ...(() => { const lb = this.state.lb, it = lb ? this.gallery[lb.g][lb.i] : null, n = lb ? this.gallery[lb.g].length : 0; return {
+        lbOpen: !!lb, lbSrc: it ? it.src : '', lbAlt: it ? it.alt : '', lbTitle: it ? it.title : '', lbFile: it ? (it.file || '') : '',
+        lbHasSrc: !!(it && it.src), lbNoSrc: !!(it && !it.src), lbCount: lb ? (lb.i + 1) + ' / ' + n : '',
+        openLb: this.openLb, lbClose: this.lbClose, lbPrev: this.lbPrev, lbNext: this.lbNext, lbBackdrop: this.lbBackdrop, lbCloseRef: this.lbCloseRef, lbImgRef: this.lbImgRef,
+      }; })(),
+      demoUrl: (this.props.demoUrl ?? '').trim() || 'https://carevine-triage.vercel.app',
+      githubUrl: gh,
+      githubHref: gh || 'https://github.com/',
+      hasGithub: !!gh,
+      prevUrl: (this.props.prevUrl ?? '').trim() || '/#work',
+      researchUrl: (this.props.researchUrl ?? '').trim() || '/#work',
+      caseStudyUrl: (this.props.caseStudyUrl ?? '').trim() || 'assets/case-studies/Carevine-Triage-Tool-Case-Study.pdf',
+      kitUrl: (this.props.kitUrl ?? '').trim() || 'assets/case-studies/Carevine-Triage-Tool-Enablement-Kit.pdf',
+      darkAmbient: box([
+        h('div', { key: 'a' }, this.orb({ width: '56vw', height: '56vw', right: '-18vw', top: '-20vw', background: 'radial-gradient(closest-side, oklch(0.5 0.2 275 / 0.42), transparent)' })),
+        h('div', { key: 'b' }, this.orb({ width: '40vw', height: '40vw', left: '-14vw', bottom: '-18vw', background: 'radial-gradient(closest-side, oklch(0.5 0.14 245 / 0.32), transparent)', animationDuration: '36s', animationDirection: 'reverse' })),
+      ]),
+      footTicker: h('div', { style: { display: 'flex', width: 'max-content', flex: 'none', fontWeight: 600, fontSize: 'clamp(72px, 15.5vw, 280px)', lineHeight: 0.9, letterSpacing: '-0.055em', whiteSpace: 'nowrap', color: '#ffffff', animation: reduce ? 'none' : 'footTick 48s linear infinite', willChange: 'transform' } },
+        [0, 1, 2, 3, 4, 5].map(k => h('span', { key: k, style: { paddingRight: '0.32em' } }, 'Dan Mota.')))
+    };
+  }
+}
+</script>
+</body>
+</html>

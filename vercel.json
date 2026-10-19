@@ -1,0 +1,60 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/home.dc.html"
+    },
+    {
+      "source": "/work",
+      "destination": "/work.dc.html"
+    },
+    {
+      "source": "/carevine",
+      "destination": "/carevine.dc.html"
+    },
+    {
+      "source": "/tidey",
+      "destination": "/tidey.dc.html"
+    },
+    {
+      "source": "/equipaworks",
+      "destination": "/equipaworks.dc.html"
+    },
+    {
+      "source": "/carevine-research",
+      "destination": "/carevine-research.dc.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/home.dc.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/work.dc.html",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/carevine.dc.html",
+      "destination": "/carevine",
+      "permanent": true
+    },
+    {
+      "source": "/tidey.dc.html",
+      "destination": "/tidey",
+      "permanent": true
+    },
+    {
+      "source": "/equipaworks.dc.html",
+      "destination": "/equipaworks",
+      "permanent": true
+    },
+    {
+      "source": "/carevine-research.dc.html",
+      "destination": "/carevine-research",
+      "permanent": true
+    }
+  ]
+}

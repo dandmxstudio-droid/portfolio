@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap">
+<style>
+html,body{margin:0;padding:0;background:#fafaf8;-webkit-font-smoothing:antialiased}
+@keyframes footTick{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes ambDrift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(4vw,-3vh) scale(1.06)}66%{transform:translate(-3vw,4vh) scale(0.95)}}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+</style>
+<link rel="icon" type="image/svg+xml" href="assets/logo/dm-logo-black.svg">
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:Inter, system-ui, sans-serif; color:#111214; background:#fafaf8;">
+
+<div aria-hidden="true" style="position:fixed; top:0; left:0; right:0; height:2px; z-index:40; background:linear-gradient(90deg, oklch(0.62 0.12 160), oklch(0.45 0.09 155)); transform:scaleX(var(--prog, 0)); transform-origin:left; pointer-events:none;"></div>
+
+<div aria-hidden="true" onClick="{{ navClose }}" style="position:fixed; inset:0; z-index:29; background:rgba(10,10,12,0.2); opacity:{{ navO }}; pointer-events:{{ navPe }}; transition:opacity 450ms ease;"></div>
+<header style="position:fixed; top:0; left:0; right:0; z-index:30;">
+  <div aria-hidden="true" style="position:absolute; left:0; right:0; top:0; height:104px; z-index:-1; pointer-events:none;"><div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,calc(0.3 + var(--nd, 0) * 0.6)) 0%, rgba(255,255,255,calc(0.12 + var(--nd, 0) * 0.5)) 55%, rgba(255,255,255,0) 100%); transition:background 300ms ease;"></div><div style="position:absolute; inset:0; backdrop-filter:blur(1px); -webkit-backdrop-filter:blur(1px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 55%, transparent 100%); mask-image:linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 42%, transparent 82%); mask-image:linear-gradient(180deg, #000 0%, #000 42%, transparent 82%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 30%, transparent 66%); mask-image:linear-gradient(180deg, #000 0%, #000 30%, transparent 66%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); -webkit-mask-image:linear-gradient(180deg, #000 0%, #000 18%, transparent 52%); mask-image:linear-gradient(180deg, #000 0%, #000 18%, transparent 52%);"></div><div style="position:absolute; inset:0; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); -webkit-mask-image:linear-gradient(180deg, #000 0%, transparent 38%); mask-image:linear-gradient(180deg, #000 0%, transparent 38%);"></div></div>
+  <div style="max-width:1440px; height:64px; margin:0 auto; padding:0 clamp(16px, 3vw, 40px); box-sizing:border-box; display:grid; grid-template-columns:minmax(0, 1fr) auto minmax(0, 1fr); align-items:center; gap:12px;">
+    <a href="/work" onClick="{{ goBack }}" aria-label="Go back" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="justify-self:start; display:inline-flex; align-items:center; gap:10px; height:44px; padding:0 14px 0 4px; margin-left:-4px; border-radius:999px; font-size:14px; font-weight:500; color:#111214;" style-focus="outline:none;"><span aria-hidden="true" style="position:relative; display:grid; place-items:center; width:36px; height:36px; flex:none; border-radius:999px; overflow:hidden; background:rgba(17,18,20,0.06); box-shadow:inset 0 0 0 1px rgba(17,18,20,0.06);"><span style="position:absolute; inset:0; border-radius:999px; background:#111214; transform:scale(var(--h, 0)); transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span><svg viewBox="0 0 24 24" style="position:relative; width:16px; height:16px; fill:none; stroke:color-mix(in srgb, #ffffff calc(var(--h, 0) * 100%), #111214); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; transform:translateX(calc(var(--h, 0) * -2px)); transition:transform 450ms cubic-bezier(.2,.7,.2,1), stroke 300ms ease;"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></span><span style="display:block; height:20px; line-height:20px; overflow:hidden;"><span style="display:flex; flex-direction:column; transform:translateY(calc(var(--h, 0) * -20px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><span>Back</span><span aria-hidden="true">Back</span></span></span></a>
+    <div style="grid-column:3; justify-self:end; display:flex; align-items:center; gap:6px;">
+      <a href="mailto:dmotacontact@gmail.com" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; height:40px; padding:0 18px; border-radius:999px; background:#111214; color:#ffffff; font-size:14px; font-weight:500; box-shadow:inset 0 1px 0 rgba(255,255,255,0.14), 0 6px 14px -8px rgba(17,18,20,0.5);" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="display:block; height:20px; line-height:20px; overflow:hidden;"><span style="display:flex; flex-direction:column; transform:translateY(calc(var(--h, 0) * -20px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><span>Get in touch</span><span aria-hidden="true">Get in touch</span></span></span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section data-screen-label="Hero" style="position:relative; overflow:hidden; isolation:isolate; background:linear-gradient(180deg, oklch(0.965 0.02 155) 0%, oklch(0.965 0.02 155) 64%, #f1f2f4 100%); padding:clamp(124px, 12vw, 176px) clamp(20px, 4vw, 64px) clamp(36px, 4vw, 60px);">
+  <div aria-hidden="true" style="position:absolute; left:50%; top:clamp(420px, 44vw, 640px); z-index:-1; width:min(1100px, 96vw); height:min(640px, 70vw); transform:translateX(-50%); border-radius:50%; background:radial-gradient(closest-side, oklch(0.86 0.07 155 / 0.55), oklch(0.86 0.06 250 / 0.3) 60%, transparent 100%); filter:blur(50px); pointer-events:none;"></div>
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(40px, 4.5vw, 64px);">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:clamp(22px, 2.4vw, 30px); text-align:center;">
+      <div data-a="rv" style="display:flex; flex-direction:column; align-items:center; gap:18px;">
+        <span role="img" aria-label="Carevine" style="display:inline-flex; align-items:center; gap:8px; color:#1e4e31;"><svg viewBox="0 0 32 24" aria-hidden="true" style="display:block; width:34px; height:26px;"><path d="M16.5 21.5C15.6 13.4 9.6 7.6 1.2 7.6 1.2 15.7 7.4 21.5 16.5 21.5Z" fill="#1d4730"></path><path d="M15 21.5C15.9 12.4 22 5.4 30.8 5.4 30.8 14.6 24.5 21.5 15 21.5Z" fill="#73b87d"></path></svg><span style="font-size:27px; font-weight:700; line-height:1; letter-spacing:-0.03em;">carevine</span></span>
+        <span style="display:inline-flex; align-items:center; gap:8px; min-height:28px; padding:0 12px 0 10px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span aria-hidden="true" style="width:6px; height:6px; flex:none; border-radius:999px; background:oklch(0.52 0.12 155); box-shadow:0 0 0 3px oklch(0.52 0.12 155 / 0.16);"></span>Case study · Healthcare · Concept project</span>
+      </div>
+      <h1 style="margin:0 0 -0.12em; max-width:14ch; overflow:hidden; padding-bottom:0.18em; font-weight:500; font-size:clamp(40px, 5.4vw, 84px); line-height:1; letter-spacing:-0.055em; text-wrap:balance;"><span data-a="rise" style="display:inline-block;">Carevine Triage Tool</span></h1>
+      <p data-a="rv" style="margin:0; max-width:46ch; font-size:clamp(18px, 1.6vw, 23px); line-height:1.45; color:#4a4d53; text-wrap:balance;">AI sorts the support inbox, sends health messages to nurses, and drafts replies that reps approve.</p>
+      <div data-a="rv" style="display:flex; flex-direction:column; align-items:center; gap:16px; margin-top:4px;">
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+          <a href="{{ demoUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:10px; height:48px; padding:0 22px; border-radius:999px; background:#111214; color:#ffffff; font-size:15px; font-weight:500; transform:translateY(calc(var(--h, 0) * -2px)); box-shadow:0 6px 14px -8px rgba(17,18,20,0.45), 0 calc(var(--h, 0) * 16px) calc(var(--h, 0) * 28px) -14px rgba(17,18,20,0.5); transition:transform 400ms cubic-bezier(.2,.7,.2,1), box-shadow 400ms cubic-bezier(.2,.7,.2,1), background 200ms ease;" style-hover="background:#2a2c30; color:#ffffff;" style-focus="outline:none;">Try the live demo <span aria-hidden="true" style="display:inline-block; transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+          <sc-if value="{{ hasGithub }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ githubUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:10px; height:48px; box-sizing:border-box; padding:0 22px; border-radius:999px; background:#ffffff; border:1px solid rgba(17,18,20,0.12); box-shadow:inset 0 1px 0 rgba(255,255,255,0.95), 0 1px 2px rgba(17,18,20,0.04); font-size:15px; font-weight:500; color:#111214; transform:translateY(calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1), background 200ms ease, color 200ms ease, border-color 200ms ease;" style-hover="background:#111214; border-color:#111214; color:#ffffff;" style-focus="outline:none;">View the code <span aria-hidden="true" style="display:inline-block; transform:translateX(calc(var(--h, 0) * 4px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">→</span></a>
+          </sc-if>
+        </div>
+        <p style="margin:0; font-size:13.5px; line-height:1.5; color:#5c5f63;">Carevine is a fictional company. All data is synthetic.</p>
+      </div>
+    </div>
+    <div data-a="rv" style="position:relative;">
+      <div data-scrub="1" style="transform:scale(calc(0.95 + var(--s, 1) * 0.05)); transform-origin:50% 0; will-change:transform; position:relative; box-sizing:border-box; padding:clamp(8px, 1vw, 14px); border-radius:24px; background:#ffffff; border:1px solid #e3e4e8; box-shadow:0 30px 60px -36px rgba(15,42,74,0.35), 0 1px 2px rgba(17,18,20,0.04);">
+        <img src="assets/carevine/hero-support-queue-hq.png" alt="The Carevine support queue sorted by the Triage Tool: an urgent crisis message moved to the nurse queue, with drafts ready and tickets needing a rep." style="display:block; width:100%; aspect-ratio:16/9; object-fit:cover; object-position:50% 0; border-radius:14px;">
+      </div>
+    </div>
+    <dl data-a="rv" style="margin:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:24px clamp(32px, 4vw, 56px); padding-top:28px; border-top:1px solid #dcdde1;">
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <dt style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Role</dt>
+        <dd style="margin:0; max-width:32ch; font-size:16px; line-height:1.45; font-weight:500; text-wrap:pretty;">AI Product Builder: research, design, build, testing and rollout</dd>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <dt style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Deliverables</dt>
+        <dd style="margin:-10px 0 0; display:flex; flex-direction:column; align-items:flex-start;">
+          <a href="{{ demoUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:16px; font-weight:500; color:#111214;" style-focus="outline:none;"><span style="position:relative;">Live app<span style="position:absolute; left:0; right:0; bottom:-2px; height:1px; background:currentColor; opacity:calc(0.25 + var(--h, 0) * 0.75); transition:opacity 300ms ease;"></span></span><span aria-hidden="true" style="display:inline-block; color:oklch(0.42 0.09 155); transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+          <a href="{{ caseStudyUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:16px; font-weight:500; color:#111214;" style-focus="outline:none;"><span style="position:relative;">Case study<span style="position:absolute; left:0; right:0; bottom:-2px; height:1px; background:currentColor; opacity:calc(0.25 + var(--h, 0) * 0.75); transition:opacity 300ms ease;"></span></span><span aria-hidden="true" style="display:inline-block; color:oklch(0.42 0.09 155); transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+          <a href="{{ kitUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:16px; font-weight:500; color:#111214;" style-focus="outline:none;"><span style="position:relative;">Enablement kit<span style="position:absolute; left:0; right:0; bottom:-2px; height:1px; background:currentColor; opacity:calc(0.25 + var(--h, 0) * 0.75); transition:opacity 300ms ease;"></span></span><span aria-hidden="true" style="display:inline-block; color:oklch(0.42 0.09 155); transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+          <a href="{{ githubHref }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:6px; min-height:44px; font-size:16px; font-weight:500; color:#111214;" style-focus="outline:none;"><span style="position:relative;">Source code (GitHub)<span style="position:absolute; left:0; right:0; bottom:-2px; height:1px; background:currentColor; opacity:calc(0.25 + var(--h, 0) * 0.75); transition:opacity 300ms ease;"></span></span><span aria-hidden="true" style="display:inline-block; color:oklch(0.42 0.09 155); transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+        </dd>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <dt style="font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Built with</dt>
+        <dd data-stagger="1" style="margin:0; display:flex; flex-wrap:wrap; gap:8px;">
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/codex.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">Codex</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/openai.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">OpenAI API</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/airtable.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">Airtable</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/slack.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">Slack</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/vercel.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">Vercel</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/github.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">GitHub</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 9px; border-radius:999px; background:#ffffff; border:1px solid #e3e4e8; font-size:14px; font-weight:500;"><img src="assets/logos/claude.svg" alt="" style="display:block; width:16px; height:16px; object-fit:contain;">Claude Design</span>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section id="problem" data-sec="1" data-screen-label="The Problem" style="background:#f1f2f4; padding:clamp(24px, 2.5vw, 40px) clamp(20px, 4vw, 64px) clamp(48px, 5vw, 80px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(22px, 2.4vw, 32px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">01</span>The Problem</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance; max-width:16ch;">The inbox was the bottleneck</h2></div>
+      <p style="margin:0; max-width:40ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">As Carevine grew, health questions waited in the same line as password resets.</p>
+    </div>
+    <div data-a="rv" style="padding:6px; border-radius:28px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 18px 40px -24px rgba(17,18,20,0.2), 0 1px 2px rgba(17,18,20,0.04);">
+      <div data-stagger="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap:1px; overflow:hidden; border-radius:22px; background:#ececef; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+        <div style="display:flex; flex-direction:column; gap:8px; padding:clamp(18px, 2vw, 26px) clamp(20px, 2.4vw, 30px); background:#ffffff;">
+          <span style="display:flex; align-items:baseline; gap:6px; font-weight:500; font-size:clamp(36px, 3.4vw, 52px); line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums;"><span data-count="3200">3,200</span></span>
+          <span style="max-width:28ch; font-size:15px; line-height:1.4; color:#5c5f63; text-wrap:pretty;">tickets a month, up from 1,150</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; padding:clamp(18px, 2vw, 26px) clamp(20px, 2.4vw, 30px); background:#ffffff;">
+          <span style="display:flex; align-items:baseline; gap:6px; font-weight:500; font-size:clamp(36px, 3.4vw, 52px); line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums;"><span data-count="14">14</span><span style="font-size:0.38em; letter-spacing:-0.02em; color:#5c5f63;">hrs</span></span>
+          <span style="max-width:28ch; font-size:15px; line-height:1.4; color:#5c5f63; text-wrap:pretty;">to a first reply, up from 4.5</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; padding:clamp(18px, 2vw, 26px) clamp(20px, 2.4vw, 30px); background:#ffffff;">
+          <span style="display:flex; align-items:baseline; gap:6px; font-weight:500; font-size:clamp(36px, 3.4vw, 52px); line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums;"><span data-count="22">22</span><span style="font-size:0.38em; letter-spacing:-0.02em; color:#5c5f63;">hrs</span></span>
+          <span style="max-width:28ch; font-size:15px; line-height:1.4; color:#5c5f63; text-wrap:pretty;">for a health message to reach a nurse, up from 6</span>
+        </div>
+      </div>
+    </div>
+    <div data-a="rv" style="padding:6px; border-radius:28px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 18px 40px -24px rgba(17,18,20,0.2), 0 1px 2px rgba(17,18,20,0.04);">
+      <div style="position:relative; isolation:isolate; display:flex; flex-wrap:wrap; overflow:hidden; border-radius:22px; background:#0a0a0a; color:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; justify-content:space-between; gap:32px; padding:clamp(26px, 3.2vw, 44px);">
+          <div aria-hidden="true" style="position:absolute; inset:0; z-index:-1; background:radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1.3px) 0 0 / 22px 22px; -webkit-mask-image:radial-gradient(60% 90% at 50% 100%, #000, transparent 75%); mask-image:radial-gradient(60% 90% at 50% 100%, #000, transparent 75%); pointer-events:none;"></div>
+          <div aria-hidden="true" style="position:absolute; left:20%; bottom:-70%; z-index:-1; width:60%; height:160%; border-radius:50%; background:radial-gradient(closest-side, oklch(0.52 0.22 285 / 0.55), oklch(0.42 0.18 265 / 0.25) 60%, transparent 100%); filter:blur(30px); pointer-events:none;"></div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.82 0.1 285);">The fix</span>
+            <h3 style="margin:0; max-width:14ch; font-weight:500; font-size:clamp(26px, 2.6vw, 38px); line-height:1.05; letter-spacing:-0.035em; text-wrap:balance; color:#ffffff;">An AI that takes the first pass</h3>
+          </div>
+          <p style="margin:0; display:flex; align-items:center; gap:10px; font-size:16px; font-weight:500; color:rgba(255,255,255,0.92);"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none; width:18px; height:18px; fill:none; stroke:oklch(0.82 0.1 285); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"></path></svg>People make every final call.</p>
+        </div>
+        <div style="flex:1.6 1 380px; min-width:0; display:flex; align-items:center; padding:clamp(26px, 3.2vw, 44px);">
+          <ol data-stagger="1" style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:clamp(16px, 1.8vw, 24px);">
+            <li style="display:flex; align-items:center; gap:16px;"><span style="flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); box-sizing:border-box; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.82 0.1 285);">01</span><span style="font-size:clamp(18px, 1.6vw, 22px); line-height:1.35; font-weight:500; letter-spacing:-0.015em; color:#ffffff; text-wrap:pretty;">Sorts every message</span></li>
+            <li style="display:flex; align-items:center; gap:16px;"><span style="flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); box-sizing:border-box; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.82 0.1 285);">02</span><span style="font-size:clamp(18px, 1.6vw, 22px); line-height:1.35; font-weight:500; letter-spacing:-0.015em; color:#ffffff; text-wrap:pretty;">Sends health messages straight to nurses</span></li>
+            <li style="display:flex; align-items:center; gap:16px;"><span style="flex:none; display:grid; place-items:center; width:32px; height:32px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); box-sizing:border-box; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.82 0.1 285);">03</span><span style="font-size:clamp(18px, 1.6vw, 22px); line-height:1.35; font-weight:500; letter-spacing:-0.015em; color:#ffffff; text-wrap:pretty;">Drafts the routine replies</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research" data-sec="1" data-screen-label="Research" style="background:#fafaf8; padding:clamp(64px, 7vw, 104px) clamp(20px, 4vw, 64px) 0;">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(32px, 3.6vw, 48px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">02</span>Research</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">What the research found</h2></div>
+      <p style="margin:0; max-width:40ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">From Carevine’s tickets (synthetic), 500 real app reviews and 2026 patient surveys.</p>
+    </div>
+    <ul data-a="rv" data-stagger="1" style="margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(auto-fill, minmax(clamp(calc(25% - 1px), (1000px - 100%) * 999, clamp(calc(50% - 1px), (560px - 100%) * 999, 100%)), 1fr)); gap:28px 0;">
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px 0 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(34px, 3.2vw, 48px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">2 of 9</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Health questions get missed</h3>
+        <p style="margin:0; max-width:30ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Reps’ tags caught only 2 of the 9 health questions hiding in support tickets.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Carevine data · Synthetic</span>
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px 0 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(34px, 3.2vw, 48px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">9 in 10</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Most tickets are routine</h3>
+        <p style="margin:0; max-width:30ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">App, device, billing and scheduling questions a help center can answer.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Carevine data · Synthetic</span>
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px 0 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(34px, 3.2vw, 48px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">14 of 100</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">The help center has holes</h3>
+        <p style="margin:0; max-width:30ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Tickets that hit a missing, outdated or conflicting article.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Carevine data · Synthetic</span>
+      </li>
+      <li style="min-width:0; display:flex; flex-direction:column; gap:10px; padding:4px 0 4px clamp(18px, 2vw, 28px); border-left:1px solid #d6d7db;">
+        <span style="font-size:clamp(34px, 3.2vw, 48px); font-weight:500; line-height:1; letter-spacing:-0.045em; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">89%</span>
+        <h3 style="margin:4px 0 0; font-size:17px; font-weight:600; line-height:1.3; letter-spacing:-0.02em;">Patients want a person</h3>
+        <p style="margin:0; max-width:30ch; font-size:15px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Say it’s important for a human expert to check AI health answers.</p>
+        <span style="margin-top:2px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#6b6e74;">Wolters Kluwer and Ipsos · 2026</span>
+      </li>
+    </ul>
+    <div data-a="rv" style="margin-top:-12px;"><a href="{{ researchUrl }}" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" onFocus="{{ hoverOn }}" onBlur="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:8px; min-height:44px; font-size:16px; font-weight:500; color:#111214; outline:none;" style-hover="color:#111214;" style-focus="outline:none;"><span style="position:relative;">See the full research<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; opacity:calc(0.3 + var(--h, 0) * 0.7); transition:opacity 300ms ease;"></span></span><span aria-hidden="true" style="display:inline-block; color:oklch(0.42 0.09 155); transform:translateX(calc(var(--h, 0) * 4px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">→</span></a></div>
+  </div>
+</section>
+
+<section id="how-it-works" data-sec="1" data-screen-label="How It Works" style="position:relative; isolation:isolate; overflow:hidden; background:#fafaf8; padding:80px clamp(20px, 4vw, 64px) clamp(80px, 9vw, 136px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(56px, 6vw, 88px);">
+    <div data-a="rv" style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">03</span>How It Works</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">What happens to every message</h2></div>
+    <div style="display:flex; flex-direction:column; gap:clamp(80px, 9vw, 144px);">
+
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">01</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">The Queue, Sorted</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">The Triage Tool sorts every message, moves health and crisis messages to nurses, and hides personal details.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/carevine/walkthrough/carevine-clip-1-queue.mp4" poster="assets/carevine/walkthrough/carevine-clip-1-queue-poster.jpg" aria-label="The support queue sorted by the Triage Tool, with crisis and health messages moved to the nurse queue and personal details hidden." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: The Queue, Sorted" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row-reverse; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">02</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Approve a Draft</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">An upset member writing for the third time. The tool drafts an apology and a fix from the help center, and the rep approves it.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/carevine/walkthrough/carevine-clip-2-approve-draft.mp4" poster="assets/carevine/walkthrough/carevine-clip-2-approve-draft-poster.jpg" aria-label="A rep reviews a draft that apologizes to an upset member and cites a help center article, then approves and sends it." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: Approve a Draft" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">03</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">No Draft When the Help Center Disagrees</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Two articles give different refund times, so the tool writes no draft. The rep replies and flags the gap.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/carevine/walkthrough/carevine-clip-3-no-draft.mp4" poster="assets/carevine/walkthrough/carevine-clip-3-no-draft-poster.jpg" aria-label="A refund ticket with no draft because two help center articles conflict; the rep writes the reply and flags the gap." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: No Draft When the Help Center Disagrees" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row-reverse; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">04</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Crisis Goes to a Nurse</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Crisis language goes straight to the nurse queue. The nurse claims it, sends the crisis reply and calls the member.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/carevine/walkthrough/carevine-clip-4-crisis.mp4" poster="assets/carevine/walkthrough/carevine-clip-4-crisis-poster.jpg" aria-label="A crisis message in the nurse queue; the nurse claims it, sends the crisis reply and logs a call to the member." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: Crisis Goes to a Nurse" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">05</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Nurses Write Their Own Replies</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">A high blood sugar reading. The tool explains why it flagged the message but never drafts health advice.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/carevine/walkthrough/carevine-clip-5-nurse-reply.mp4" poster="assets/carevine/walkthrough/carevine-clip-5-nurse-reply-poster.jpg" aria-label="A high blood sugar message with the Triage Tool’s handoff note and no draft; the nurse writes the reply." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: Nurses Write Their Own Replies" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+
+    <article data-a="rv" style="display:flex; flex-wrap:wrap; flex-direction:row-reverse; align-items:center; gap:clamp(28px, 4vw, 72px);">
+      <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:14px;">
+        <span style="font-size:13px; font-weight:600; font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">06</span>
+        <h3 style="margin:0; font-weight:500; font-size:clamp(28px, 2.6vw, 40px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Slack Alerts the Nurse Team</h3>
+        <p style="margin:0; max-width:36ch; font-size:17px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Urgent health messages also post to the nurse team’s Slack. One click opens that ticket in the nurse queue.</p>
+      </div>
+      <div style="flex:1.8 1 480px; min-width:0;">
+        <div><div style="border-radius:16px; overflow:hidden;">
+          <div style="position:relative; aspect-ratio:16/9;">
+            <video data-clip-src="assets/carevine/walkthrough/carevine-clip-6-slack-alert-v2.mp4" poster="assets/carevine/walkthrough/carevine-clip-6-slack-alert-v2-poster.jpg" aria-label="The Triage Tool posts an urgent low-reading alert to the nurse team’s Slack channel, with the reason and a button to open it in the nurse queue." muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="none" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain;"></video>
+            <button type="button" data-clip-play="1" onClick="{{ playClip }}" aria-label="Play clip: Slack Alerts the Nurse Team" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:64px; height:64px; display:none; place-items:center; padding:0; border:0; border-radius:999px; background:rgba(17,18,20,0.86); color:#ffffff; cursor:pointer; box-shadow:0 10px 24px -10px rgba(17,18,20,0.5);" style-focus="outline:none;"><svg viewBox="0 0 16 16" aria-hidden="true" style="display:block; width:18px; height:18px; margin-left:2px;"><path d="M4 2.5v11l9-5.5z" fill="currentColor"></path></svg><svg viewBox="0 0 16 16" aria-hidden="true" style="display:none; width:14px; height:14px;"><path d="M4 2.5h2.6v11H4zM9.4 2.5H12v11H9.4z" fill="currentColor"></path></svg></button>
+          </div>
+        </div></div>
+      </div>
+    </article>
+    </div>
+  </div>
+</section>
+
+<section id="built-in" data-sec="1" data-screen-label="Also Built In" style="background:#f1f2f4; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(36px, 4vw, 56px);">
+    <div data-a="rv" style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">04</span>Also Built In</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">The details that build trust</h2></div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(max(280px, calc((100% - 48px) / 3)), 1fr)); gap:24px;">
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <button type="button" data-lb-group="details" data-lb-index="0" onClick="{{ openLb }}" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" onFocus="{{ hoverOn }}" onBlur="{{ hoverOff }}" aria-label="Enlarge screenshot: Personal details removed" style="position:relative; aspect-ratio:16/10; width:100%; overflow:hidden; display:flex; align-items:center; justify-content:center; margin:0; padding:20px; box-sizing:border-box; border:0; background:linear-gradient(180deg, #f7f7f4, #efefea); font:inherit; color:inherit; cursor:zoom-in; outline:none;" style-focus="outline:none;">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:500; color:#5c5f63;">shot-redaction.png</div>
+            <img src="assets/carevine/shot-redaction.png" alt="A member message where the date of birth is replaced by a “Date of birth hidden” tag before the AI sees it." loading="lazy" onError="{{ imgErr }}" style="position:relative; display:block; max-width:100%; max-height:100%; width:auto; height:auto; border-radius:8px; border:1px solid #e3e4e8; box-shadow:0 10px 24px -14px rgba(17,18,20,0.3);">
+<span aria-hidden="true" style="position:absolute; right:12px; bottom:12px; z-index:2; display:inline-flex; align-items:center; gap:6px; height:28px; padding:0 10px; border-radius:999px; background:rgba(17,18,20,0.82); color:#ffffff; font-size:12px; font-weight:500; opacity:var(--h, 0); transform:translateY(calc((1 - var(--h, 0)) * 4px)); transition:opacity 250ms ease, transform 250ms ease;"><svg viewBox="0 0 16 16" style="width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5L14 14M7 5v4M5 7h4"></path></svg>Click to enlarge</span>
+          </button>
+          <div style="display:flex; flex-direction:column; gap:6px; padding:22px 24px 26px;">
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Personal details removed</h3>
+            <p style="margin:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Dates of birth and member numbers are stripped before the AI sees a message.</p>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <button type="button" data-lb-group="details" data-lb-index="1" onClick="{{ openLb }}" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" onFocus="{{ hoverOn }}" onBlur="{{ hoverOff }}" aria-label="Enlarge screenshot: Spanish replies" style="position:relative; aspect-ratio:16/10; width:100%; overflow:hidden; display:flex; align-items:center; justify-content:center; margin:0; padding:20px; box-sizing:border-box; border:0; background:linear-gradient(180deg, #f7f7f4, #efefea); font:inherit; color:inherit; cursor:zoom-in; outline:none;" style-focus="outline:none;">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:500; color:#5c5f63;">shot-spanish.png</div>
+            <img src="assets/carevine/shot-spanish.png" alt="A member’s Spanish message beside a Spanish AI draft marked medium confidence for a closer look." loading="lazy" onError="{{ imgErr }}" style="position:relative; display:block; max-width:100%; max-height:100%; width:auto; height:auto; border-radius:8px; border:1px solid #e3e4e8; box-shadow:0 10px 24px -14px rgba(17,18,20,0.3);">
+<span aria-hidden="true" style="position:absolute; right:12px; bottom:12px; z-index:2; display:inline-flex; align-items:center; gap:6px; height:28px; padding:0 10px; border-radius:999px; background:rgba(17,18,20,0.82); color:#ffffff; font-size:12px; font-weight:500; opacity:var(--h, 0); transform:translateY(calc((1 - var(--h, 0)) * 4px)); transition:opacity 250ms ease, transform 250ms ease;"><svg viewBox="0 0 16 16" style="width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5L14 14M7 5v4M5 7h4"></path></svg>Click to enlarge</span>
+          </button>
+          <div style="display:flex; flex-direction:column; gap:6px; padding:22px 24px 26px;">
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Spanish replies</h3>
+            <p style="margin:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Spanish messages get a Spanish draft, marked for a closer look.</p>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <button type="button" data-lb-group="details" data-lb-index="2" onClick="{{ openLb }}" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" onFocus="{{ hoverOn }}" onBlur="{{ hoverOff }}" aria-label="Enlarge screenshot: Upset members first" style="position:relative; aspect-ratio:16/10; width:100%; overflow:hidden; display:flex; align-items:center; justify-content:center; margin:0; padding:20px; box-sizing:border-box; border:0; background:linear-gradient(180deg, #f7f7f4, #efefea); font:inherit; color:inherit; cursor:zoom-in; outline:none;" style-focus="outline:none;">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:500; color:#5c5f63;">shot-upset.png</div>
+            <img src="assets/carevine/shot-upset-trim.png" alt="The support queue with a repeat message tagged “Upset member” near the top." loading="lazy" onError="{{ imgErr }}" style="position:relative; display:block; max-width:100%; max-height:100%; width:auto; height:auto; border-radius:8px; border:1px solid #e3e4e8; box-shadow:0 10px 24px -14px rgba(17,18,20,0.3);">
+<span aria-hidden="true" style="position:absolute; right:12px; bottom:12px; z-index:2; display:inline-flex; align-items:center; gap:6px; height:28px; padding:0 10px; border-radius:999px; background:rgba(17,18,20,0.82); color:#ffffff; font-size:12px; font-weight:500; opacity:var(--h, 0); transform:translateY(calc((1 - var(--h, 0)) * 4px)); transition:opacity 250ms ease, transform 250ms ease;"><svg viewBox="0 0 16 16" style="width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5L14 14M7 5v4M5 7h4"></path></svg>Click to enlarge</span>
+          </button>
+          <div style="display:flex; flex-direction:column; gap:6px; padding:22px 24px 26px;">
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Upset members first</h3>
+            <p style="margin:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Repeat or angry messages are flagged and answered with an apology first.</p>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <button type="button" data-lb-group="details" data-lb-index="3" onClick="{{ openLb }}" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" onFocus="{{ hoverOn }}" onBlur="{{ hoverOff }}" aria-label="Enlarge screenshot: Reps can overrule" style="position:relative; aspect-ratio:16/10; width:100%; overflow:hidden; display:flex; align-items:center; justify-content:center; margin:0; padding:20px; box-sizing:border-box; border:0; background:linear-gradient(180deg, #f7f7f4, #efefea); font:inherit; color:inherit; cursor:zoom-in; outline:none;" style-focus="outline:none;">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:500; color:#5c5f63;">shot-send-to-nurse.png</div>
+            <img src="assets/carevine/shot-send-to-nurse.png" alt="A dialog asking the rep what they noticed before sending a ticket to the nurse queue." loading="lazy" onError="{{ imgErr }}" style="position:relative; display:block; max-width:100%; max-height:100%; width:auto; height:auto; border-radius:8px; border:1px solid #e3e4e8; box-shadow:0 10px 24px -14px rgba(17,18,20,0.3);">
+<span aria-hidden="true" style="position:absolute; right:12px; bottom:12px; z-index:2; display:inline-flex; align-items:center; gap:6px; height:28px; padding:0 10px; border-radius:999px; background:rgba(17,18,20,0.82); color:#ffffff; font-size:12px; font-weight:500; opacity:var(--h, 0); transform:translateY(calc((1 - var(--h, 0)) * 4px)); transition:opacity 250ms ease, transform 250ms ease;"><svg viewBox="0 0 16 16" style="width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5L14 14M7 5v4M5 7h4"></path></svg>Click to enlarge</span>
+          </button>
+          <div style="display:flex; flex-direction:column; gap:6px; padding:22px 24px 26px;">
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Reps can overrule</h3>
+            <p style="margin:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Spot a health concern the AI missed? Send it to a nurse in one click.</p>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <button type="button" data-lb-group="details" data-lb-index="4" onClick="{{ openLb }}" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" onFocus="{{ hoverOn }}" onBlur="{{ hoverOff }}" aria-label="Enlarge screenshot: Every decision logged" style="position:relative; aspect-ratio:16/10; width:100%; overflow:hidden; display:flex; align-items:center; justify-content:center; margin:0; padding:20px; box-sizing:border-box; border:0; background:linear-gradient(180deg, #f7f7f4, #efefea); font:inherit; color:inherit; cursor:zoom-in; outline:none;" style-focus="outline:none;">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:500; color:#5c5f63;">shot-decisions-log.png</div>
+            <img src="assets/carevine/shot-decisions-log.png" alt="An Airtable decisions log listing each approval, claim and crisis reply by person, role and time." loading="lazy" onError="{{ imgErr }}" style="position:relative; display:block; max-width:100%; max-height:100%; width:auto; height:auto; border-radius:8px; border:1px solid #e3e4e8; box-shadow:0 10px 24px -14px rgba(17,18,20,0.3);">
+<span aria-hidden="true" style="position:absolute; right:12px; bottom:12px; z-index:2; display:inline-flex; align-items:center; gap:6px; height:28px; padding:0 10px; border-radius:999px; background:rgba(17,18,20,0.82); color:#ffffff; font-size:12px; font-weight:500; opacity:var(--h, 0); transform:translateY(calc((1 - var(--h, 0)) * 4px)); transition:opacity 250ms ease, transform 250ms ease;"><svg viewBox="0 0 16 16" style="width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5L14 14M7 5v4M5 7h4"></path></svg>Click to enlarge</span>
+          </button>
+          <div style="display:flex; flex-direction:column; gap:6px; padding:22px 24px 26px;">
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Every decision logged</h3>
+            <p style="margin:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Each approval, edit and override is saved, so accuracy can be measured.</p>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <button type="button" data-lb-group="details" data-lb-index="5" onClick="{{ openLb }}" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" onFocus="{{ hoverOn }}" onBlur="{{ hoverOff }}" aria-label="Enlarge screenshot: Backup crisis check" style="position:relative; aspect-ratio:16/10; width:100%; overflow:hidden; display:flex; align-items:center; justify-content:center; margin:0; padding:20px; box-sizing:border-box; border:0; background:linear-gradient(180deg, #f7f7f4, #efefea); font:inherit; color:inherit; cursor:zoom-in; outline:none;" style-focus="outline:none;">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:500; color:#5c5f63;">shot-backup-crisis-check.png</div>
+            <img src="assets/carevine/shot-backup-crisis-check.png" alt="A backup crisis check table: two self-harm test messages flagged as crisis and a figure of speech correctly marked not crisis, all passing." loading="lazy" onError="{{ imgErr }}" style="position:relative; display:block; max-width:100%; max-height:100%; width:auto; height:auto; border-radius:8px; border:1px solid #e3e4e8; box-shadow:0 10px 24px -14px rgba(17,18,20,0.3);">
+<span aria-hidden="true" style="position:absolute; right:12px; bottom:12px; z-index:2; display:inline-flex; align-items:center; gap:6px; height:28px; padding:0 10px; border-radius:999px; background:rgba(17,18,20,0.82); color:#ffffff; font-size:12px; font-weight:500; opacity:var(--h, 0); transform:translateY(calc((1 - var(--h, 0)) * 4px)); transition:opacity 250ms ease, transform 250ms ease;"><svg viewBox="0 0 16 16" style="width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5L14 14M7 5v4M5 7h4"></path></svg>Click to enlarge</span>
+          </button>
+          <div style="display:flex; flex-direction:column; gap:6px; padding:22px 24px 26px;">
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Backup crisis check</h3>
+            <p style="margin:0; font-size:15.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Code double-checks for crisis language, even if the AI misses it.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="tested" data-sec="1" data-screen-label="Tested Before Shipping" style="background:#fafaf8; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(36px, 4vw, 56px);">
+    <div data-a="rv" style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">05</span>Testing</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Tested before shipping</h2></div>
+    <div style="display:flex; flex-direction:column; gap:24px;">
+      <article data-a="rv" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(18px, 2vw, 26px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <div style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 24px;"><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.42 0.09 155);">Test runs</span><span style="font-size:14px; color:#5c5f63;">Same 16 hard cases, before and after the fix</span></div>
+          <div style="display:grid; grid-template-columns:{{ runsCols }}; align-items:stretch; gap:12px;">
+          <div style="box-sizing:border-box; min-width:0; display:flex; flex-direction:column; gap:16px; padding:clamp(20px, 2.2vw, 28px); border-radius:18px; background:#ffffff; border:1px solid #ececef;">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;"><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Run 1</span><span style="font-size:clamp(34px, 3.2vw, 48px); font-weight:500; line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums; color:#8a8d93;">13/16</span></div>
+            <div data-pop="1" role="img" aria-label="13 of 16 passed: 2 safe failures, 1 risky failure" style="display:grid; grid-template-columns:repeat(8, minmax(0, 1fr)); gap:6px; max-width:236px;"><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:#ffffff; box-shadow:inset 0 0 0 1.5px #8a8d93;"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:#ffffff; box-shadow:inset 0 0 0 1.5px oklch(0.55 0.19 25);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:#ffffff; box-shadow:inset 0 0 0 1.5px #8a8d93;"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span></div>
+            <ul style="margin:0; padding:14px 0 0; list-style:none; display:flex; flex-direction:column; gap:10px; border-top:1px solid #ececef;">
+              <li style="display:flex; align-items:baseline; gap:10px; font-size:14.5px; line-height:1.45; color:#3f4247; text-wrap:pretty;"><span style="flex:none; display:inline-flex; align-items:center; height:22px; padding:0 8px; border-radius:6px; font-size:10.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; background:#f1f2f4; border:1px solid #e1e3e7; color:#4a4d53;">Safe</span><span>Two tech questions went to a nurse because they mentioned ‘readings’.</span></li>
+              <li style="display:flex; align-items:baseline; gap:10px; font-size:14.5px; line-height:1.45; color:#3f4247; text-wrap:pretty;"><span style="flex:none; display:inline-flex; align-items:center; height:22px; padding:0 8px; border-radius:6px; font-size:10.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; background:oklch(0.96 0.03 25); border:1px solid oklch(0.89 0.07 25); color:oklch(0.47 0.17 25);">Risky</span><span>A refund draft used one article’s timeline when another article disagreed.</span></li>
+            </ul>
+          </div>
+          <div aria-hidden="true" style="flex:0 0 auto; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:4px 2px;"><span style="display:inline-flex; align-items:center; height:28px; padding:0 11px; border-radius:999px; background:#111214; font-size:12px; font-weight:600; color:#ffffff; white-space:nowrap;">2 new rules</span><span style="display:grid; place-items:center; transform:rotate({{ runsArrowRot }});"><svg data-nudge="1" viewBox="0 0 28 12" style="width:28px; height:12px; fill:none; stroke:#8a8d93; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;"><path d="M1 6h24M21 2l4 4-4 4"></path></svg></span></div>
+          <div style="box-sizing:border-box; min-width:0; display:flex; flex-direction:column; gap:16px; padding:clamp(20px, 2.2vw, 28px); border-radius:18px; background:oklch(0.975 0.015 155); border:1px solid #ececef;">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px;"><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Run 2</span><span style="font-size:clamp(34px, 3.2vw, 48px); font-weight:500; line-height:1; letter-spacing:-0.05em; font-variant-numeric:tabular-nums; color:#111214;">16/16</span></div>
+            <div data-pop="1" role="img" aria-label="All 16 passed" style="display:grid; grid-template-columns:repeat(8, minmax(0, 1fr)); gap:6px; max-width:236px;"><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span><span style="display:block; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155);"></span></div>
+            <p style="margin:0; padding-top:14px; display:flex; align-items:baseline; gap:10px; border-top:1px solid #ececef; font-size:14.5px; line-height:1.45; font-weight:500; color:#111214; text-wrap:pretty;"><svg viewBox="0 0 16 16" aria-hidden="true" style="flex:none; width:15px; height:15px; transform:translateY(2px); fill:none; stroke:oklch(0.52 0.12 155); stroke-width:2; stroke-linecap:round; stroke-linejoin:round;"><path d="M3.5 8.3l2.9 2.9 6.1-6.4"></path></svg>Two new rules fixed both. Run 2 passed every check.</p>
+          </div>
+          </div>
+        </div>
+      </article>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap:24px;">
+        <article data-a="rv" style="flex:1; display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(24px, 2.6vw, 36px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.42 0.09 155);">Test set</span>
+            <h3 style="margin:0; display:flex; align-items:baseline; gap:12px; font-weight:500;"><span style="font-size:clamp(40px, 4vw, 60px); font-weight:500; letter-spacing:-0.055em; line-height:0.9; font-variant-numeric:tabular-nums;">16</span><span style="font-size:clamp(20px, 1.8vw, 26px); letter-spacing:-0.025em;">hard cases</span></h3>
+            <p style="margin:0; max-width:38ch; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Crisis, clinical, Spanish, upset and personal-detail messages, chosen to break it.</p>
+            <div data-stagger="1" style="display:flex; flex-wrap:wrap; gap:6px; margin-top:auto;"><span style="display:inline-flex; align-items:center; gap:7px; min-height:30px; padding:4px 12px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:#2a2c30;"></span>Crisis</span><span style="display:inline-flex; align-items:center; gap:7px; min-height:30px; padding:4px 12px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:#2a2c30;"></span>Clinical</span><span style="display:inline-flex; align-items:center; gap:7px; min-height:30px; padding:4px 12px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:#2a2c30;"></span>Spanish</span><span style="display:inline-flex; align-items:center; gap:7px; min-height:30px; padding:4px 12px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:#2a2c30;"></span>Upset</span><span style="display:inline-flex; align-items:center; gap:7px; min-height:30px; padding:4px 12px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:#2a2c30;"></span>Personal details</span></div>
+          </div>
+        </article>
+        <article data-a="rv" style="flex:1; display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -18px rgba(17,18,20,0.16), 0 1px 2px rgba(17,18,20,0.04);">
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(24px, 2.6vw, 36px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.42 0.09 155);">Draft review</span>
+            <h3 style="margin:0; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; font-weight:500;"><span style="font-size:clamp(40px, 4vw, 60px); font-weight:500; letter-spacing:-0.055em; line-height:0.9; font-variant-numeric:tabular-nums;">7 of 7</span><span style="font-size:clamp(20px, 1.8vw, 26px); letter-spacing:-0.025em;">drafts accurate</span></h3>
+            <p style="margin:0; max-width:38ch; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Every draft checked by a person against the help center.</p>
+            <div role="img" aria-label="7 of 7 drafts accurate" data-pop="1" style="display:grid; grid-template-columns:repeat(7, minmax(0, 32px)); gap:8px; margin-top:auto;"><span style="display:grid; place-items:center; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155); color:#ffffff;"><svg viewBox="0 0 16 16" style="display:block; width:56%; height:56%; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;"><path d="M3.5 8.3l2.9 2.9 6.1-6.4"></path></svg></span><span style="display:grid; place-items:center; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155); color:#ffffff;"><svg viewBox="0 0 16 16" style="display:block; width:56%; height:56%; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;"><path d="M3.5 8.3l2.9 2.9 6.1-6.4"></path></svg></span><span style="display:grid; place-items:center; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155); color:#ffffff;"><svg viewBox="0 0 16 16" style="display:block; width:56%; height:56%; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;"><path d="M3.5 8.3l2.9 2.9 6.1-6.4"></path></svg></span><span style="display:grid; place-items:center; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155); color:#ffffff;"><svg viewBox="0 0 16 16" style="display:block; width:56%; height:56%; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;"><path d="M3.5 8.3l2.9 2.9 6.1-6.4"></path></svg></span><span style="display:grid; place-items:center; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155); color:#ffffff;"><svg viewBox="0 0 16 16" style="display:block; width:56%; height:56%; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;"><path d="M3.5 8.3l2.9 2.9 6.1-6.4"></path></svg></span><span style="display:grid; place-items:center; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155); color:#ffffff;"><svg viewBox="0 0 16 16" style="display:block; width:56%; height:56%; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;"><path d="M3.5 8.3l2.9 2.9 6.1-6.4"></path></svg></span><span style="display:grid; place-items:center; aspect-ratio:1; border-radius:999px; background:oklch(0.52 0.12 155); color:#ffffff;"><svg viewBox="0 0 16 16" style="display:block; width:56%; height:56%; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;"><path d="M3.5 8.3l2.9 2.9 6.1-6.4"></path></svg></span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="people-decide" data-sec="1" data-screen-label="Where People Decide" style="background:#f1f2f4; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(36px, 4vw, 56px);">
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px 48px;">
+      <div style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">06</span>Human Oversight</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">AI sorts. People decide.</h2></div>
+      <div aria-hidden="true" data-stagger="1" style="display:flex; align-items:center; gap:10px;"><span style="display:inline-flex; align-items:center; gap:8px; height:40px; padding:0 16px; border-radius:999px; font-size:14px; font-weight:600; background:#ffffff; color:#3f4247; border:1px dashed #b9bbc1;"><svg data-spin="1" viewBox="0 0 16 16" style="width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M8 1.8v2.4M8 11.8v2.4M1.8 8h2.4M11.8 8h2.4M3.6 3.6l1.7 1.7M10.7 10.7l1.7 1.7M3.6 12.4l1.7-1.7M10.7 5.3l1.7-1.7"></path></svg>AI sorts</span><svg data-nudge="1" viewBox="0 0 40 12" style="width:40px; height:12px; fill:none; stroke:#8a8d93; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;"><path d="M1 6h36M32 1.5L37 6l-5 4.5"></path></svg><span style="display:inline-flex; align-items:center; gap:8px; height:40px; padding:0 16px; border-radius:999px; font-size:14px; font-weight:600; background:#111214; color:#ffffff; box-shadow:0 10px 20px -12px rgba(17,18,20,0.6);" data-ring="1"><svg viewBox="0 0 16 16" style="width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><circle cx="8" cy="5.2" r="2.6"></circle><path d="M3.2 14c.5-2.6 2.4-4 4.8-4s4.3 1.4 4.8 4"></path></svg>People decide</span></div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(max(280px, calc((100% - 48px) / 3)), 1fr)); gap:24px;">
+      <article data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; transform:translateY(calc(var(--h, 0) * -6px)); box-shadow:0 calc(14px + var(--h, 0) * 16px) calc(30px + var(--h, 0) * 20px) -18px rgba(17,18,20,calc(0.16 + var(--h, 0) * 0.1)), 0 1px 2px rgba(17,18,20,0.04); transition:transform 500ms cubic-bezier(.2,.7,.2,1), box-shadow 500ms cubic-bezier(.2,.7,.2,1);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(22px, 2.2vw, 30px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <div style="display:flex; align-items:center; gap:12px;"><span aria-hidden="true" data-float="1" style="flex:none; display:grid; place-items:center; width:40px; height:40px; color:#111214;"><span style="display:grid; place-items:center; transform:rotate(calc(var(--h, 0) * -10deg)) scale(calc(1 + var(--h, 0) * 0.08)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><svg viewBox="0 0 24 24" style="display:block; width:32px; height:32px; overflow:visible; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M4 13v-1a8 8 0 0 1 16 0v1"></path><rect x="3" y="13" width="4" height="6" rx="1.5"></rect><rect x="17" y="13" width="4" height="6" rx="1.5"></rect><path d="M19 19c0 1.5-1.5 2.5-4 2.5h-2"></path></svg></span></span><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Support reps</span></div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <h3 style="margin:0; font-size:clamp(20px, 1.7vw, 23px); font-weight:600; line-height:1.2; letter-spacing:-0.025em;">Reps approve every reply</h3>
+            <p style="margin:0; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">A wrong answer would reach a member under Carevine’s name.</p>
+          </div>
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px; padding-top:18px; border-top:1px solid #ececef;">
+            <span style="display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;"><span aria-hidden="true" data-pulse="1" style="width:7px; height:7px; border-radius:999px; background:oklch(0.52 0.12 155);"></span>Logged as</span>
+            <div data-stagger="1" style="display:flex; flex-wrap:wrap; gap:6px;"><span style="display:inline-flex; align-items:center; height:26px; padding:0 9px; border-radius:7px; background:#f3f4f5; border:1px solid #e6e7ea; font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:12px; color:#3f4247;">approved_as_is</span><span style="display:inline-flex; align-items:center; height:26px; padding:0 9px; border-radius:7px; background:#f3f4f5; border:1px solid #e6e7ea; font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:12px; color:#3f4247;">approved_edited</span><span style="display:inline-flex; align-items:center; height:26px; padding:0 9px; border-radius:7px; background:#f3f4f5; border:1px solid #e6e7ea; font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:12px; color:#3f4247;">draft_rejected</span></div>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; transform:translateY(calc(var(--h, 0) * -6px)); box-shadow:0 calc(14px + var(--h, 0) * 16px) calc(30px + var(--h, 0) * 20px) -18px rgba(17,18,20,calc(0.16 + var(--h, 0) * 0.1)), 0 1px 2px rgba(17,18,20,0.04); transition:transform 500ms cubic-bezier(.2,.7,.2,1), box-shadow 500ms cubic-bezier(.2,.7,.2,1);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(22px, 2.2vw, 30px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <div style="display:flex; align-items:center; gap:12px;"><span aria-hidden="true" data-float="1" style="flex:none; display:grid; place-items:center; width:40px; height:40px; color:#111214;"><span style="display:grid; place-items:center; transform:rotate(calc(var(--h, 0) * -10deg)) scale(calc(1 + var(--h, 0) * 0.08)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><svg viewBox="0 0 24 24" style="display:block; width:32px; height:32px; overflow:visible; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M12 20.5s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.9c0 5.6-7.5 10-7.5 10Z"></path><path d="M7.5 12h2.2l1.3-2.2 2 4.4 1.3-2.2h2.2"></path></svg></span></span><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Nurses</span></div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <h3 style="margin:0; font-size:clamp(20px, 1.7vw, 23px); font-weight:600; line-height:1.2; letter-spacing:-0.025em;">Nurses write every health reply</h3>
+            <p style="margin:0; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Medical judgment isn’t the AI’s job.</p>
+          </div>
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px; padding-top:18px; border-top:1px solid #ececef;">
+            <span style="display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;"><span aria-hidden="true" data-pulse="1" style="width:7px; height:7px; border-radius:999px; background:oklch(0.52 0.12 155);"></span>Logged as</span>
+            <div data-stagger="1" style="display:flex; flex-wrap:wrap; gap:6px;"><span style="display:inline-flex; align-items:center; height:26px; padding:0 9px; border-radius:7px; background:#f3f4f5; border:1px solid #e6e7ea; font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:12px; color:#3f4247;">claimed</span><span style="display:inline-flex; align-items:center; height:26px; padding:0 9px; border-radius:7px; background:#f3f4f5; border:1px solid #e6e7ea; font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:12px; color:#3f4247;">crisis_reply_sent</span><span style="display:inline-flex; align-items:center; height:26px; padding:0 9px; border-radius:7px; background:#f3f4f5; border:1px solid #e6e7ea; font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:12px; color:#3f4247;">call_logged</span></div>
+          </div>
+        </div>
+      </article>
+      <article data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:flex; min-width:0; padding:6px; border-radius:26px; background:#f8f8f9; border:1px solid #ececef; transform:translateY(calc(var(--h, 0) * -6px)); box-shadow:0 calc(14px + var(--h, 0) * 16px) calc(30px + var(--h, 0) * 20px) -18px rgba(17,18,20,calc(0.16 + var(--h, 0) * 0.1)), 0 1px 2px rgba(17,18,20,0.04); transition:transform 500ms cubic-bezier(.2,.7,.2,1), box-shadow 500ms cubic-bezier(.2,.7,.2,1);">
+        <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; padding:clamp(22px, 2.2vw, 30px); border-radius:20px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+          <div style="display:flex; align-items:center; gap:12px;"><span aria-hidden="true" data-float="1" style="flex:none; display:grid; place-items:center; width:40px; height:40px; color:#111214;"><span style="display:grid; place-items:center; transform:rotate(calc(var(--h, 0) * -10deg)) scale(calc(1 + var(--h, 0) * 0.08)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);"><svg viewBox="0 0 24 24" style="display:block; width:32px; height:32px; overflow:visible; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M4 8h13M13.5 4.5 17 8l-3.5 3.5"></path><path d="M20 16H7M10.5 12.5 7 16l3.5 3.5"></path></svg></span></span><span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;">Everyone</span></div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <h3 style="margin:0; font-size:clamp(20px, 1.7vw, 23px); font-weight:600; line-height:1.2; letter-spacing:-0.025em;">Anyone can overrule it</h3>
+            <p style="margin:0; font-size:16px; line-height:1.55; color:#5c5f63; text-wrap:pretty;">Reps send messages to nurses; nurses send them back. Every correction is logged.</p>
+          </div>
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px; padding-top:18px; border-top:1px solid #ececef;">
+            <span style="display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#5c5f63;"><span aria-hidden="true" data-pulse="1" style="width:7px; height:7px; border-radius:999px; background:oklch(0.52 0.12 155);"></span>Logged as</span>
+            <div data-stagger="1" style="display:flex; flex-wrap:wrap; gap:6px;"><span style="display:inline-flex; align-items:center; height:26px; padding:0 9px; border-radius:7px; background:#f3f4f5; border:1px solid #e6e7ea; font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:12px; color:#3f4247;">sent_to_nurse</span><span style="display:inline-flex; align-items:center; height:26px; padding:0 9px; border-radius:7px; background:#f3f4f5; border:1px solid #e6e7ea; font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:12px; color:#3f4247;">gap_flagged</span><span style="display:inline-flex; align-items:center; height:26px; padding:0 9px; border-radius:7px; background:#f3f4f5; border:1px solid #e6e7ea; font-family:ui-monospace, 'SF Mono', Menlo, monospace; font-size:12px; color:#3f4247;">draft_feedback</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="rollout" data-sec="1" data-screen-label="Rollout" style="background:#fafaf8; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(32px, 3.6vw, 48px);">
+    <div data-a="rv" style="display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">07</span>Rollout</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">Built to be adopted</h2></div>
+    <ol data-stagger="1" style="margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(auto-fill, minmax(clamp(calc(20% - 24px), (1100px - 100%) * 999, clamp(calc(50% - 12px), (620px - 100%) * 999, 100%)), 1fr)); gap:24px 30px;">
+      <li style="position:relative; min-width:0; display:flex;">
+        <div style="flex:1; min-width:0; display:flex; padding:6px; border-radius:24px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -20px rgba(17,18,20,0.18), 0 1px 2px rgba(17,18,20,0.04);">
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:10px; padding:clamp(18px, 1.8vw, 24px); border-radius:18px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+              <span style="display:grid; place-items:center; width:30px; height:30px; border-radius:999px; background:#111214; color:#ffffff; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums;">1</span>
+              
+            </div>
+            <span style="font-size:11.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#5c5f63;">Week 0</span>
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Practice</h3>
+            <p style="margin:0; font-size:14.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Reps and nurses train on the 16 test tickets, then pass a readiness check.</p>
+            
+          </div>
+        </div>
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="position:absolute; top:50%; right:-21px; z-index:2; display:grid; place-items:center; width:18px; height:18px; margin-top:-9px; color:#8a8d93;"><svg viewBox="0 0 16 16" style="width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M6 3.5L10.5 8 6 12.5"></path></svg></span></sc-if>
+      </li>
+      <li style="position:relative; min-width:0; display:flex;">
+        <div style="flex:1; min-width:0; display:flex; padding:6px; border-radius:24px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -20px rgba(17,18,20,0.18), 0 1px 2px rgba(17,18,20,0.04);">
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:10px; padding:clamp(18px, 1.8vw, 24px); border-radius:18px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+              <span style="display:grid; place-items:center; width:30px; height:30px; border-radius:999px; background:#111214; color:#ffffff; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums;">2</span>
+              
+            </div>
+            <span style="font-size:11.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#5c5f63;">Weeks 1–2</span>
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Shadow pilot</h3>
+            <p style="margin:0; font-size:14.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">2 reps and 1 nurse work as usual while the AI runs in the background.</p>
+            
+          </div>
+        </div>
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="position:absolute; top:50%; right:-21px; z-index:2; display:grid; place-items:center; width:18px; height:18px; margin-top:-9px; color:#8a8d93;"><svg viewBox="0 0 16 16" style="width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M6 3.5L10.5 8 6 12.5"></path></svg></span></sc-if>
+      </li>
+      <li style="position:relative; min-width:0; display:flex;">
+        <div style="flex:1; min-width:0; display:flex; padding:6px; border-radius:24px; background:oklch(0.975 0.015 25); border:1px solid oklch(0.9 0.05 25); box-shadow:0 14px 30px -20px rgba(17,18,20,0.18), 0 1px 2px rgba(17,18,20,0.04);">
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:10px; padding:clamp(18px, 1.8vw, 24px); border-radius:18px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+              <span style="display:grid; place-items:center; width:30px; height:30px; border-radius:999px; background:oklch(0.55 0.19 25); color:#ffffff; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums;">3</span>
+              <span style="flex:none; display:inline-flex; align-items:center; gap:6px; height:24px; padding:0 10px 0 8px; box-sizing:border-box; border-radius:999px; background:oklch(0.96 0.03 25); border:1px solid oklch(0.89 0.07 25); font-size:10.5px; font-weight:700; line-height:1; letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; color:oklch(0.47 0.17 25);"><span aria-hidden="true" data-gate="1" style="flex:none; width:6px; height:6px; border-radius:999px; background:oklch(0.55 0.19 25);"></span>Checkpoint</span>
+            </div>
+            <span style="font-size:11.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.48 0.17 25);">Week 3</span>
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Go / no-go</h3>
+            <p style="margin:0; font-size:14.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Did every health message reach a nurse during the pilot?</p>
+            <div style="margin-top:auto; display:flex; flex-direction:column; gap:6px; padding-top:12px; border-top:1px solid #ececef; font-size:13px; line-height:1.4; font-weight:500;"><span style="display:flex; align-items:center; gap:7px; color:oklch(0.42 0.09 155);"><svg viewBox="0 0 16 16" aria-hidden="true" style="flex:none; width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;"><path d="M3.5 8.3l2.9 2.9 6.1-6.4"></path></svg>Yes: go to step 4</span><span style="display:flex; align-items:center; gap:7px; color:oklch(0.48 0.17 25);"><svg viewBox="0 0 16 16" aria-hidden="true" style="flex:none; width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;"><path d="M4 4l8 8M12 4l-8 8"></path></svg>No: fix it, back to step 2</span></div>
+          </div>
+        </div>
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="position:absolute; top:50%; right:-21px; z-index:2; display:grid; place-items:center; width:18px; height:18px; margin-top:-9px; color:#8a8d93;"><svg viewBox="0 0 16 16" style="width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M6 3.5L10.5 8 6 12.5"></path></svg></span></sc-if>
+      </li>
+      <li style="position:relative; min-width:0; display:flex;">
+        <div style="flex:1; min-width:0; display:flex; padding:6px; border-radius:24px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -20px rgba(17,18,20,0.18), 0 1px 2px rgba(17,18,20,0.04);">
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:10px; padding:clamp(18px, 1.8vw, 24px); border-radius:18px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+              <span style="display:grid; place-items:center; width:30px; height:30px; border-radius:999px; background:#111214; color:#ffffff; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums;">4</span>
+              
+            </div>
+            <span style="font-size:11.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#5c5f63;">Weeks 4–6</span>
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Roll out</h3>
+            <p style="margin:0; font-size:14.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Turn it on for the rest of the team, one group at a time.</p>
+            
+          </div>
+        </div>
+        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="position:absolute; top:50%; right:-21px; z-index:2; display:grid; place-items:center; width:18px; height:18px; margin-top:-9px; color:#8a8d93;"><svg viewBox="0 0 16 16" style="width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M6 3.5L10.5 8 6 12.5"></path></svg></span></sc-if>
+      </li>
+      <li style="position:relative; min-width:0; display:flex;">
+        <div style="flex:1; min-width:0; display:flex; padding:6px; border-radius:24px; background:#f8f8f9; border:1px solid #ececef; box-shadow:0 14px 30px -20px rgba(17,18,20,0.18), 0 1px 2px rgba(17,18,20,0.04);">
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:10px; padding:clamp(18px, 1.8vw, 24px); border-radius:18px; background:#ffffff; box-shadow:0 1px 2px rgba(17,18,20,0.04);">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+              <span style="display:grid; place-items:center; width:30px; height:30px; border-radius:999px; background:#111214; color:#ffffff; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums;">5</span>
+              
+            </div>
+            <span style="font-size:11.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#5c5f63;">Ongoing</span>
+            <h3 style="margin:0; font-size:18px; font-weight:600; line-height:1.25; letter-spacing:-0.02em;">Weekly review</h3>
+            <p style="margin:0; font-size:14.5px; line-height:1.5; color:#5c5f63; text-wrap:pretty;">Check the decision log. Every AI change reruns the test set.</p>
+            
+          </div>
+        </div>
+        
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="next" data-sec="1" data-screen-label="What I'd Do Next" style="background:#f1f2f4; padding:clamp(80px, 9vw, 136px) clamp(20px, 4vw, 64px);">
+  <div style="max-width:1280px; margin:0 auto; display:flex; flex-wrap:wrap; gap:36px clamp(32px, 6vw, 112px);">
+    <div data-a="rv" style="flex:1 1 260px; align-self:flex-start; display:flex; flex-direction:column; gap:16px;"><span style="display:inline-flex; align-items:center; align-self:flex-start; gap:8px; height:28px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;"><span style="font-variant-numeric:tabular-nums; color:oklch(0.42 0.09 155);">08</span>Next Steps</span><h2 style="margin:0; font-weight:500; font-size:clamp(30px, 2.8vw, 44px); line-height:1.02; letter-spacing:-0.035em; text-wrap:balance;">What I’d do next</h2></div>
+    <ol style="flex:2.4 1 560px; min-width:0; margin:0; padding:clamp(24px, 3vw, 40px); list-style:none; display:flex; flex-direction:column; border-radius:26px; background:#ffffff; border:1px solid #e3e4e8;">
+      <li data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="position:relative; display:grid; grid-template-columns:44px minmax(0, 1fr); gap:0 clamp(18px, 2.4vw, 32px);">
+        <div aria-hidden="true" style="position:relative; display:flex; justify-content:center;">
+          <span data-step="1" style="position:relative; z-index:1; display:grid; place-items:center; width:44px; height:44px; border-radius:999px; transform:scale(calc(1 + var(--h, 0) * 0.08)); box-shadow:0 0 0 calc(var(--h, 0) * 6px) oklch(0.52 0.12 155 / 0.18); transition:transform 450ms cubic-bezier(.2,.7,.2,1), box-shadow 450ms cubic-bezier(.2,.7,.2,1), background-color 450ms ease, color 450ms ease, border-color 450ms ease; background:#111214; color:#ffffff; border:1px solid #111214; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums;">01</span>
+          <span data-grow="200" style="position:absolute; top:52px; bottom:-8px; left:50%; width:2px; margin-left:-1px; transform-origin:top; background:repeating-linear-gradient(180deg, #c9cbd1 0 6px, transparent 6px 12px);"></span><span data-fillv="1" style="position:absolute; top:52px; bottom:-8px; left:50%; width:2px; margin-left:-1px; border-radius:2px; transform-origin:top; transform:scaleY(var(--fv, 0)); background:oklch(0.52 0.12 155);"></span>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:16px clamp(24px, 4vw, 64px); padding:6px 0 clamp(32px, 3.6vw, 48px);">
+          <div style="flex:1 1 340px; min-width:0; display:flex; flex-direction:column; gap:8px; transform:translateX(calc(var(--h, 0) * 6px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.42 0.09 155);">Integrate</span>
+            <p style="margin:0; max-width:46ch; font-size:clamp(18px, 1.5vw, 21px); line-height:1.45; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Connect to a real helpdesk like Zendesk instead of the Airtable stand-in.</p>
+          </div>
+          <div style="flex:0 1 380px; min-width:0;"><div aria-hidden="true" style="display:flex; align-items:center; gap:10px;"><span style="display:inline-flex; align-items:center; gap:7px; height:32px; padding:0 12px; border-radius:999px; background:#ffffff; border:1px dashed #b9bbc1; font-size:13px; font-weight:500; color:#5c5f63;"><img src="assets/logos/airtable.svg" alt="" style="width:14px; height:14px;">Airtable</span><svg data-nudge="1" viewBox="0 0 28 12" style="width:28px; height:12px; fill:none; stroke:#8a8d93; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;"><path d="M1 6h24M21 2l4 4-4 4"></path></svg><span style="display:inline-flex; align-items:center; height:32px; padding:0 12px; border-radius:999px; background:#111214; font-size:13px; font-weight:600; color:#ffffff;">Zendesk</span></div></div>
+        </div>
+      </li>
+      <li data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="position:relative; display:grid; grid-template-columns:44px minmax(0, 1fr); gap:0 clamp(18px, 2.4vw, 32px);">
+        <div aria-hidden="true" style="position:relative; display:flex; justify-content:center;">
+          <span data-step="1" style="position:relative; z-index:1; display:grid; place-items:center; width:44px; height:44px; border-radius:999px; transform:scale(calc(1 + var(--h, 0) * 0.08)); box-shadow:0 0 0 calc(var(--h, 0) * 6px) oklch(0.52 0.12 155 / 0.18); transition:transform 450ms cubic-bezier(.2,.7,.2,1), box-shadow 450ms cubic-bezier(.2,.7,.2,1), background-color 450ms ease, color 450ms ease, border-color 450ms ease; background:#111214; color:#ffffff; border:1px solid #111214; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums;">02</span>
+          <span data-grow="400" style="position:absolute; top:52px; bottom:-8px; left:50%; width:2px; margin-left:-1px; transform-origin:top; background:repeating-linear-gradient(180deg, #c9cbd1 0 6px, transparent 6px 12px);"></span><span data-fillv="1" style="position:absolute; top:52px; bottom:-8px; left:50%; width:2px; margin-left:-1px; border-radius:2px; transform-origin:top; transform:scaleY(var(--fv, 0)); background:oklch(0.52 0.12 155);"></span>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:16px clamp(24px, 4vw, 64px); padding:6px 0 clamp(32px, 3.6vw, 48px);">
+          <div style="flex:1 1 340px; min-width:0; display:flex; flex-direction:column; gap:8px; transform:translateX(calc(var(--h, 0) * 6px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.42 0.09 155);">Pilot</span>
+            <p style="margin:0; max-width:46ch; font-size:clamp(18px, 1.5vw, 21px); line-height:1.45; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Run the shadow pilot from the enablement kit, then track time to first reply, time to reach a nurse and how often reps accept drafts.</p>
+          </div>
+          <div style="flex:0 1 380px; min-width:0;"><div data-stagger="1" style="display:flex; flex-wrap:wrap; gap:6px;"><span style="display:inline-flex; align-items:center; gap:6px; min-height:30px; padding:4px 11px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:oklch(0.52 0.12 155);"></span>Time to first reply</span><span style="display:inline-flex; align-items:center; gap:6px; min-height:30px; padding:4px 11px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:oklch(0.52 0.12 155);"></span>Time to reach a nurse</span><span style="display:inline-flex; align-items:center; gap:6px; min-height:30px; padding:4px 11px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><span aria-hidden="true" style="width:6px; height:6px; border-radius:999px; background:oklch(0.52 0.12 155);"></span>Draft acceptance</span></div></div>
+        </div>
+      </li>
+      <li data-a="rv" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="position:relative; display:grid; grid-template-columns:44px minmax(0, 1fr); gap:0 clamp(18px, 2.4vw, 32px);">
+        <div aria-hidden="true" style="position:relative; display:flex; justify-content:center;">
+          <span data-step="1" style="position:relative; z-index:1; display:grid; place-items:center; width:44px; height:44px; border-radius:999px; transform:scale(calc(1 + var(--h, 0) * 0.08)); box-shadow:0 0 0 calc(var(--h, 0) * 6px) oklch(0.52 0.12 155 / 0.18); transition:transform 450ms cubic-bezier(.2,.7,.2,1), box-shadow 450ms cubic-bezier(.2,.7,.2,1), background-color 450ms ease, color 450ms ease, border-color 450ms ease; background:#111214; color:#ffffff; border:1px solid #111214; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums;">03</span>
+          
+        </div>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:16px clamp(24px, 4vw, 64px); padding:6px 0 0;">
+          <div style="flex:1 1 340px; min-width:0; display:flex; flex-direction:column; gap:8px; transform:translateX(calc(var(--h, 0) * 6px)); transition:transform 500ms cubic-bezier(.2,.7,.2,1);">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.42 0.09 155);">Explore</span>
+            <p style="margin:0; max-width:46ch; font-size:clamp(18px, 1.5vw, 21px); line-height:1.45; font-weight:500; letter-spacing:-0.015em; color:#111214; text-wrap:pretty;">Explore AI drafts for nurses, but only with the member’s chart, clinician-approved protocols and a nurse-reviewed test set.</p>
+          </div>
+          <div style="flex:0 1 380px; min-width:0;"><div data-stagger="1" style="display:flex; flex-wrap:wrap; gap:6px;"><span style="display:inline-flex; align-items:center; gap:6px; min-height:30px; padding:4px 11px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><svg viewBox="0 0 16 16" aria-hidden="true" style="flex:none; width:13px; height:13px; fill:none; stroke:oklch(0.42 0.09 155); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><rect x="3" y="2.5" width="10" height="11.5" rx="1.5"></rect><path d="M6 2.5V1.8h4v.7M5.5 7h5M5.5 9.5h5M5.5 12h3"></path></svg>Member’s chart</span><span style="display:inline-flex; align-items:center; gap:6px; min-height:30px; padding:4px 11px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><svg viewBox="0 0 16 16" aria-hidden="true" style="flex:none; width:13px; height:13px; fill:none; stroke:oklch(0.42 0.09 155); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M3 3.5h10v6.5a5 5 0 0 1-10 0z" opacity="0"></path><rect x="2.5" y="2" width="11" height="12" rx="2"></rect><path d="M5.5 8.2l1.8 1.8 3.4-3.6"></path></svg>Approved protocols</span><span style="display:inline-flex; align-items:center; gap:6px; min-height:30px; padding:4px 11px; box-sizing:border-box; border-radius:999px; background:#f3f4f5; border:1px solid #e6e7ea; font-size:13px; font-weight:500; color:#3f4247;"><svg viewBox="0 0 16 16" aria-hidden="true" style="flex:none; width:13px; height:13px; fill:none; stroke:oklch(0.42 0.09 155); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;"><path d="M5 2v4.5a3 3 0 0 0 6 0V2"></path><path d="M8 9.5V11a2.5 2.5 0 0 0 5 0V9.8"></path><circle cx="13" cy="8.6" r="1.2"></circle></svg>Nurse-reviewed tests</span></div></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="cta" data-screen-label="CTA" style="position:relative; overflow:hidden; isolation:isolate; background:#0a0a0a; color:#ffffff; padding:clamp(104px, 12vw, 184px) clamp(20px, 4vw, 64px);">
+  {{ darkAmbient }}
+  <div aria-hidden="true" style="position:absolute; inset:0; z-index:-1; background:radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1.3px) 0 0 / 22px 22px; -webkit-mask-image:radial-gradient(55% 60% at 50% 50%, #000, transparent 78%); mask-image:radial-gradient(55% 60% at 50% 50%, #000, transparent 78%); pointer-events:none;"></div>
+  <div aria-hidden="true" style="position:absolute; left:50%; top:58%; z-index:-1; width:min(900px, 90vw); height:min(520px, 60vw); transform:translate(-50%, -50%); border-radius:50%; background:radial-gradient(closest-side, oklch(0.52 0.22 285 / 0.55), oklch(0.42 0.18 265 / 0.25) 60%, transparent 100%); filter:blur(60px); pointer-events:none;"></div>
+  <div aria-hidden="true" style="position:absolute; left:0; right:0; bottom:0; height:45%; z-index:-1; background:linear-gradient(180deg, rgba(10,10,10,0), #0a0a0a 92%); pointer-events:none;"></div>
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:clamp(28px, 3vw, 40px); text-align:center;">
+    <span data-a="rv" style="display:inline-flex; align-items:center; height:26px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); box-shadow:inset 0 1px 0 rgba(255,255,255,0.1); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); color:rgba(255,255,255,0.86);">Go Deeper</span>
+    <h2 style="margin:0; max-width:13ch; overflow:hidden; padding:0.04em 0 0.18em; margin-bottom:-0.12em; font-weight:500; font-size:clamp(44px, 6.4vw, 104px); line-height:0.98; letter-spacing:-0.05em; text-wrap:balance;"><span data-a="rise" style="display:inline-block;">See it in action</span></h2>
+    <p data-a="rv" style="margin:0; max-width:44ch; font-size:clamp(16px, 1.35vw, 20px); line-height:1.5; color:rgba(255,255,255,0.74); text-wrap:pretty;">A concept project with synthetic data, built end to end: research, design, build and testing.</p>
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:4px;">
+      <a href="{{ demoUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:10px; height:56px; padding:0 28px; border-radius:999px; background:#ffffff; color:#111214; font-size:16px; font-weight:600; transform:translateY(calc(var(--h, 0) * -2px)); box-shadow:0 0 0 1px rgba(255,255,255,0.4), 0 10px 40px -8px oklch(0.6 0.22 285 / 0.7), 0 calc(var(--h, 0) * 18px) calc(var(--h, 0) * 50px) -10px oklch(0.62 0.22 285 / 0.85); transition:transform 400ms cubic-bezier(.2,.7,.2,1), box-shadow 400ms cubic-bezier(.2,.7,.2,1), background 200ms ease;" style-hover="background:#f1efff; color:#111214;" style-focus="outline:none;">Try the live demo <span aria-hidden="true" style="display:inline-block; transform:translate(calc(var(--h, 0) * 2px), calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">↗</span></a>
+      <sc-if value="{{ hasGithub }}" hint-placeholder-val="{{ false }}">
+        <a href="{{ githubUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; gap:10px; height:56px; box-sizing:border-box; padding:0 28px; border-radius:999px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.4); box-shadow:inset 0 1px 0 rgba(255,255,255,0.18); backdrop-filter:blur(14px) saturate(160%); -webkit-backdrop-filter:blur(14px) saturate(160%); font-size:16px; font-weight:600; color:#ffffff; transform:translateY(calc(var(--h, 0) * -2px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1), background 200ms ease, color 200ms ease, border-color 200ms ease;" style-hover="background:#ffffff; border-color:#ffffff; color:#111214;" style-focus="outline:none;">View the code <span aria-hidden="true" style="display:inline-block; transform:translateX(calc(var(--h, 0) * 4px)); transition:transform 400ms cubic-bezier(.2,.7,.2,1);">→</span></a>
+      </sc-if>
+    </div>
+    <div data-a="rv" style="display:flex; flex-wrap:wrap; justify-content:center; gap:4px 28px; margin-top:-8px;">
+      <a href="{{ caseStudyUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" onFocus="{{ hoverOn }}" onBlur="{{ hoverOff }}" style="position:relative; display:inline-flex; align-items:center; gap:8px; min-height:44px; outline:none; font-size:15px; font-weight:500; color:rgba(255,255,255,0.86);" style-hover="color:#ffffff;" style-focus="outline:none; color:#ffffff;"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none; width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="M14 3.5H7A1.5 1.5 0 0 0 5.5 5v14A1.5 1.5 0 0 0 7 20.5h10a1.5 1.5 0 0 0 1.5-1.5V8Z"></path><path d="M14 3.5V8h4.5"></path></svg><span style="position:relative;">Read the case study<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="{{ kitUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" onFocus="{{ hoverOn }}" onBlur="{{ hoverOff }}" style="position:relative; display:inline-flex; align-items:center; gap:8px; min-height:44px; outline:none; font-size:15px; font-weight:500; color:rgba(255,255,255,0.86);" style-hover="color:#ffffff;" style-focus="outline:none; color:#ffffff;"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none; width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="M14 3.5H7A1.5 1.5 0 0 0 5.5 5v14A1.5 1.5 0 0 0 7 20.5h10a1.5 1.5 0 0 0 1.5-1.5V8Z"></path><path d="M14 3.5V8h4.5"></path></svg><span style="position:relative;">Enablement kit<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-screen-label="Footer" style="position:relative; z-index:1; margin-top:-2px; overflow:hidden; background:#0a0a0a; color:#ffffff; padding:clamp(24px, 3vw, 40px) clamp(24px, 6vw, 112px) 0;">
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:28px 64px;">
+    <nav aria-label="Site" style="display:flex; flex-wrap:wrap; gap:0 clamp(24px, 3vw, 40px);">
+      <a href="/#work" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">Work<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#how-i-build" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">How I Build<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#what-i-build" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">What I Build<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+      <a href="/#about" onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:#ffffff;" style-hover="color:#ffffff;" style-focus="outline:none;"><span style="position:relative;">About<span style="position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor; transform:scaleX(var(--h, 0)); transform-origin:left; transition:transform 450ms cubic-bezier(.2,.7,.2,1);"></span></span></a>
+    </nav>
+  </div>
+  <div aria-hidden="true" style="margin-top:clamp(80px, 11vw, 168px); margin-left:calc(-1 * clamp(24px, 6vw, 112px)); margin-right:calc(-1 * clamp(24px, 6vw, 112px)); height:clamp(70px, 12.5vw, 225px); overflow:hidden; display:flex; justify-content:flex-start; -webkit-mask-image:linear-gradient(180deg, #000 25%, transparent 100%); mask-image:linear-gradient(180deg, #000 25%, transparent 100%); pointer-events:none;">
+    {{ footTicker }}
+  </div>
+  <div style="max-width:1440px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 32px; padding:20px 0 clamp(24px, 3vw, 36px); font-size:13px; color:#a3a5ab;">
+    <span>© 2026 Dan Mota</span>
+    <span>Built with AI + human judgment in Florida ☀️</span>
+  </div>
+</footer>
+
+<sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" aria-label="{{ lbTitle }}" onClick="{{ lbBackdrop }}" style="position:fixed; inset:0; z-index:80; display:flex; align-items:center; justify-content:center; padding:72px clamp(64px, 8vw, 120px) 32px; box-sizing:border-box; background:rgba(10,10,12,0.9); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);">
+    <button type="button" ref="{{ lbCloseRef }}" aria-label="Close" onClick="{{ lbClose }}" style="position:absolute; top:16px; right:16px; z-index:2; display:grid; place-items:center; width:48px; height:48px; padding:0; border:1px solid rgba(255,255,255,0.18); border-radius:999px; background:rgba(255,255,255,0.1); color:#ffffff; cursor:pointer; transition:background 200ms ease;" style-hover="background:rgba(255,255,255,0.22);" style-focus="outline:none;"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    <button type="button" aria-label="Previous image" onClick="{{ lbPrev }}" style="position:absolute; left:clamp(8px, 2vw, 28px); top:50%; margin-top:-24px; z-index:2; display:grid; place-items:center; width:48px; height:48px; padding:0; border:1px solid rgba(255,255,255,0.18); border-radius:999px; background:rgba(255,255,255,0.1); color:#ffffff; cursor:pointer; transition:background 200ms ease;" style-hover="background:rgba(255,255,255,0.22);" style-focus="outline:none;"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M14.5 5.5L8 12l6.5 6.5"></path></svg></button>
+    <button type="button" aria-label="Next image" onClick="{{ lbNext }}" style="position:absolute; right:clamp(8px, 2vw, 28px); top:50%; margin-top:-24px; z-index:2; display:grid; place-items:center; width:48px; height:48px; padding:0; border:1px solid rgba(255,255,255,0.18); border-radius:999px; background:rgba(255,255,255,0.1); color:#ffffff; cursor:pointer; transition:background 200ms ease;" style-hover="background:rgba(255,255,255,0.22);" style-focus="outline:none;"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;"><path d="M9.5 5.5L16 12l-6.5 6.5"></path></svg></button>
+    <figure style="margin:0; display:flex; flex-direction:column; align-items:center; gap:16px; max-width:100%; max-height:100%;">
+      <sc-if value="{{ lbHasSrc }}" hint-placeholder-val="{{ false }}">
+        <img ref="{{ lbImgRef }}" alt="{{ lbAlt }}" style="display:block; max-width:min(1400px, 100%); max-height:calc(100vh - 170px); width:auto; height:auto; border-radius:12px; background:#ffffff; box-shadow:0 40px 100px -30px rgba(0,0,0,0.7);">
+      </sc-if>
+      <sc-if value="{{ lbNoSrc }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid; place-items:center; height:min(calc(100vh - 190px), 760px); aspect-ratio:8.5/11; max-width:100%; border-radius:12px; background:#2a2c30; border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.78); font-size:14px; font-weight:500;">{{ lbFile }}</div>
+      </sc-if>
+      <figcaption style="display:flex; align-items:center; gap:12px; font-size:15px; font-weight:500; color:#ffffff;">{{ lbTitle }}<span style="font-size:13px; font-variant-numeric:tabular-nums; color:rgba(255,255,255,0.7);">{{ lbCount }}</span></figcaption>
+    </figure>
+  </div>
+</sc-if>
+
+<dc-import name="PasswordGate" eyebrow="Private Case Study" title="This project is password protected" back-href="/" back-label="Home" hint-size="0px,0px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;demoUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://carevine-triage.vercel.app&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;githubUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://github.com/dandmxstudio-droid/carevine-triage&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;caseStudyUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/case-studies/Carevine-Triage-Tool-Case-Study.pdf&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;kitUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;assets/case-studies/Carevine-Triage-Tool-Enablement-Kit.pdf&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;researchUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Research.dc.html&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;autoplayClips&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = { active: '', wide: true, narrow: false, lb: null };
+  lbCloseRef = React.createRef();
+  lbImgRef = React.createRef();
+  gallery = {
+    details: [
+      { src: 'assets/carevine/shot-redaction.png', title: 'Personal details removed', alt: 'A member message where the date of birth is replaced by a “Date of birth hidden” tag before the AI sees it.' },
+      { src: 'assets/carevine/shot-spanish.png', title: 'Spanish replies', alt: 'A member’s Spanish message beside a Spanish AI draft marked for a closer look.' },
+      { src: 'assets/carevine/shot-upset-trim.png', title: 'Upset members first', alt: 'The support queue with a repeat message tagged “Upset member”.' },
+      { src: 'assets/carevine/shot-send-to-nurse.png', title: 'Reps can overrule', alt: 'A dialog asking the rep what they noticed before sending a ticket to the nurse queue.' },
+      { src: 'assets/carevine/shot-decisions-log.png', title: 'Every decision logged', alt: 'An Airtable decisions log listing each approval, claim and crisis reply by person, role and time.' },
+      { src: 'assets/carevine/shot-backup-crisis-check.png', title: 'Backup crisis check', alt: 'A backup crisis check table: two self-harm test messages flagged as crisis and a figure of speech correctly marked not crisis, all passing.' },
+    ],
+  };
+  openLb = (e) => { const t = e.currentTarget; this.lbReturn = t; this.setState({ lb: { g: t.getAttribute('data-lb-group'), i: +t.getAttribute('data-lb-index') || 0 } }); };
+  lbClose = () => { this.setState({ lb: null }); };
+  lbStep = (d) => this.setState(s => { if (!s.lb) return null; const n = this.gallery[s.lb.g].length; return { lb: { g: s.lb.g, i: (s.lb.i + d + n) % n } }; });
+  lbPrev = (e) => { if (e) e.stopPropagation(); this.lbStep(-1); };
+  lbNext = (e) => { if (e) e.stopPropagation(); this.lbStep(1); };
+  lbBackdrop = (e) => { if (e.target === e.currentTarget) this.lbClose(); };
+  onKey = (e) => { if (!this.state.lb) return; if (e.key === 'Escape') { e.preventDefault(); this.lbClose(); } else if (e.key === 'ArrowLeft') { e.preventDefault(); this.lbStep(-1); } else if (e.key === 'ArrowRight') { e.preventDefault(); this.lbStep(1); } };
+  rootRef = React.createRef();
+  secs = [['problem', 'Problem'], ['research', 'Research'], ['how-it-works', 'How it works'], ['built-in', 'Built in'], ['tested', 'Testing'], ['people-decide', 'Oversight'], ['rollout', 'Rollout'], ['next', 'Next']];
+  hoverOn = (e) => e.currentTarget.style.setProperty('--h', '1');
+  hoverOff = (e) => e.currentTarget.style.setProperty('--h', '0');
+  imgErr = (e) => { e.currentTarget.style.display = 'none'; };
+  logoLoad = (e) => { const img = e.currentTarget, ph = img.previousElementSibling; img.style.display = 'block'; if (ph) ph.style.display = 'none'; };
+  playClip = (e) => { const v = e.currentTarget.parentElement.querySelector('video'); if (!v) return; if (v.paused) v.play().catch(() => {}); else v.pause(); };
+  goTo = (id) => (e) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 92, behavior: this.reduce ? 'auto' : 'smooth' });
+  };
+  onScroll = () => { if (this.raf) return; this.raf = requestAnimationFrame(() => { this.raf = 0; this.frame(); }); };
+  onResize = () => { const wide = window.innerWidth >= 1200, narrow = window.innerWidth < 760; if (wide !== this.state.wide || narrow !== this.state.narrow) this.setState({ wide, narrow }); this.onScroll(); };
+  frame() {
+    const root = this.rootRef.current; if (!root) return;
+    const vh = window.innerHeight, max = document.documentElement.scrollHeight - vh;
+    root.style.setProperty('--navOn', window.scrollY > 8 ? '1' : '0');
+    root.style.setProperty('--prog', (max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0).toFixed(4));
+    if (!this.reduce) root.querySelectorAll('[data-scrub]').forEach(el => { const r = el.getBoundingClientRect(); el.style.setProperty('--s', Math.max(0, Math.min(1, (vh - r.top) / (vh * 0.75))).toFixed(4)); });
+    let active = '';
+    root.querySelectorAll('[data-fillv]').forEach(el => { const r = el.parentElement.parentElement.getBoundingClientRect(); el.style.setProperty('--fv', this.reduce ? '1' : Math.max(0, Math.min(1, (vh * 0.62 - r.top) / Math.max(1, r.height))).toFixed(4)); });
+    root.querySelectorAll('[data-sec]').forEach(el => { if (el.getBoundingClientRect().top < Math.max(120, vh * 0.35)) active = el.id; });
+    if (active !== this.state.active) this.setState({ active });
+    this.checkClips();
+  }
+  initClips() {
+    const auto = (this.props.autoplayClips ?? true) && !this.reduce;
+    const syncBtn = (v, btn) => {
+      const playing = !v.paused, label = btn.getAttribute('data-label') || btn.getAttribute('aria-label').replace(/^(Play|Pause) clip: /, '');
+      btn.setAttribute('data-label', label);
+      btn.setAttribute('aria-label', (playing ? 'Pause' : 'Play') + ' clip: ' + label);
+      btn.children[0].style.display = playing ? 'none' : 'block';
+      btn.children[1].style.display = playing ? 'block' : 'none';
+      Object.assign(btn.style, playing
+        ? { top: '12px', left: 'auto', right: '12px', bottom: 'auto', transform: 'none', width: '44px', height: '44px' }
+        : { top: '50%', left: '50%', right: 'auto', bottom: 'auto', transform: 'translate(-50%, -50%)', width: '64px', height: '64px' });
+    };
+    this.clipAuto = auto;
+    this.clipDone = new WeakSet();
+    this.clipLoad = (v) => {
+      if (this.clipDone.has(v)) return; this.clipDone.add(v);
+      const src = (v.getAttribute('data-clip-src') || '').trim(); if (!src) return;
+      const box = v.parentElement, ph = box.querySelector('[data-clip-ph]'), btn = box.querySelector('[data-clip-play]');
+      v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.controls = false;
+      const shown = () => {
+        v.style.opacity = '1'; if (ph) ph.style.opacity = '0';
+        if (!auto && btn) { btn.style.display = 'grid'; syncBtn(v, btn); }
+        this.checkClips();
+      };
+      if (v.readyState >= 2 && v.currentSrc) shown(); else v.addEventListener('loadeddata', shown, { once: true });
+      if (btn) { v.addEventListener('play', () => syncBtn(v, btn)); v.addEventListener('pause', () => syncBtn(v, btn)); }
+      if (!v.currentSrc) { v.preload = auto ? 'auto' : 'metadata'; v.src = auto ? src : src + '#t=0.1'; }
+    };
+    this.checkClips();
+  }
+  checkClips() {
+    if (!this.clipLoad) return;
+    const vh = window.innerHeight;
+    document.querySelectorAll('video[data-clip-src]').forEach(v => {
+      const r = v.parentElement.getBoundingClientRect();
+      if (r.bottom > -600 && r.top < vh + 600) this.clipLoad(v);
+      if (!this.clipDone.has(v) || v.readyState < 2) return;
+      const vis = r.top < vh - r.height * 0.2 && r.bottom > r.height * 0.2;
+      if (vis && this.clipAuto) { if (v.paused) v.play().catch(() => {}); }
+      else if (!vis && !v.paused) v.pause();
+    });
+  }
+  componentDidUpdate(pp, ps) {
+    this.checkClips();
+    const lbi = this.lbImgRef.current, lbIt = this.state.lb ? this.gallery[this.state.lb.g][this.state.lb.i] : null;
+    if (lbi && lbIt && lbIt.src && lbi.getAttribute('src') !== lbIt.src) lbi.setAttribute('src', lbIt.src);
+    const was = !!this._lbWas, is = !!this.state.lb;
+    this._lbWas = is;
+    if (is && !was) { document.documentElement.style.overflow = 'hidden'; setTimeout(() => { const b = this.lbCloseRef.current; if (b) b.focus(); }, 30); }
+    if (!is && was) { document.documentElement.style.overflow = ''; if (this.lbReturn && this.lbReturn.focus) this.lbReturn.focus(); }
+  }
+  countUp(el) {
+    const node = el.firstChild, raw = el.getAttribute('data-count') || '0', to = parseFloat(raw) || 0, dec = (raw.split('.')[1] || '').length, fmt = (v) => dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US');
+    if (!node || node.nodeType !== 3) return;
+    const t0 = performance.now(), dur = 1400;
+    const step = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); node.nodeValue = fmt(to * e); if (k < 1) requestAnimationFrame(step); };
+    node.nodeValue = fmt(0);
+    requestAnimationFrame(step);
+  }
+  initReveal() {
+    if (this.reduce) return;
+    const ease = 'cubic-bezier(.2,.7,.2,1)';
+    const K = {
+      rv: { from: { opacity: 0, transform: 'translateY(28px)', filter: 'blur(6px)' }, prop: 'opacity', hidden: '0', dur: 1000 },
+      rise: { from: { transform: 'translateY(110%)' }, prop: 'transform', hidden: 'translateY(110%)', dur: 1100 },
+    };
+    const play = (el, delay) => {
+      const k = K[el.getAttribute('data-a')]; if (!k) return;
+      el.style[k.prop] = '';
+      const to = {}; Object.keys(k.from).forEach(p => { to[p] = p === 'opacity' ? 1 : p === 'filter' ? 'blur(0px)' : 'none'; });
+      el.animate([k.from, to], { duration: k.dur, delay, easing: ease, fill: 'backwards' });
+    };
+    const vh = window.innerHeight, owners = new Map();
+    let i = 0;
+    this.io = new IntersectionObserver(es => {
+      let n = 0;
+      es.forEach(en => { if (!en.isIntersecting) return; this.io.unobserve(en.target); (owners.get(en.target) || []).forEach(el => play(el, (n++) * 90)); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    const M = (el) => {
+      const kids = [...el.children];
+      if (el.hasAttribute('data-pop')) kids.forEach((c, j) => { c.style.opacity = ''; c.animate([{ opacity: 0, transform: 'scale(0.3)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 520, delay: 250 + j * 45, easing: 'cubic-bezier(.3,1.5,.5,1)', fill: 'backwards' }); });
+      else if (el.hasAttribute('data-grow')) { el.style.transform = ''; const vert = el.style.transformOrigin === 'top'; el.animate([{ transform: vert ? 'scaleY(0)' : 'scaleX(0)' }, { transform: 'none' }], { duration: 1300, delay: 300 + (+el.getAttribute('data-grow') || 0), easing: ease, fill: 'backwards' }); }
+      else kids.forEach((c, j) => { c.style.opacity = ''; c.animate([{ opacity: 0, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }], { duration: 800, delay: 200 + j * 110, easing: ease, fill: 'backwards' }); });
+    };
+    this.mio = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; this.mio.unobserve(en.target); M(en.target); }), { threshold: 0.3 });
+    document.querySelectorAll('[data-pop], [data-grow], [data-stagger]').forEach(el => {
+      if (el.getBoundingClientRect().top < vh * 0.85) { M(el); return; }
+      if (el.hasAttribute('data-grow')) el.style.transform = el.style.transformOrigin === 'top' ? 'scaleY(0)' : 'scaleX(0)'; else [...el.children].forEach(c => { c.style.opacity = '0'; });
+      this.mio.observe(el);
+    });
+    document.querySelectorAll('[data-a]').forEach(el => {
+      const a = el.getAttribute('data-a'), k = K[a]; if (!k) return;
+      if (el.getBoundingClientRect().top < vh * 0.94) { play(el, 60 + (i++) * 100); return; }
+      el.style[k.prop] = k.hidden;
+      const t = a === 'rise' ? el.parentElement : el;
+      if (!owners.has(t)) { owners.set(t, []); this.io.observe(t); }
+      owners.get(t).push(el);
+    });
+  }
+  navKey = (e) => { if (e.key === 'Escape') this.navClose(); };
+  navToggle = () => { const o = !this.state.navOpen; document[o ? 'addEventListener' : 'removeEventListener']('keydown', this.navKey); this.setState({ navOpen: o }); };
+  navClose = () => { document.removeEventListener('keydown', this.navKey); if (this.state.navOpen) this.setState({ navOpen: false }); };
+  navTone = () => {
+    if (this._ntRaf) return;
+    this._ntRaf = requestAnimationFrame(() => {
+      this._ntRaf = 0;
+      const hd = document.querySelector('header'); if (!hd) return;
+      const stack = document.elementsFromPoint(window.innerWidth / 2, 40);
+      let lum = 1;
+      for (const el of stack) {
+        if (hd.contains(el)) continue;
+        const cs = getComputedStyle(el);
+        let m = cs.backgroundColor.match(/rgba?\(([^)]+)\)/), v = m && m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);
+        if (!(v && (v[3] === undefined || v[3] > 0.5)) && cs.backgroundImage.indexOf('gradient') > -1) { m = cs.backgroundImage.match(/rgba?\(([^)]+)\)/); v = m && m[1].split(/[ ,\/]+/).filter(Boolean).map(Number); }
+        if (el.tagName === 'VIDEO' || el.tagName === 'IMG') { lum = 0.5; break; }
+        if (v && (v[3] === undefined || v[3] > 0.5)) { lum = (0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]) / 255; break; }
+      }
+      hd.style.setProperty('--nd', lum < 0.45 ? '1' : '0');
+    });
+  };
+  componentDidMount() {
+    window.addEventListener('scroll', this.navTone, { passive: true }); window.addEventListener('resize', this.navTone); this.navTone();
+    this.reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onResize();
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('keydown', this.onKey);
+    this.frame();
+    this.initClips();
+    this.initReveal();
+    this.ambient();
+    [300, 1200].forEach(t => setTimeout(() => this.checkClips(), t));
+    this.cio = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; this.cio.unobserve(en.target); if (!this.reduce) setTimeout(() => this.countUp(en.target), 250); }), { threshold: 0.6 });
+    document.querySelectorAll('[data-count]').forEach(el => this.cio.observe(el));
+  }
+  ambient() {
+    if (this.reduce || this.ambOn) return; this.ambOn = true;
+    const inf = { iterations: Infinity, easing: 'ease-in-out' };
+    document.querySelectorAll('[data-pulse]').forEach((el, i) => el.animate([{ boxShadow: '0 0 0 0 oklch(0.52 0.12 155 / 0.45)' }, { boxShadow: '0 0 0 7px oklch(0.52 0.12 155 / 0)' }], { duration: 1800, delay: i * 300, iterations: Infinity, easing: 'ease-out' }));
+    document.querySelectorAll('[data-ring]').forEach(el => el.animate([{ boxShadow: '0 10px 20px -12px rgba(17,18,20,0.6), 0 0 0 0 rgba(17,18,20,0.25)' }, { boxShadow: '0 10px 20px -12px rgba(17,18,20,0.6), 0 0 0 10px rgba(17,18,20,0)' }], { duration: 2200, iterations: Infinity, easing: 'ease-out' }));
+    document.querySelectorAll('[data-nudge]').forEach(el => el.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(4px)' }, { transform: 'translateX(-3px)' }], Object.assign({ duration: 1600 }, inf)));
+    document.querySelectorAll('[data-spin]').forEach(el => el.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], { duration: 6000, iterations: Infinity, easing: 'linear' }));
+    document.querySelectorAll('[data-float]').forEach((el, i) => el.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-3px)' }, { transform: 'translateY(0)' }], Object.assign({ duration: 3200, delay: i * 400 }, inf)));
+    document.querySelectorAll('[data-gate]').forEach(el => el.animate([{ boxShadow: '0 0 0 0 oklch(0.55 0.19 25 / 0.55)' }, { boxShadow: '0 0 0 5px oklch(0.55 0.19 25 / 0)' }], { duration: 1600, iterations: Infinity, easing: 'ease-out' }));
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('keydown', this.onKey);
+    document.documentElement.style.overflow = '';
+    [this.io, this.cio, this.mio].forEach(o => o && o.disconnect());
+    document.querySelectorAll('video[data-clip-src]').forEach(v => v.pause());
+    if (this.raf) cancelAnimationFrame(this.raf);
+  }
+  orb(style) {
+    return React.createElement('div', { style: Object.assign({ position: 'absolute', borderRadius: '50%', filter: 'blur(48px)', pointerEvents: 'none', animation: this.reduce ? 'none' : 'ambDrift 28s ease-in-out infinite', willChange: 'transform' }, style) });
+  }
+  goBack = (e) => { try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (err) {} };
+  renderVals() {
+    const h = React.createElement;
+    const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const gh = (this.props.githubUrl ?? '').trim() || 'https://github.com/dandmxstudio-droid/carevine-triage';
+    const box = (kids) => h('div', { 'aria-hidden': true, style: { position: 'absolute', inset: 0, zIndex: -2, overflow: 'hidden', pointerEvents: 'none' } }, kids);
+    return {
+      goBack: this.goBack,
+      navWide: !this.state.narrow, navMob: !(!this.state.narrow), navOpen: !!this.state.navOpen, navToggle: this.navToggle, navClose: this.navClose,
+      navO: this.state.navOpen ? 1 : 0, navY: this.state.navOpen ? 'translateY(0)' : 'translateY(-8px)', navPe: this.state.navOpen ? 'auto' : 'none',
+      navL1: this.state.navOpen ? 'rotate(45deg)' : 'translateY(-3.5px)', navL2: this.state.navOpen ? 'rotate(-45deg)' : 'translateY(3.5px)',
+      navW: this.state.navOpen ? '440px' : '300px', navR: this.state.navOpen ? '26px' : '28px', navRows: this.state.navOpen ? '1fr' : '0fr', navLabel: this.state.navOpen ? 'Close' : 'Menu', navLY: this.state.navOpen ? 'translateY(0)' : 'translateY(-10px)',
+      rootRef: this.rootRef,
+      wide: this.state.wide,
+      runsCols: this.state.narrow ? 'minmax(0, 1fr)' : 'minmax(0, 1fr) auto minmax(0, 1fr)',
+      runsArrowRot: this.state.narrow ? '90deg' : '0deg',
+      hoverOn: this.hoverOn,
+      hoverOff: this.hoverOff,
+      imgErr: this.imgErr,
+      logoLoad: this.logoLoad,
+      playClip: this.playClip,
+      navItems: this.secs.map(([id, label], i) => ({
+        href: '#' + id, label, num: '0' + (i + 1), onClick: this.goTo(id),
+        on: this.state.active === id ? 1 : 0,
+        current: this.state.active === id ? 'location' : undefined,
+        color: this.state.active === id ? '#111214' : '#4a4d53',
+        numColor: this.state.active === id ? 'oklch(0.42 0.09 155)' : '#6b6e74',
+      })),
+      ...(() => { const lb = this.state.lb, it = lb ? this.gallery[lb.g][lb.i] : null, n = lb ? this.gallery[lb.g].length : 0; return {
+        lbOpen: !!lb, lbSrc: it ? it.src : '', lbAlt: it ? it.alt : '', lbTitle: it ? it.title : '', lbFile: it ? (it.file || '') : '',
+        lbHasSrc: !!(it && it.src), lbNoSrc: !!(it && !it.src), lbCount: lb ? (lb.i + 1) + ' / ' + n : '',
+        openLb: this.openLb, lbClose: this.lbClose, lbPrev: this.lbPrev, lbNext: this.lbNext, lbBackdrop: this.lbBackdrop, lbCloseRef: this.lbCloseRef, lbImgRef: this.lbImgRef,
+      }; })(),
+      demoUrl: (this.props.demoUrl ?? '').trim() || 'https://carevine-triage.vercel.app',
+      githubUrl: gh,
+      githubHref: gh || 'https://github.com/',
+      hasGithub: !!gh,
+      prevUrl: (this.props.prevUrl ?? '').trim() || '/#work',
+      researchUrl: (this.props.researchUrl ?? '').trim() || '/carevine-research',
+      caseStudyUrl: (this.props.caseStudyUrl ?? '').trim() || 'assets/case-studies/Carevine-Triage-Tool-Case-Study.pdf',
+      kitUrl: (this.props.kitUrl ?? '').trim() || 'assets/case-studies/Carevine-Triage-Tool-Enablement-Kit.pdf',
+      darkAmbient: box([
+        h('div', { key: 'a' }, this.orb({ width: '56vw', height: '56vw', right: '-18vw', top: '-20vw', background: 'radial-gradient(closest-side, oklch(0.5 0.2 275 / 0.42), transparent)' })),
+        h('div', { key: 'b' }, this.orb({ width: '40vw', height: '40vw', left: '-14vw', bottom: '-18vw', background: 'radial-gradient(closest-side, oklch(0.5 0.14 245 / 0.32), transparent)', animationDuration: '36s', animationDirection: 'reverse' })),
+      ]),
+      footTicker: h('div', { style: { display: 'flex', width: 'max-content', flex: 'none', fontWeight: 600, fontSize: 'clamp(72px, 15.5vw, 280px)', lineHeight: 0.9, letterSpacing: '-0.055em', whiteSpace: 'nowrap', color: '#ffffff', animation: reduce ? 'none' : 'footTick 48s linear infinite', willChange: 'transform' } },
+        [0, 1, 2, 3, 4, 5].map(k => h('span', { key: k, style: { paddingRight: '0.32em' } }, 'Dan Mota.')))
+    };
+  }
+}
+</script>
+</body>
+</html>
