@@ -879,7 +879,7 @@ class Component extends DCLogic {
   tickRef2 = React.createRef();
   toolsA = [
     ['Figma', 'figma'], ['Claude', 'claude'], ['Codex', 'codex'], ['Cursor', 'cursor'], ['React', 'react'], ['Next.js', 'nextjs'],
-    ['Supabase', 'supabase'], ['OpenAI', 'openai'], ['n8n', 'n8n'], ['Make', 'make'], ['GitHub', 'github'], ['Vercel', 'vercel'],
+    ['Supabase', 'supabase'], ['OpenAI', 'openai'], ['TypeSafe AI', 'typesafe.png'], ['n8n', 'n8n'], ['Make', 'make'], ['GitHub', 'github'], ['Vercel', 'vercel'],
     ['Airtable', 'airtable'], ['Retool', 'retool'], ['Framer', 'framer']
   ];
   toolsB = ['TypeScript', 'Supabase', 'PostgreSQL', 'Make', 'n8n', 'Airtable', 'GitHub', 'Vercel', 'Stripe'];
@@ -1472,7 +1472,7 @@ class Component extends DCLogic {
       tickRef2: this.tickRef2,
       tickTrack: React.createElement('div', { ref: this.tickRef1, style: { display: 'flex', alignItems: 'center', width: 'max-content', willChange: 'transform' } },
         [...this.toolsA, ...this.toolsA].map(([name, slug], i) => React.createElement('span', { key: i, style: { display: 'flex', alignItems: 'center', gap: '10px', paddingRight: 'clamp(36px, 4vw, 56px)', height: '44px' } },
-          React.createElement('img', { src: 'assets/logos/' + slug + '.svg', alt: '', draggable: false, style: { display: 'block', height: '24px', width: 'auto', maxWidth: '44px', objectFit: 'contain' } }),
+          React.createElement('img', { src: 'assets/logos/' + (slug.includes('.') ? slug : slug + '.svg'), alt: '', draggable: false, style: { display: 'block', height: '24px', width: 'auto', maxWidth: '44px', objectFit: 'contain' } }),
           React.createElement('span', { style: { fontSize: '16px', fontWeight: 500, letterSpacing: '-0.02em', color: '#111214', whiteSpace: 'nowrap' } }, name)))),
       tickB: [...this.toolsB, ...this.toolsB],
       tickSlow: this.tickSlow,
