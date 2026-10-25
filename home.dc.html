@@ -52,47 +52,6 @@
   footer nav > a { min-height: 44px; display: inline-flex !important; align-items: center; font-size: 14.5px !important; }
 }
 </style>
-<style id="proc">
-[data-p="frame"]{padding:6px;border-radius:34px;background:#f8f8f9;border:1px solid #ececef;box-shadow:0 18px 40px -24px rgba(17,18,20,0.2),0 1px 2px rgba(17,18,20,0.04)}
-[data-p="card"]{border-radius:28px;background:#fff;box-shadow:0 1px 2px rgba(17,18,20,0.04);padding:clamp(32px,4.4vw,64px) clamp(20px,3.6vw,56px) clamp(24px,3.4vw,48px);display:flex;flex-direction:column;align-items:center;gap:clamp(28px,3vw,40px);background-image:radial-gradient(rgba(17,18,20,0.06) 1px,transparent 1px);background-size:22px 22px}
-[data-p="steps"]{position:relative;width:100%;margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 clamp(12px,2vw,32px)}
-[data-p="steps"]::before{content:"";position:absolute;top:37px;left:10%;right:10%;height:2px;border-radius:2px;background:oklch(0.86 0.05 280)}
-[data-p="step"]{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;min-width:0}
-[data-p="ico"]{position:relative;flex:none;display:grid;place-items:center;width:76px;height:76px;border-radius:999px;box-shadow:0 0 0 8px #fff}
-[data-p="num"]{position:absolute;top:-8px;right:-10px;display:grid;place-items:center;width:30px;height:30px;border-radius:999px;background:#fff;border:1px solid #e3e4e8;box-shadow:0 2px 6px -2px rgba(17,18,20,0.18);font-size:11.5px;font-weight:600;color:#111214;font-variant-numeric:tabular-nums}
-[data-p="txt"]{display:flex;flex-direction:column;gap:10px;align-items:center}
-[data-p="t"]{font-size:clamp(18px,1.45vw,21px);font-weight:600;letter-spacing:-0.02em;line-height:1.2;color:#111214;text-wrap:balance}
-[data-p="d"]{max-width:26ch;font-size:15px;line-height:1.55;color:#5c5f63;text-wrap:pretty}
-[data-p="then"]{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#4a4d53}
-[data-p="then"] svg{color:oklch(0.55 0.17 280)}
-[data-p="loop"]{width:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:clamp(24px,2.6vw,36px);padding:clamp(28px,3.6vw,48px) clamp(18px,3vw,48px);border-radius:28px;border:1.5px dashed oklch(0.8 0.07 280);background:oklch(0.985 0.008 285 / 0.92)}
-[data-p="pill"]{display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 20px 0 16px;border-radius:999px;background:#fff;border:1px solid oklch(0.85 0.06 280);color:oklch(0.48 0.17 280);font-size:12.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;box-shadow:0 2px 8px -4px rgba(60,50,160,0.25)}
-[data-p="nodes"]{display:grid;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr);align-items:center;gap:clamp(12px,2.4vw,40px);width:100%;max-width:720px}
-[data-p="node"]{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
-[data-p="nico"]{position:relative;display:grid;place-items:center;width:88px;height:88px;border-radius:26px;margin-bottom:10px;box-shadow:0 10px 24px -14px rgba(17,18,20,0.3)}
-[data-p="nbadge"]{position:absolute;top:-9px;right:-11px;display:grid;place-items:center;width:30px;height:30px;border-radius:999px;background:#fff;border:1px solid #e3e4e8;color:oklch(0.5 0.17 280);box-shadow:0 2px 6px -2px rgba(17,18,20,0.18)}
-[data-p="arrows"]{display:block;width:120px;height:80px}
-[data-p="note"]{margin:0;max-width:64ch;text-align:center;font-size:15px;line-height:1.6;color:#4a4d53;text-wrap:balance}
-@keyframes procDash{to{stroke-dashoffset:-22}}
-@media (prefers-reduced-motion: no-preference){[data-p="dash"]{animation:procDash 1.6s linear infinite}}
-@media (max-width: 860px){
-  [data-p="steps"]{grid-template-columns:minmax(0,1fr);gap:28px}
-  [data-p="steps"]::before{display:none}
-  [data-p="step"]:not(:last-child)::after{content:"";position:absolute;left:29px;top:66px;bottom:-22px;width:2px;border-radius:2px;background:oklch(0.86 0.05 280)}
-  [data-p="step"]{flex-direction:row;align-items:flex-start;text-align:left;gap:20px}
-  [data-p="ico"]{width:60px;height:60px;box-shadow:0 0 0 6px #fff}
-  [data-p="ico"] svg{width:22px!important;height:22px!important}
-  [data-p="num"]{width:26px;height:26px;font-size:10.5px;top:-6px;right:-8px}
-  [data-p="txt"]{align-items:flex-start;gap:6px;padding-top:4px}
-  [data-p="d"]{max-width:none}
-}
-@media (max-width: 560px){
-  [data-p="nodes"]{grid-template-columns:minmax(0,1fr);gap:8px}
-  [data-p="arrows"]{margin:6px auto;transform:rotate(90deg);width:84px;height:56px}
-  [data-p="pill"]{font-size:11px;letter-spacing:0.09em;padding:0 16px 0 13px;gap:8px;white-space:nowrap}
-  [data-p="note"]{font-size:14px;text-align:center}
-}
-</style>
 </head>
 <body>
 <x-dc>
@@ -252,55 +211,47 @@ a:hover{color:#fff}
         <span style="display:inline-flex; align-items:center; align-self:flex-start; height:26px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;">From Idea to Ship</span>
         <h2 style="margin:0; font-weight:500; font-size:clamp(36px, 4.2vw, 64px); line-height:0.95; letter-spacing:-0.04em;">How I Build</h2>
       </div>
-      <p style="margin:0; width:min(100%, 36ch); font-size:clamp(16px, 1.3vw, 19px); line-height:1.5; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">A practical process from understanding the work to a team that uses it, then measured and improved over time.</p>
+      <p style="margin:0; width:min(100%, 36ch); font-size:clamp(16px, 1.3vw, 19px); line-height:1.5; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">A practical process from discovery to adoption, then measured and improved continuously.</p>
     </div>
-<div data-p="frame">
-      <div data-p="card">
-        <ol data-p="steps" aria-label="My process">
-          <li data-p="step">
-            <span data-p="ico" style="background:oklch(0.94 0.032 285); color:oklch(0.48 0.16 280);"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:26px; height:26px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><circle cx="11" cy="11" r="7.5"></circle><path d="m20.5 20.5-4.2-4.2"></path></svg><span data-p="num">01</span></span>
-            <span data-p="txt"><span data-p="t">Discover</span><span data-p="d">Understand the work, systems, people, friction, and desired outcomes.</span></span>
-          </li>
-          <li data-p="step">
-            <span data-p="ico" style="background:oklch(0.93 0.042 35); color:oklch(0.45 0.12 30);"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:26px; height:26px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"></path><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"></path><path d="m2.3 2.3 7.286 7.286"></path><circle cx="11" cy="11" r="2"></circle></svg><span data-p="num">02</span></span>
-            <span data-p="txt"><span data-p="t">Design</span><span data-p="d">Create the improved future&#8209;state workflow.</span></span>
-          </li>
-          <li data-p="step">
-            <span data-p="ico" style="background:oklch(0.94 0.03 255); color:oklch(0.47 0.14 260);"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:26px; height:26px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"></path><path d="M6.453 15h11.094"></path><path d="M8.5 2h7"></path></svg><span data-p="num">03</span></span>
-            <span data-p="txt"><span data-p="t">Prototype &amp; Validate</span><span data-p="d">Test the proposed solution before committing to the full implementation.</span></span>
-          </li>
-          <li data-p="step">
-            <span data-p="ico" style="background:oklch(0.93 0.05 165); color:oklch(0.4 0.08 165);"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:26px; height:26px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="m15 12-8.373 8.373a1 1 0 1 1-3-3L12 9"></path><path d="m18 15 4-4"></path><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172V7l-2.26-2.26a6 6 0 0 0-4.202-1.756L9 2.96l.92.82A6.18 6.18 0 0 1 12 8.4V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"></path></svg><span data-p="num">04</span></span>
-            <span data-p="txt"><span data-p="t">Build</span><span data-p="d">Implement the workflow, system, automation, or integration.</span></span>
-          </li>
-          <li data-p="step">
-            <span data-p="ico" style="background:oklch(0.94 0.085 98); color:oklch(0.42 0.08 85);"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:26px; height:26px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg><span data-p="num">05</span></span>
-            <span data-p="txt"><span data-p="t">Enable</span><span data-p="d">Prepare the team with documentation, training, and adoption support.</span></span>
-          </li>
-        </ol>
-        <div data-p="then"><span>Then, continuously</span><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="m6 9 6 6 6-6"></path></svg></div>
-        <div data-p="loop">
-          <span data-p="pill"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>Ongoing improvement loop</span>
-          <div data-p="nodes">
-            <div data-p="node">
-              <span data-p="nico" style="background:oklch(0.94 0.032 285); color:oklch(0.48 0.16 280);"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:28px; height:28px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg><span data-p="nbadge"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg></span></span>
-              <span data-p="t">Measure</span>
-              <span data-p="d">Establish a baseline and evaluate the results.</span>
-            </div>
-            <svg data-p="arrows" viewBox="0 0 120 80" aria-hidden="true" style="fill:none;">
-              <path data-p="dash" d="M18 30 C 36 8, 84 8, 100 28" style="stroke:oklch(0.6 0.16 280); stroke-width:2.2; stroke-linecap:round; stroke-dasharray:5 6;"></path>
-              <path d="M94 18 L104 33 L88 32 Z" style="fill:oklch(0.6 0.16 280);"></path>
-              <path data-p="dash" d="M102 52 C 84 74, 36 74, 20 54" style="stroke:oklch(0.6 0.16 280); stroke-width:2.2; stroke-linecap:round; stroke-dasharray:5 6;"></path>
-              <path d="M26 64 L16 49 L32 50 Z" style="fill:oklch(0.6 0.16 280);"></path>
-            </svg>
-            <div data-p="node">
-              <span data-p="nico" style="background:oklch(0.93 0.05 165); color:oklch(0.38 0.08 165);"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:28px; height:28px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><span data-p="nbadge"><svg viewBox="0 0 24 24" aria-hidden="true" style="display:block; width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg></span></span>
-              <span data-p="t">Improve</span>
-              <span data-p="d">Refine the workflow based on performance and feedback.</span>
-            </div>
-          </div>
-          <p data-p="note">Every implementation includes a measurement plan and recommendations for continued improvement. Ongoing optimization is available when needed.</p>
-        </div>
+    <div onMouseEnter="{{ hibPause }}" onMouseLeave="{{ hibResume }}" style="display:flex; flex-wrap:wrap; align-items:center; gap:clamp(40px, 5vw, 88px);">
+      <div onMouseMove="{{ hibMove }}" onMouseLeave="{{ hibLeave }}" style="flex:1.4 1 520px; min-width:0; position:relative; height:clamp(440px, 50vw, 720px); border-radius:34px; overflow:hidden; background:radial-gradient(ellipse 80% 70% at 50% 45%, transparent 55%, rgba(0,0,0,0.42) 100%), radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1.3px) 0 0 / 18px 18px, #121317; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.07), inset 0 1px 0 rgba(255,255,255,0.09), 0 30px 60px -40px rgba(17,18,20,0.5);">{{ hibStage }}</div>
+      <div style="flex:1 1 380px; min-width:0; display:flex; flex-direction:column;">
+        <button onMouseEnter="{{ hoverStep }}" data-step="0" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
+          <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
+          <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">01</span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Discover</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Understand the work, systems, people, friction and desired outcomes.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Workflows · Systems · People · Friction · Outcomes</span></span>
+        </button>
+        <button onMouseEnter="{{ hoverStep }}" data-step="1" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
+          <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
+          <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">02</span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Design</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Create the improved future&#8209;state workflow, from the flows to the interface.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Future-state workflow · Requirements · Flows · UX/UI</span></span>
+        </button>
+        <button onMouseEnter="{{ hoverStep }}" data-step="2" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
+          <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
+          <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">03</span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Prototype &amp; Validate</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Test the proposed solution with real people before committing to the full implementation.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Rapid prototypes · User testing · Edge cases · AI quality</span></span>
+        </button>
+        <button onMouseEnter="{{ hoverStep }}" data-step="3" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
+          <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
+          <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">04</span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Build</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Implement the workflow, system, automation or integration.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Frontend · Backend · AI · Automation · Integrations</span></span>
+        </button>
+        <button onMouseEnter="{{ hoverStep }}" data-step="4" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
+          <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
+          <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">05</span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Enable</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Prepare the team with documentation, training and adoption support.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Documentation · Training · Adoption support</span></span>
+        </button>
+        <button onMouseEnter="{{ hoverStep }}" data-step="5" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); border-bottom:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
+          <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
+          <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">06</span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Measure &amp; Improve</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Establish a baseline, measure the results and keep refining from performance and feedback.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Baseline · Metrics · Feedback · Continuous improvement</span></span>
+        </button>
       </div>
     </div>
   </div>
@@ -1321,12 +1272,12 @@ class Component extends DCLogic {
   };
   hibPause = () => { this.hibPaused = true; if (this.hibAnim) this.hibAnim.pause(); };
   hibCaps = [
-    ['Understand', 'Research · Users · Problems · Business context · Workflows'],
-    ['Define', 'Product strategy · Requirements · Priorities · MVP scope'],
-    ['Design & Prototype', 'Flows · UX/UI · Interaction · Rapid prototypes'],
-    ['Build', 'Design → Code · Frontend · Backend · AI · Automation'],
-    ['Test & Validate', 'Usability · Edge cases · AI quality · User feedback'],
-    ['Launch, Enable & Iterate', 'Deploy · Adoption · Measure · Learn · Improve']
+    ['Discover', 'Workflows · Systems · People · Friction · Outcomes'],
+    ['Design', 'Future-state workflow · Requirements · Flows · UX/UI'],
+    ['Prototype & Validate', 'Rapid prototypes · User testing · Edge cases · AI quality'],
+    ['Build', 'Frontend · Backend · AI · Automation · Integrations'],
+    ['Enable', 'Documentation · Training · Adoption support'],
+    ['Measure & Improve', 'Baseline · Metrics · Feedback · Continuous improvement']
   ];
   hoverStep = (e) => { if (this.hibScroll) return; const i = Number(e.currentTarget.getAttribute('data-step')); if (i !== this.state.hib) this.setState({ hib: i }); };
   hibMove = (e) => {
@@ -1350,7 +1301,7 @@ class Component extends DCLogic {
     const note = (k, x, y, rot, c) => r(k, x, y, 20, 24, { background: c || 'oklch(0.9 0.08 92)', borderRadius: '3px', transform: 'rotate(' + rot + 'deg)', boxShadow: '0 2px 4px rgba(0,0,0,0.25)' });
     const line = (k, x, y, w, c, hh) => r(k, x, y, w, hh || 4, { background: c, borderRadius: '99px' });
     const L = [
-      { st: { background: 'rgba(150,153,162,0.26)', border: '1.5px dashed rgba(255,255,255,0.45)' }, kids: [tag('01 Understand', '#ffffff', 'rgba(255,255,255,0.14)'),
+      { st: { background: 'rgba(150,153,162,0.26)', border: '1.5px dashed rgba(255,255,255,0.45)' }, kids: [tag('01 Discover', '#ffffff', 'rgba(255,255,255,0.14)'),
         r('u1', 6, 34, 7, 10.2, { background: 'oklch(0.75 0.08 255)', borderRadius: '999px', boxShadow: '0 0 0 2px rgba(255,255,255,0.5)' }), r('u2', 6, 50, 7, 10.2, { background: 'oklch(0.78 0.09 30)', borderRadius: '999px', boxShadow: '0 0 0 2px rgba(255,255,255,0.5)' }),
         r('e1', 13, 44.5, 6, 0, { borderTop: '2px solid rgba(255,255,255,0.55)', borderRadius: 0 }),
         r('n1', 19, 36, 20, 17, { background: 'rgba(255,255,255,0.92)', borderRadius: '6px' }), line('n1a', 22, 42.5, 13, '#9ea3b0', 3.5),
@@ -1363,7 +1314,7 @@ class Component extends DCLogic {
         r('e5', 77.5, 52, 0, 17, { borderLeft: '2px dashed rgba(255,255,255,0.45)', borderRadius: 0 }),
         r('n4', 64, 69, 27, 16, { border: '1.5px dashed rgba(255,255,255,0.6)', borderRadius: '6px' }), line('n4a', 67.5, 75.5, 16, 'rgba(255,255,255,0.5)', 3.5),
         r('lane', 6, 69, 52, 16, { background: 'rgba(255,255,255,0.1)', borderRadius: '6px' }), line('ln1', 9, 75.5, 20, 'rgba(255,255,255,0.45)', 3.5), line('ln2', 33, 75.5, 12, 'rgba(255,255,255,0.3)', 3.5)] },
-      { st: { background: 'linear-gradient(rgba(200,185,255,0.1) 1px, transparent 1px) 0 0 / 100% 12.5%, linear-gradient(90deg, rgba(200,185,255,0.1) 1px, transparent 1px) 0 0 / 8.33% 100%, oklch(0.36 0.09 285)' }, kids: [tag('02 Define', '#ffffff', 'oklch(0.55 0.12 285 / 0.6)'),
+      { st: { background: 'linear-gradient(rgba(200,185,255,0.1) 1px, transparent 1px) 0 0 / 100% 12.5%, linear-gradient(90deg, rgba(200,185,255,0.1) 1px, transparent 1px) 0 0 / 8.33% 100%, oklch(0.36 0.09 285)' }, kids: [tag('02 Design', '#ffffff', 'oklch(0.55 0.12 285 / 0.6)'),
         chip('ns', { right: '6%', top: '7%' }, 'North Star', { color: '#2a2350', background: '#ffffff', boxShadow: '0 4px 10px -4px rgba(0,0,0,0.5)' }, [dot(AMB)]),
         r('mx', 6, 26, 40, 64, { background: 'rgba(255,255,255,0.05)', border: '1px solid oklch(0.8 0.07 285 / 0.55)', borderRadius: '6px' }),
         r('mq', 6.5, 26.7, 19.5, 31.3, { background: 'oklch(0.7 0.13 285 / 0.32)', borderRadius: '5px 0 0 0' }),
@@ -1375,7 +1326,7 @@ class Component extends DCLogic {
         r('rb2', 63, 50, 22, 11, { background: 'oklch(0.72 0.12 285 / 0.75)', borderRadius: '5px' }), line('rb2L', 66, 54.4, 12, 'rgba(255,255,255,0.7)', 3),
         r('rb3', 63, 70, 15, 11, { border: '1.5px dashed oklch(0.8 0.07 285 / 0.7)', borderRadius: '5px' }),
         r('rax', 61, 26, 0, 60, { borderLeft: '1px solid oklch(0.8 0.07 285 / 0.4)', borderRadius: 0 })] },
-      { st: { background: 'radial-gradient(rgba(60,64,80,0.16) 1px, transparent 1.2px) 0 0 / 4% 5.8%, #eceef3', border: '1px solid #d6d9e1' }, kids: [tag('03 Design', '#3a3d46', '#dde0e8'),
+      { st: { background: 'radial-gradient(rgba(60,64,80,0.16) 1px, transparent 1.2px) 0 0 / 4% 5.8%, #eceef3', border: '1px solid #d6d9e1' }, kids: [tag('03 Prototype', '#3a3d46', '#dde0e8'),
         r('ab', 22, 27, 46, 65, { background: '#ffffff', borderRadius: '6px', boxShadow: '0 4px 12px -4px rgba(20,22,30,0.25)' }),
         r('img', 25, 31, 40, 22, { background: 'linear-gradient(135deg, oklch(0.78 0.1 275), oklch(0.82 0.09 315))', borderRadius: '4px' }),
         line('h1', 25, 59, 30, '#2a2c31', 5), line('h2', 25, 67, 36, '#d3d6de', 3.5), line('h3', 25, 72.5, 26, '#d3d6de', 3.5),
@@ -1391,8 +1342,8 @@ class Component extends DCLogic {
         ...[[0, 18, 'oklch(0.72 0.14 300)'], [1, 30, 'oklch(0.75 0.11 230)'], [2, 24, 'oklch(0.78 0.13 150)'], [2, 16, 'rgba(255,255,255,0.3)'], [1, 34, 'oklch(0.8 0.12 70)'], [0, 12, 'oklch(0.72 0.14 300)']].map(([ind, w, c], j) => line('k' + j, 8 + ind * 6, 30 + j * 10.5, w, c, 4.5)),
         ...[0, 1, 2, 3, 4, 5].map(j => line('ln' + j, 3, 30 + j * 10.5, 2, 'rgba(255,255,255,0.18)', 4.5)),
         r('term', 60, 30, 32, 58, { background: '#11151f', borderRadius: '6px', border: '1px solid #312b47' }), line('t1', 64, 42, 20, 'oklch(0.78 0.13 150)'), line('t2', 64, 54, 14, 'rgba(255,255,255,0.3)'), line('t3', 64, 66, 22, 'rgba(255,255,255,0.3)')] },
-      { st: { background: '#f5faf7' }, kids: [tag('05 Test', '#1d6b45', '#dcefe3'),
-        chip('pass', { right: '6%', top: '7%' }, '24 Passed', { color: '#ffffff', background: '#1d6b45' }, [dot('oklch(0.85 0.12 152)')]),
+      { st: { background: '#f5faf7' }, kids: [tag('05 Enable', '#1d6b45', '#dcefe3'),
+        chip('pass', { right: '6%', top: '7%' }, '24 Trained', { color: '#ffffff', background: '#1d6b45' }, [dot('oklch(0.85 0.12 152)')]),
         r('panel', 6, 25, 52, 58, { background: '#ffffff', borderRadius: '7px', boxShadow: '0 1px 0 #e1ece5, 0 6px 14px -8px rgba(20,60,40,0.25)' }),
         ...[0, 1, 2, 3].map(j => { const warn = j === 2; return h('span', { key: 'ic' + j, style: { position: 'absolute', left: '9%', top: (28.4 + j * 13) + '%', width: '1.7em', height: '1.7em', fontSize: '0.03em', borderRadius: '999px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: warn ? AMB : G } },
           h('svg', { key: 'g', viewBox: '0 0 16 16', style: { width: '68%', height: '68%', display: 'block' } }, warn
@@ -1403,9 +1354,9 @@ class Component extends DCLogic {
         r('ring', 66, 25, 26, 37.7, { background: 'conic-gradient(' + G + ' 0 92%, #dcefe3 0)', borderRadius: '999px' }),
         r('ringIn', 69.5, 30.1, 19, 27.5, { background: '#f5faf7', borderRadius: '999px' }),
         tx('pct', 72.6, 39.4, '92%', { color: '#1d6b45', fontSize: '0.06em', fontWeight: 600, letterSpacing: '-0.02em' }),
-        tx('pctL', 70, 67, 'AI quality', { color: '#5c7a68', fontSize: '0.03em', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontWeight: 500 }),
-        h('span', { key: 'fbk', style: { position: 'absolute', left: '6%', top: '87%', display: 'flex', alignItems: 'center', gap: '0.6em', fontSize: '0.032em', lineHeight: 1, whiteSpace: 'nowrap' } }, h('span', { key: 's', style: { color: AMB, letterSpacing: '0.05em', fontSize: '1.15em' } }, '★★★★★'), h('span', { key: 't', style: { color: '#5c7a68', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' } }, '4.8 user feedback'))] },
-      { st: { background: 'radial-gradient(60% 50% at 90% 60%, oklch(0.62 0.17 275 / 0.10), transparent 70%), #ffffff' }, kids: [tag('06 Launch', '#1d6b45', '#e6f5ec'),
+        tx('pctL', 70, 67, 'Adoption', { color: '#5c7a68', fontSize: '0.03em', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontWeight: 500 }),
+        h('span', { key: 'fbk', style: { position: 'absolute', left: '6%', top: '87%', display: 'flex', alignItems: 'center', gap: '0.6em', fontSize: '0.032em', lineHeight: 1, whiteSpace: 'nowrap' } }, h('span', { key: 's', style: { color: AMB, letterSpacing: '0.05em', fontSize: '1.15em' } }, '★★★★★'), h('span', { key: 't', style: { color: '#5c7a68', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' } }, '4.8 training rating'))] },
+      { st: { background: 'radial-gradient(60% 50% at 90% 60%, oklch(0.62 0.17 275 / 0.10), transparent 70%), #ffffff' }, kids: [tag('06 Measure', '#1d6b45', '#e6f5ec'),
         chip('live', { right: '6%', top: '7%' }, 'v2.4 Live', { color: '#ffffff', background: '#16171c' }, [dot(G, 'oklch(0.7 0.15 152 / 0.35)')]),
         r('kpi', 6, 23, 30, 27, { background: 'linear-gradient(135deg, oklch(0.94 0.05 152), oklch(0.97 0.025 175))', borderRadius: '7px', border: '1px solid oklch(0.87 0.06 152)' }),
         tx('kpiT', 9, 28, '↑ 38%', { color: '#1d6b45', fontSize: '0.068em', letterSpacing: '-0.02em' }), tx('kpiL', 9, 41, 'Activation', { color: '#3f7a5a', fontSize: '0.03em', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontWeight: 500 }),
