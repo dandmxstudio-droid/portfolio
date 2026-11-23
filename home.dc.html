@@ -211,7 +211,7 @@ a:hover{color:#fff}
         <span style="display:inline-flex; align-items:center; align-self:flex-start; height:26px; padding:0 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; background:#ffffff; border:1px solid rgba(17,18,20,0.08); box-shadow:0 1px 2px rgba(17,18,20,0.04); color:#4a4d53;">From Idea to Ship</span>
         <h2 style="margin:0; font-weight:500; font-size:clamp(36px, 4.2vw, 64px); line-height:0.95; letter-spacing:-0.04em;">How I Build</h2>
       </div>
-      <p style="margin:0; width:min(100%, 36ch); font-size:clamp(16px, 1.3vw, 19px); line-height:1.5; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">From discovery to deployment, I combine product thinking, design, and AI to turn complex challenges into practical solutions.</p>
+      <p style="margin:0; width:min(100%, 36ch); font-size:clamp(16px, 1.3vw, 19px); line-height:1.5; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">From understanding business challenges to deploying AI solutions, enabling teams, and measuring real-world impact.</p>
     </div>
     <div onMouseEnter="{{ hibPause }}" onMouseLeave="{{ hibResume }}" style="display:flex; flex-wrap:wrap; align-items:center; gap:clamp(40px, 5vw, 88px);">
       <div onMouseMove="{{ hibMove }}" onMouseLeave="{{ hibLeave }}" style="flex:1.4 1 520px; min-width:0; position:relative; height:clamp(440px, 50vw, 720px); border-radius:34px; overflow:hidden; background:radial-gradient(ellipse 80% 70% at 50% 45%, transparent 55%, rgba(0,0,0,0.42) 100%), radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1.3px) 0 0 / 18px 18px, #121317; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.07), inset 0 1px 0 rgba(255,255,255,0.09), 0 30px 60px -40px rgba(17,18,20,0.5);">{{ hibStage }}</div>
@@ -219,38 +219,44 @@ a:hover{color:#fff}
         <button onMouseEnter="{{ hoverStep }}" data-step="0" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
           <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
           <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">01</span>
-          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Discover</span>
-          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Understand the work, systems, people and friction, and measure how things perform today.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Workflows · Stakeholders · Friction · Baseline metrics</span></span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Discover &amp; Baseline</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 220px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Understand business objectives, stakeholders, current workflows, systems, constraints, and existing performance.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Output: Current-state map · Baseline KPIs · Stakeholder needs · Business objectives</span></span>
         </button>
         <button onMouseEnter="{{ hoverStep }}" data-step="1" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
           <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
           <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">02</span>
-          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Design</span>
-          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Define the improved future&#8209;state workflow and what success looks like.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Future-state workflow · Success criteria · Flows · UX/UI</span></span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Identify &amp; Prioritize</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 220px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Find opportunities for AI, assess feasibility, value, and risk, then select the best use case.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Output: Ranked AI opportunities · Business case · Prioritized use case</span></span>
         </button>
         <button onMouseEnter="{{ hoverStep }}" data-step="2" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
           <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
           <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">03</span>
-          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Prototype &amp; Validate</span>
-          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Build a working prototype and test it on real past cases and with the people who’ll use it, before the full build.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Working prototype · Back-testing · User sessions · Shadow mode</span></span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Design</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 220px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Define the future&#8209;state workflow, AI capabilities, data, integrations, human oversight, and success criteria.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Output: Solution blueprint · Technical requirements · Success metrics</span></span>
         </button>
         <button onMouseEnter="{{ hoverStep }}" data-step="3" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
           <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
           <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">04</span>
-          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Build</span>
-          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Implement the workflow, system, automation or integration, with security and data reviewed.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Integrations · Automation · AI · Security review</span></span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Prototype &amp; Validate</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 220px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Build a working proof of concept, test it against representative scenarios, and determine whether it meets business and technical requirements.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Output: Validated prototype · Evaluation results · Pilot decision</span></span>
         </button>
         <button onMouseEnter="{{ hoverStep }}" data-step="4" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
           <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
           <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">05</span>
-          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Enable</span>
-          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Roll out in stages, and prepare the team with documentation, training and adoption support.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Pilot rollout · Training · Documentation · Adoption</span></span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Deploy &amp; Enable</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 220px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Implement the solution, integrate it into business operations, train employees, and support change management.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Output: Deployed solution · User training · Rollout plan · Operational ownership</span></span>
         </button>
-        <button onMouseEnter="{{ hoverStep }}" data-step="5" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); border-bottom:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
+        <button onMouseEnter="{{ hoverStep }}" data-step="5" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
           <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
           <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">06</span>
-          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Measure &amp; Improve</span>
-          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 190px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Compare results against the baseline and keep refining from performance and feedback.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Baseline vs. results · Feedback · Iteration</span></span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Measure &amp; Optimize</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 220px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Compare results with the original baseline. Measure accuracy, adoption, cost, time savings, and ROI. Improve the workflow.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Output: KPI dashboard · Measured ROI · Evaluation reports · Improvements</span></span>
+        </button>
+        <button onMouseEnter="{{ hoverStep }}" data-step="6" onClick="{{ pickStep }}" style="appearance:none; position:relative; border:0; border-top:1px solid rgba(17,18,20,0.12); border-bottom:1px solid rgba(17,18,20,0.12); margin:0; background:transparent; align-items:start; text-align:left; font-family:inherit; color:var(--sw-ink, #111214); cursor:pointer; display:grid; grid-template-columns:44px minmax(0, 1fr); column-gap:16px; padding:clamp(16px, 1.6vw, 22px) 0;">
+          <span aria-hidden="true" style="position:absolute; left:0; right:0; top:-1px; height:1px; overflow:hidden;"><span data-hibbar="1" style="position:absolute; inset:0; background:#111214; transform-origin:left; transform:scaleX(0);"></span></span>
+          <span style="font-size:12px; font-variant-numeric:tabular-nums; padding-top:0.7em; color:var(--sw-muted, #5c5f63);">07</span>
+          <span style="font-weight:500; font-size:clamp(24px, 2.2vw, 34px); line-height:1.1; letter-spacing:-0.035em; opacity:calc(0.32 + var(--on, 0) * 0.68); transition:opacity 500ms ease;">Scale &amp; Expand</span>
+          <span style="grid-column:2; display:block; overflow:hidden; max-height:calc(var(--on, 0) * 220px); opacity:var(--on, 0); transition:max-height 600ms cubic-bezier(.2,.7,.2,1), opacity 500ms ease;"><span style="display:block; padding-top:14px; max-width:42ch; font-size:15px; line-height:1.6; color:var(--sw-muted, #5c5f63); text-wrap:pretty;">Identify additional opportunities, help customers replicate successful solutions, and share product feedback.</span><span style="display:block; padding-top:12px; font-size:12px; line-height:1.5; color:#8a8a90;">Output: Expansion roadmap · Reusable playbooks · Customer insights</span></span>
         </button>
       </div>
     </div>
@@ -1221,8 +1227,8 @@ class Component extends DCLogic {
       if (P) {
         const ir = P.inner.getBoundingClientRect(), prog = cl((P.top - (ir.top + P.grid.offsetTop)) / P.T, 0, 1);
         this.hibProg = prog;
-        P.rows.forEach((row, i) => row.style.setProperty('--done', String(cl(prog * 6 - i, 0, 1))));
-        const step = cl(Math.floor(prog * 6), 0, 5);
+        P.rows.forEach((row, i) => row.style.setProperty('--done', String(cl(prog * 7 - i, 0, 1))));
+        const step = cl(Math.floor(prog * 7), 0, 6);
         if (step !== this.lastHibStep) { this.lastHibStep = step; if (step !== this.state.hib || !this.state.hibEx) this.setState({ hib: step, hibEx: true }); }
       }
       if (this.mRM) return;
@@ -1263,7 +1269,7 @@ class Component extends DCLogic {
     if (tl && tl.scrollWidth > tl.clientWidth + 2) tl.scrollTo({ left: Math.max(0, tab.offsetLeft - 24), behavior: 'smooth' });
     if (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     this.hibAnim = bar.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 4200, easing: 'linear', fill: 'forwards' });
-    this.hibAnim.onfinish = () => this.setState(st => ({ hib: (st.hib + 1) % 6 }));
+    this.hibAnim.onfinish = () => this.setState(st => ({ hib: (st.hib + 1) % 7 }));
     if (!this.hibInView || this.hibPaused) this.hibAnim.pause();
   }
   pickStep = (e) => {
@@ -1272,12 +1278,13 @@ class Component extends DCLogic {
   };
   hibPause = () => { this.hibPaused = true; if (this.hibAnim) this.hibAnim.pause(); };
   hibCaps = [
-    ['Discover', 'Workflows · Stakeholders · Friction · Baseline metrics'],
-    ['Design', 'Future-state workflow · Success criteria · Flows · UX/UI'],
-    ['Prototype & Validate', 'Working prototype · Back-testing · User sessions · Shadow mode'],
-    ['Build', 'Integrations · Automation · AI · Security review'],
-    ['Enable', 'Pilot rollout · Training · Documentation · Adoption'],
-    ['Measure & Improve', 'Baseline vs. results · Feedback · Iteration']
+    ['Discover & Baseline', 'Output: Current-state map · Baseline KPIs · Stakeholder needs · Business objectives'],
+    ['Identify & Prioritize', 'Output: Ranked AI opportunities · Business case · Prioritized use case'],
+    ['Design', 'Output: Solution blueprint · Technical requirements · Success metrics'],
+    ['Prototype & Validate', 'Output: Validated prototype · Evaluation results · Pilot decision'],
+    ['Deploy & Enable', 'Output: Deployed solution · User training · Rollout plan · Operational ownership'],
+    ['Measure & Optimize', 'Output: KPI dashboard · Measured ROI · Evaluation reports · Improvements'],
+    ['Scale & Expand', 'Output: Expansion roadmap · Reusable playbooks · Customer insights']
   ];
   hoverStep = (e) => { if (this.hibScroll) return; const i = Number(e.currentTarget.getAttribute('data-step')); if (i !== this.state.hib) this.setState({ hib: i }); };
   hibMove = (e) => {
@@ -1314,7 +1321,7 @@ class Component extends DCLogic {
         r('e5', 77.5, 52, 0, 17, { borderLeft: '2px dashed rgba(255,255,255,0.45)', borderRadius: 0 }),
         r('n4', 64, 69, 27, 16, { border: '1.5px dashed rgba(255,255,255,0.6)', borderRadius: '6px' }), line('n4a', 67.5, 75.5, 16, 'rgba(255,255,255,0.5)', 3.5),
         r('lane', 6, 69, 52, 16, { background: 'rgba(255,255,255,0.1)', borderRadius: '6px' }), line('ln1', 9, 75.5, 20, 'rgba(255,255,255,0.45)', 3.5), line('ln2', 33, 75.5, 12, 'rgba(255,255,255,0.3)', 3.5)] },
-      { st: { background: 'linear-gradient(rgba(200,185,255,0.1) 1px, transparent 1px) 0 0 / 100% 12.5%, linear-gradient(90deg, rgba(200,185,255,0.1) 1px, transparent 1px) 0 0 / 8.33% 100%, oklch(0.36 0.09 285)' }, kids: [tag('02 Design', '#ffffff', 'oklch(0.55 0.12 285 / 0.6)'),
+      { st: { background: 'linear-gradient(rgba(200,185,255,0.1) 1px, transparent 1px) 0 0 / 100% 12.5%, linear-gradient(90deg, rgba(200,185,255,0.1) 1px, transparent 1px) 0 0 / 8.33% 100%, oklch(0.36 0.09 285)' }, kids: [tag('02 Prioritize', '#ffffff', 'oklch(0.55 0.12 285 / 0.6)'),
         chip('ns', { right: '6%', top: '7%' }, 'North Star', { color: '#2a2350', background: '#ffffff', boxShadow: '0 4px 10px -4px rgba(0,0,0,0.5)' }, [dot(AMB)]),
         r('mx', 6, 26, 40, 64, { background: 'rgba(255,255,255,0.05)', border: '1px solid oklch(0.8 0.07 285 / 0.55)', borderRadius: '6px' }),
         r('mq', 6.5, 26.7, 19.5, 31.3, { background: 'oklch(0.7 0.13 285 / 0.32)', borderRadius: '5px 0 0 0' }),
@@ -1326,7 +1333,7 @@ class Component extends DCLogic {
         r('rb2', 63, 50, 22, 11, { background: 'oklch(0.72 0.12 285 / 0.75)', borderRadius: '5px' }), line('rb2L', 66, 54.4, 12, 'rgba(255,255,255,0.7)', 3),
         r('rb3', 63, 70, 15, 11, { border: '1.5px dashed oklch(0.8 0.07 285 / 0.7)', borderRadius: '5px' }),
         r('rax', 61, 26, 0, 60, { borderLeft: '1px solid oklch(0.8 0.07 285 / 0.4)', borderRadius: 0 })] },
-      { st: { background: 'radial-gradient(rgba(60,64,80,0.16) 1px, transparent 1.2px) 0 0 / 4% 5.8%, #eceef3', border: '1px solid #d6d9e1' }, kids: [tag('03 Prototype', '#3a3d46', '#dde0e8'),
+      { st: { background: 'radial-gradient(rgba(60,64,80,0.16) 1px, transparent 1.2px) 0 0 / 4% 5.8%, #eceef3', border: '1px solid #d6d9e1' }, kids: [tag('03 Design', '#3a3d46', '#dde0e8'),
         r('ab', 22, 27, 46, 65, { background: '#ffffff', borderRadius: '6px', boxShadow: '0 4px 12px -4px rgba(20,22,30,0.25)' }),
         r('img', 25, 31, 40, 22, { background: 'linear-gradient(135deg, oklch(0.78 0.1 275), oklch(0.82 0.09 315))', borderRadius: '4px' }),
         line('h1', 25, 59, 30, '#2a2c31', 5), line('h2', 25, 67, 36, '#d3d6de', 3.5), line('h3', 25, 72.5, 26, '#d3d6de', 3.5),
@@ -1338,11 +1345,11 @@ class Component extends DCLogic {
         ...['oklch(0.58 0.2 275)', 'oklch(0.82 0.09 315)', '#2a2c31', 'oklch(0.78 0.14 70)'].map((c, j) => r('sw' + j, 75 + j * 4.6, 33, 3.6, 5.2, { background: c, borderRadius: '999px' })),
         line('pl1', 75, 45, 16, '#d3d6de', 3.5), line('pl2', 75, 52, 11, '#d3d6de', 3.5), r('pl3', 75, 60, 17, 9, { border: '1px solid #d3d6de', borderRadius: '3px' }), line('pl4', 75, 75, 14, '#d3d6de', 3.5),
         r('cur', 60, 49, 3.2, 4.6, { background: '#16171c', clipPath: 'polygon(0 0, 100% 62%, 45% 62%, 30% 100%)', borderRadius: 0 })] },
-      { st: { background: '#1e1b2e', border: '1px solid #3d3756' }, kids: [tag('04 Build', '#d9cfff', 'rgba(175,155,255,0.16)'),
+      { st: { background: '#1e1b2e', border: '1px solid #3d3756' }, kids: [tag('04 Prototype', '#d9cfff', 'rgba(175,155,255,0.16)'),
         ...[[0, 18, 'oklch(0.72 0.14 300)'], [1, 30, 'oklch(0.75 0.11 230)'], [2, 24, 'oklch(0.78 0.13 150)'], [2, 16, 'rgba(255,255,255,0.3)'], [1, 34, 'oklch(0.8 0.12 70)'], [0, 12, 'oklch(0.72 0.14 300)']].map(([ind, w, c], j) => line('k' + j, 8 + ind * 6, 30 + j * 10.5, w, c, 4.5)),
         ...[0, 1, 2, 3, 4, 5].map(j => line('ln' + j, 3, 30 + j * 10.5, 2, 'rgba(255,255,255,0.18)', 4.5)),
         r('term', 60, 30, 32, 58, { background: '#11151f', borderRadius: '6px', border: '1px solid #312b47' }), line('t1', 64, 42, 20, 'oklch(0.78 0.13 150)'), line('t2', 64, 54, 14, 'rgba(255,255,255,0.3)'), line('t3', 64, 66, 22, 'rgba(255,255,255,0.3)')] },
-      { st: { background: '#f5faf7' }, kids: [tag('05 Enable', '#1d6b45', '#dcefe3'),
+      { st: { background: '#f5faf7' }, kids: [tag('05 Deploy', '#1d6b45', '#dcefe3'),
         chip('pass', { right: '6%', top: '7%' }, '24 Trained', { color: '#ffffff', background: '#1d6b45' }, [dot('oklch(0.85 0.12 152)')]),
         r('panel', 6, 25, 52, 58, { background: '#ffffff', borderRadius: '7px', boxShadow: '0 1px 0 #e1ece5, 0 6px 14px -8px rgba(20,60,40,0.25)' }),
         ...[0, 1, 2, 3].map(j => { const warn = j === 2; return h('span', { key: 'ic' + j, style: { position: 'absolute', left: '9%', top: (28.4 + j * 13) + '%', width: '1.7em', height: '1.7em', fontSize: '0.03em', borderRadius: '999px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: warn ? AMB : G } },
@@ -1373,15 +1380,23 @@ class Component extends DCLogic {
           h('line', { key: 'b', x1: 0, y1: 40, x2: 100, y2: 40, stroke: '#e3e5eb', strokeWidth: 1, vectorEffect: 'non-scaling-stroke' })),
         chip('ship', { left: '46.5%', top: '54%' }, 'Shipped', { color: '#2a2c31', background: '#ffffff', border: '1px solid #e3e5eb', fontSize: '0.028em', padding: '0.4em 0.7em' }),
         r('pt', 92.3, 56, 3.4, 4.9, { background: '#ffffff', border: '2px solid oklch(0.58 0.2 275)', borderRadius: '999px', boxShadow: '0 0 0 4px oklch(0.62 0.17 275 / 0.2)' }),
-        r('sp1', 86, 50.5, 3, 4.35, { background: 'oklch(0.62 0.17 275)', clipPath: 'polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%)', borderRadius: 0, transform: 'rotate(0deg)' }), r('sp2', 96.5, 51, 2.2, 3.19, { background: AMB, clipPath: 'polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%)', borderRadius: 0, transform: 'rotate(15deg)' }), r('sp3', 89.5, 64, 1.8, 2.61, { background: G, clipPath: 'polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%)', borderRadius: 0, transform: 'rotate(-10deg)' })] }
+        r('sp1', 86, 50.5, 3, 4.35, { background: 'oklch(0.62 0.17 275)', clipPath: 'polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%)', borderRadius: 0, transform: 'rotate(0deg)' }), r('sp2', 96.5, 51, 2.2, 3.19, { background: AMB, clipPath: 'polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%)', borderRadius: 0, transform: 'rotate(15deg)' }), r('sp3', 89.5, 64, 1.8, 2.61, { background: G, clipPath: 'polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%)', borderRadius: 0, transform: 'rotate(-10deg)' })] },
+      { st: { background: 'radial-gradient(55% 45% at 85% 20%, oklch(0.62 0.17 275 / 0.12), transparent 70%), #fbfbfd', border: '1px solid #e6e8ee' }, kids: [tag('07 Scale', '#3b2f8f', 'oklch(0.94 0.035 285)'),
+        chip('pb', { right: '6%', top: '7%' }, 'Playbook v1', { color: '#ffffff', background: '#16171c' }, [dot('oklch(0.75 0.13 285)', 'oklch(0.62 0.17 275 / 0.35)')]),
+        ...[['Support', 'Live', 6, 25, true], ['Billing', 'Live', 37, 25, true], ['Onboarding', 'Live', 68, 25, true], ['Claims', 'Pilot', 6, 52, false], ['Sales ops', 'Next', 37, 52, false]].map(([n, st, x, y, on], j) => h('span', { key: 'tm' + j, style: { position: 'absolute', left: x + '%', top: y + '%', width: '26%', height: '21%', boxSizing: 'border-box', borderRadius: '7px', background: on ? '#ffffff' : 'transparent', border: on ? '1px solid #e3e5eb' : '1.5px dashed #c9ccd6', boxShadow: on ? '0 4px 10px -6px rgba(17,18,20,0.18)' : 'none', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.35em', padding: '0 0.9em', fontSize: '0.032em', lineHeight: 1, whiteSpace: 'nowrap' } },
+          h('span', { key: 'n', style: { color: '#2a2c31', fontWeight: 600 } }, n),
+          h('span', { key: 's', style: { display: 'flex', alignItems: 'center', gap: '0.4em', color: on ? '#1d6b45' : '#6b6e75', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: '0.85em' } }, h('span', { key: 'd', style: { width: '0.55em', height: '0.55em', borderRadius: '999px', background: on ? G : st === 'Pilot' ? AMB : '#c9ccd6' } }), st))),
+        r('plus', 68, 52, 26, 21, { border: '1.5px dashed oklch(0.75 0.08 285)', borderRadius: '7px', background: 'oklch(0.97 0.015 285)' }),
+        tx('plusT', 72, 59.5, '+ new team', { color: 'oklch(0.5 0.15 280)', fontSize: '0.032em', fontWeight: 600 }),
+        tx('fb', 6, 84, 'Product feedback  →  3 insights shared', { color: '#6b6e75', fontSize: '0.03em', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontWeight: 500 })] }
     ];
-    const GAP = (ex && S === 5) ? 0.035 : 0.075, DROP = 0.6;
+    const GAP = (ex && S === 6) ? 0.032 : 0.066, DROP = 0.6;
     const prevS = this._hibPrev == null ? S : this._hibPrev; this._hibPrev = S;
     const looping = S < prevS;
     const layers = L.map((l, i) => {
       const built = ex && i <= S, act = built && i === S;
       const z = built ? i * GAP + (act ? 0.025 : 0) : Math.max(S, i) * GAP + DROP;
-      const delay = !built && looping ? (5 - i) * 70 : act && !looping ? 60 : 0;
+      const delay = !built && looping ? (6 - i) * 70 : act && !looping ? 60 : 0;
       const tr = reduce ? 'none' : [
         'transform ' + (built ? '1100ms cubic-bezier(.2,1.15,.35,1)' : '700ms cubic-bezier(.5,0,.75,0)') + ' ' + delay + 'ms',
         'opacity ' + (built ? '500ms' : '450ms') + ' ease ' + delay + 'ms',
@@ -1393,7 +1408,7 @@ class Component extends DCLogic {
     const hue = 278 + S * 3;
     const glow = h('div', { key: 'glow', style: { position: 'absolute', left: '50%', top: '46%', width: '70%', aspectRatio: '1 / 0.7', transform: 'translate(-50%, -50%)', borderRadius: '50%', pointerEvents: 'none', background: 'radial-gradient(closest-side, oklch(0.55 0.17 ' + hue + ' / 0.5), oklch(0.45 0.14 ' + hue + ' / 0.14) 55%, transparent 100%)', filter: 'blur(30px)', opacity: ex ? 1 : 0.5, transition: 'opacity 1200ms ease, background 1200ms ease' } });
     const floor = h('div', { key: 'floor', style: { position: 'absolute', left: '50%', top: '76%', width: 'clamp(200px, 24vw, 360px)', height: 'clamp(40px, 5vw, 70px)', transform: 'translate(-50%, -50%)', borderRadius: '50%', background: 'radial-gradient(closest-side, rgba(0,0,0,0.65), transparent)', filter: 'blur(10px)', pointerEvents: 'none', opacity: ex ? 0.55 + S * 0.09 : 0.3, scale: String(0.92 + S * 0.02), transition: 'opacity 900ms ease, scale 1100ms cubic-bezier(.2,1.15,.35,1)' } });
-    const present = ex && S === 5;
+    const present = ex && S === 6;
     const stack = h('div', { key: 'stack', style: { position: 'relative', width: '1em', fontSize: 'clamp(190px, 23vw, 340px)', aspectRatio: '1.45 / 1', transformStyle: 'preserve-3d', transform: present ? 'translateY(-12%) rotateX(14deg) rotateZ(0deg) scale(1.18)' : 'rotateX(56deg) rotateZ(-40deg) scale(1)', transition: reduce ? 'none' : 'transform 1400ms cubic-bezier(.2,.8,.2,1)' } }, ...layers);
     const bob = h('div', { key: 'bob', style: { transformStyle: 'preserve-3d', animation: reduce ? 'none' : 'hibBob 9s ease-in-out infinite' } }, stack);
     const wrap = h('div', { key: 'wrap', style: { position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '18%', perspective: '1600px', transform: 'translate(calc(var(--px, 0) * 8px), calc(var(--py, 0) * 6px))', transition: 'transform 600ms ' + E } }, bob);
