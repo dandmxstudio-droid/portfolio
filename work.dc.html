@@ -206,8 +206,9 @@ class Component extends DCLogic {
     { href: '/carevine', img: 'assets/carevine/carevine-thumbnail-v2.jpg', alt: 'Carevine Triage Tool support and nurse queues', tag: 'Healthcare · AI Product', cat: 'ai', title: 'Patient Message Triage', desc: 'A working AI tool that sorts a virtual-care support inbox, gets health messages to nurses in seconds, and drafts replies reps approve.', featured: true },
     { href: '/tidey', img: 'assets/tidewell/tidey-thumbnail.jpg', alt: 'Tidewell project thumbnail', tag: 'Banking · AI Agent', cat: 'ai', title: 'AI Fraud Investigator', desc: 'An AI layer that connects data, docs, and analytics so teams get answers fast.', featured: true },
     { href: '/equipaworks', img: 'assets/equipaworks/equipaworks-thumbnail.jpg', alt: 'EquipaWorks course system thumbnail', tag: 'Learning · AI Automation', cat: 'ai', title: 'Training Content at Scale', desc: 'One topic in, one complete microlearning video course out, in about 2 hours.', featured: true },
+    { href: '/davita', img: 'assets/davita/davita-thumbnail.jpg', alt: 'DaVita OneView patient chart with the Order Change panel open', tag: 'Healthcare · Product Design', cat: 'pd', title: 'Physician Order Entry', desc: 'Moved physician order changes out of a spoken relay through nurses and into the EHR. Shipped to ~7,000 physicians, saving about 1.5 hours a day each.', featured: true },
   ];
-  filterDefs = [['all', 'All'], ['ai', 'AI Products'], ['auto', 'Automation'], ['ds', 'Design Systems']];
+  filterDefs = [['all', 'All'], ['ai', 'AI Products'], ['pd', 'Product Design'], ['auto', 'Automation'], ['ds', 'Design Systems']];
   hoverOn = (e) => e.currentTarget.style.setProperty('--h', '1');
   hoverOff = (e) => e.currentTarget.style.setProperty('--h', '0');
   pickFilter = (e) => { const f = e.currentTarget.getAttribute('data-f'); if (f !== this.state.filter) this.setState({ filter: f }); };

@@ -23,6 +23,10 @@
     {
       "source": "/carevine-research",
       "destination": "/carevine-research.dc.html"
+    },
+    {
+      "source": "/davita",
+      "destination": "/davita.dc.html"
     }
   ],
   "redirects": [
@@ -54,6 +58,11 @@
     {
       "source": "/carevine-research.dc.html",
       "destination": "/carevine-research",
+      "permanent": true
+    },
+    {
+      "source": "/davita.dc.html",
+      "destination": "/davita",
       "permanent": true
     }
   ]
